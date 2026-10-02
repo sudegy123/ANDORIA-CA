@@ -1,0 +1,43 @@
+# Solar ERP — Supabase project config.
+#
+# CLI workflow: migrations live in supabase/migrations/, applied to the
+# live ANDORIA project (ref ywjvmnzutsphkkljbqwe) with
+#   bash supabase/db-push.sh          (or supabase/db-push.ps1 in PowerShell)
+# which wraps `supabase db push --db-url ...` using the session pooler —
+# the direct db.<ref>.supabase.co host is IPv6-only and unreachable from
+# this environment, so every command here uses --db-url against the
+# pooler instead of `supabase link` (which additionally needs a Supabase
+# Personal Access Token we don't have). No Docker in this environment, so
+# `supabase start`/local emulation isn't available — db push/pull/
+# migration list/repair don't need Docker and all work fine.
+# New migration: `supabase migration new <name>`, write the SQL, then
+# `bash supabase/db-push.sh`. Never hand-edit a migration already pushed —
+# add a new one instead, same as any other migration tool.
+
+project_id = "solar-erp"
+
+[api]
+enabled = true
+port = 54321
+schemas = ["public", "storage"]
+extra_search_path = ["public"]
+max_rows = 1000
+
+[db]
+port = 54322
+major_version = 15
+
+[studio]
+enabled = true
+port = 54323
+
+[auth]
+enabled = true
+site_url = "http://localhost:5757"
+additional_redirect_urls = ["http://localhost:5757/crm/"]
+jwt_expiry = 43200
+enable_signup = false # staff accounts are created by an Owner/Admin, not self-service
+
+[storage]
+enabled = true
+file_size_limit = "10MiB"

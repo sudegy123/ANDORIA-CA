@@ -1,0 +1,1712 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SDSC1MR78X"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-SDSC1MR78X');
+</script>
+<!-- Facebook Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+// TODO: Replace PIXEL_ID with your actual Facebook Pixel ID
+// fbq('init', 'YOUR_PIXEL_ID');
+// fbq('track', 'PageView');
+</script>
+<meta name="description" content="أندوريا — المستشار الذكي للطاقة الشمسية">
+<meta name="theme-color" content="#071A12">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>أندوريا — المستشار الذكي للطاقة الشمسية</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cg transform='skewX(-18)'%3E%3Crect x='8' y='55' width='15' height='28' rx='3' fill='%23C1272D'/%3E%3Crect x='30' y='40' width='15' height='43' rx='3' fill='%23E8862E'/%3E%3Crect x='52' y='18' width='15' height='65' rx='3' fill='%23F2B632'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<!-- CSS — load order matters -->
+<link rel="stylesheet" href="assets/css/variables.css">
+<link rel="stylesheet" href="assets/css/reset.css">
+<link rel="stylesheet" href="assets/css/typography.css">
+<link rel="stylesheet" href="assets/css/layout.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/animations.css">
+<link rel="stylesheet" href="assets/css/app.css">
+<link rel="stylesheet" href="assets/css/responsive.css">
+<link rel="stylesheet" href="assets/css/welcome-v2.css">
+<style id="welcome-v2-inline">
+/*
+  ANDORIA WELCOME v2 — INLINE GUARANTEE
+  Same rules as welcome-v2.css, inlined so they apply even if the
+  external file is cached or not yet deployed. No !important — these
+  win by cascade order (last stylesheet wins at equal specificity).
+*/
+
+/* ─ Override app.css #step-welcome centred layout ─────────── */
+/* #step-welcome already has position:relative from app.css — the hero
+   img/overlay below anchor to it. This gradient stays as the visible
+   fallback background if the hero photo is ever unavailable. */
+#step-welcome {
+  align-items: stretch;
+  text-align: start;
+  padding: 0;
+  direction: rtl;
+  background:
+    radial-gradient(ellipse 90% 55% at 50% 0%, rgba(242,182,50,0.09) 0%, transparent 50%),
+    var(--color-bg);
+}
+
+/* ─ HERO BACKGROUND ─ existing Higgsfield solar-farm-at-sunset photo,
+   fixed full-cover layer behind the entire welcome experience. */
+#welcome-hero-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  object-fit: cover;
+  object-position: center top;
+  z-index: 0;
+  display: block;
+  pointer-events: none;
+}
+#welcome-hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(180deg,
+    rgba(7,26,18,0.62) 0%,
+    rgba(7,26,18,0.20) 22%,
+    rgba(7,26,18,0.05) 42%,
+    rgba(7,26,18,0.60) 68%,
+    rgba(7,26,18,0.93) 85%,
+    rgba(7,26,18,0.99) 100%);
+}
+/* All real content sits above the hero photo + overlay */
+.w-topbar, .w-hero, .w-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* ─ TOPBAR ──────────────────────────────────────────────────── */
+.w-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  direction: rtl;
+}
+.w-topbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  direction: ltr;
+  flex: 0 0 auto;
+}
+/* Lock the SVG — reset.css max-width:100% otherwise expands it */
+.w-topbar-brand svg.brand-mark,
+.w-topbar-brand .brand-mark {
+  width: 32px;
+  height: 32px;
+  max-width: 32px;
+  max-height: 32px;
+}
+.w-topbar-brand .brand-wordmark {
+  font-size: 16px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  line-height: 1;
+}
+.w-topbar-lang { flex: 0 0 auto; }
+
+/* ─ HERO ─────────────────────────────────────────────────────── */
+.w-hero {
+  padding: 4px 20px 24px;
+  text-align: start;
+}
+.w-hero .welcome-eyebrow {
+  letter-spacing: 2px;
+  text-align: start;
+  margin-bottom: 10px;
+}
+.w-hero .welcome-h1 {
+  font-size: clamp(30px, 8vw, 46px);
+  line-height: 1.18;
+  text-align: start;
+  margin-bottom: 12px;
+}
+.w-hero-line-white { color: var(--color-text); display: block; }
+.w-hero-line-gold  { color: var(--color-gold);  display: block; }
+.w-hero .welcome-subtitle {
+  text-align: start;
+  max-width: 340px;
+  margin: 0;
+  color: var(--color-text-muted);
+}
+
+/* ─ CONTENT COLUMN ──────────────────────────────────────────── */
+.w-content {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 0 16px 40px;
+}
+
+/* ─ OFFER CARD ──────────────────────────────────────────────── */
+/* Photo-as-background composition: the image wrap is absolutely
+   positioned to cover the entire card (not a strip above the text),
+   a ::after gradient scrim sits above it for legibility, and the
+   body content is pinned to the bottom via flex + z-index:2. */
+.w-offer-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  border: 1.5px solid var(--color-gold);
+  border-radius: 16px;
+  background: linear-gradient(155deg,rgba(242,182,50,0.12),rgba(242,182,50,0.03) 60%,var(--color-surface));
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  flex-shrink: 0;
+}
+.w-offer-img-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background: #071a12;
+}
+.w-offer-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.w-offer-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(7,26,18,0.1) 0%, rgba(7,26,18,0.5) 40%, rgba(7,26,18,0.92) 100%);
+  pointer-events: none;
+}
+.w-offer-body {
+  position: relative;
+  z-index: 2;
+  padding: 16px 18px 18px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.w-offer-badge {
+  display: inline-block;
+  background: var(--color-gold);
+  color: var(--color-bg);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  border-radius: 100px;
+  padding: 4px 14px;
+}
+.w-offer-title {
+  font-size: 18px;
+  font-weight: 900;
+  line-height: 1.3;
+  color: var(--color-text);
+}
+.w-offer-title-gold { color: var(--color-gold); }
+.w-offer-remaining {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--color-surface2);
+  border: 1px solid var(--color-border-gold);
+  border-radius: 100px;
+  padding: 6px 18px;
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--color-gold);
+}
+
+/* ─ STATS ───────────────────────────────────────────────────── */
+.w-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+.w-stat {
+  background: linear-gradient(155deg,var(--color-surface),rgba(242,182,50,0.04));
+  border: 1px solid var(--color-border-gold);
+  border-radius: 12px;
+  padding: 14px 6px;
+  text-align: center;
+}
+.w-stat-val {
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--color-gold);
+  line-height: 1;
+  margin-bottom: 5px;
+}
+.w-stat-lbl {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+/* ─ TRUST BADGE ─────────────────────────────────────────────── */
+.w-trust {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+}
+
+/* ─ CTA STACK ───────────────────────────────────────────────── */
+.w-cta-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+}
+.w-cta-stack .btn-primary,
+.w-cta-stack .btn-secondary {
+  width: 100%;
+  max-width: none;
+}
+
+/* ─ $30 PACKAGE CARD ────────────────────────────────────────── */
+/* Same photo-as-background composition as the offer card above, with
+   a heavier/faster scrim since this card carries much more text. */
+.w-pkg-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 460px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  border: 1.5px solid var(--color-gold);
+  border-radius: 16px;
+  background: linear-gradient(155deg,rgba(242,182,50,0.13),var(--color-surface) 60%);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  flex-shrink: 0;
+}
+.w-pkg-img-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background: #071a12;
+}
+.w-pkg-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.w-pkg-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(7,26,18,0.12) 0%, rgba(7,26,18,0.72) 30%, rgba(7,26,18,0.95) 55%, rgba(7,26,18,0.97) 100%);
+  pointer-events: none;
+}
+.w-pkg-body {
+  position: relative;
+  z-index: 2;
+  padding: 16px 18px 0;
+  direction: rtl;
+  text-align: start;
+}
+.w-pkg-ribbon {
+  display: inline-block;
+  position: static;
+  background: linear-gradient(135deg,var(--color-gold),var(--color-gold-light));
+  color: var(--color-bg);
+  font-size: 9px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-radius: 100px;
+  padding: 3px 12px;
+  margin-bottom: 6px;
+}
+.w-pkg-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--color-gold);
+  margin-bottom: 3px;
+  display: block;
+}
+.w-pkg-price {
+  font-size: 50px;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -2px;
+  color: var(--color-gold);
+  margin-bottom: 4px;
+}
+.w-pkg-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-text-bone);
+  margin-bottom: 10px;
+}
+.w-pkg-specs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px 8px;
+  font-size: 11px;
+  color: var(--color-text-muted);
+  margin-bottom: 8px;
+}
+.w-pkg-note {
+  font-size: 11px;
+  color: var(--color-text-muted);
+  line-height: 1.55;
+  margin-bottom: 4px;
+}
+.w-pkg-disclaimer {
+  font-size: 10px;
+  color: rgba(255,255,255,0.32);
+  line-height: 1.5;
+  margin-bottom: 0;
+}
+.w-pkg-cta {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  margin-top: 16px;
+  padding: 15px 18px;
+  background: linear-gradient(135deg,var(--color-gold),var(--color-gold-light));
+  color: var(--color-bg);
+  font-size: 15px;
+  font-weight: 900;
+  font-family: var(--font-primary);
+  text-decoration: none;
+  border-radius: 0 0 14px 14px;
+  transition: filter 140ms;
+}
+.w-pkg-cta:hover { filter: brightness(1.08); text-decoration: none; }
+.w-pkg-cta svg {
+  width: 18px;
+  height: 18px;
+  max-width: 18px;
+  flex-shrink: 0;
+}
+
+/* ─ LOADING SCREEN SVG fix ──────────────────────────────────── */
+#loading-screen svg {
+  width: 64px;
+  height: 64px;
+  max-width: 64px;
+  max-height: 64px;
+}
+</style>
+<!-- premium.css removed — rules inlined in 
+
+</head>
+<body>
+
+<!-- LOADING SCREEN -->
+<div id="loading-screen">
+  <div class="anim-float" style="margin-bottom:24px">
+    <svg width="64" height="64" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g transform="skewX(-18)">
+        <rect x="8"  y="55" width="15" height="28" rx="3" fill="#C1272D"/>
+        <rect x="30" y="40" width="15" height="43" rx="3" fill="#E8862E"/>
+        <rect x="52" y="18" width="15" height="65" rx="3" fill="#F2B632"/>
+      </g>
+    </svg>
+  </div>
+  <div style="font-size:14px;color:#D9D9D9;font-weight:600;margin-bottom:16px" data-i18n="loading.text">جاري تحميل المستشار الذكي...</div>
+  <div style="width:120px;height:2px;background:#163B27;border-radius:99px;overflow:hidden">
+    <div class="loader-bar-fill" style="height:100%;background:#F2B632;border-radius:99px;width:0"></div>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app">
+
+  <!-- PROGRESS BAR (doubles as the persistent header — carries the Andoria
+       brand badge on every step except welcome, which has its own hero lockup) -->
+  <div id="progress-bar">
+    <button class="progress-back" onclick="goBack()" id="progress-back-btn" aria-label="Back">
+      <span class="progress-back-icon">‹</span>
+      <span class="progress-back-label" data-i18n="nav.back">رجوع</span>
+    </button>
+    <div class="progress-track">
+      <div class="progress-fill" id="prog-fill" style="width:0%"></div>
+    </div>
+    <div class="progress-label" id="prog-label">1 / 9</div>
+    <div class="lang-switcher-slot lang-switcher-slot--header"></div>
+    <div id="brand-badge-slot"></div>
+  </div>
+
+  <div id="steps">
+
+    <!-- ═══ STEP 1: WELCOME ═══════════════════════════════════════ -->
+    <div class="step active" id="step-1">
+      <div id="step-welcome">
+
+        <!-- ─ HERO BACKGROUND ─ existing Higgsfield solar-farm-at-sunset
+             photo, same generation batch as the offer/package card photos
+             (hf_20260831_100035 — sequential with 100041/100048 below).
+             Fixed full-cover layer behind the whole welcome experience;
+             overlay gradient keeps text/cards readable over it. -->
+        <img id="welcome-hero-img" src="https://d8j0ntlcm91z4.cloudfront.net/user_3G8hfXGld3ykullvffjm4Fw2l8K/hf_20260831_100035_823e38a0-2760-4733-92ba-272ac9c47363.png" alt="" loading="eager" decoding="async" aria-hidden="true">
+        <div id="welcome-hero-overlay" aria-hidden="true"></div>
+
+        <!-- ─ TOPBAR ─ -->
+        <header class="w-topbar">
+          <div class="w-topbar-brand">
+            <svg class="brand-mark" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <g transform="skewX(-18)">
+                <rect x="8"  y="55" width="15" height="28" rx="3" fill="#C1272D"/>
+                <rect x="30" y="40" width="15" height="43" rx="3" fill="#E8862E"/>
+                <rect x="52" y="18" width="15" height="65" rx="3" fill="#F2B632"/>
+              </g>
+            </svg>
+            <div class="brand-text">
+              <div class="brand-wordmark">ANDORIA</div>
+              <div class="brand-heritage" id="welcome-brand-heritage">أعمال لطفي حسن موسى - منذ 1978</div>
+            </div>
+          </div>
+          <div class="w-topbar-lang">
+            <div class="lang-switcher-slot lang-switcher-slot--welcome"></div>
+          </div>
+        </header>
+
+        <!-- ─ HERO ─ -->
+        <section class="w-hero">
+          <div class="welcome-eyebrow" data-i18n="welcome.eyebrow">المستشار الذكي للطاقة الشمسية</div>
+          <h1 class="welcome-h1">
+            <span class="w-hero-line-white" data-i18n="welcome.titleLine1">احسب نظامك الشمسي</span>
+            <span class="w-hero-line-gold"  data-i18n="welcome.titleLine2">في دقيقتين</span>
+          </h1>
+          <p class="welcome-subtitle" data-i18n="welcome.subtitle">
+            أدخل أجهزتك الكهربائية واحصل على توصية فنية متكاملة للألواح والبطاريات والمحول — والتركيب مجاني
+          </p>
+        </section>
+
+        <!-- ─ CARDS + STATS ─ -->
+        <div class="w-content">
+
+          <!-- Free Installation Offer Card -->
+          <div class="w-offer-card" id="welcome-offer-card">
+            <div class="w-offer-img-wrap">
+              <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3G8hfXGld3ykullvffjm4Fw2l8K/hf_20260831_100041_4d38be32-029c-49f2-9953-7640a9389a3e.png" alt="" loading="eager" decoding="async" aria-hidden="true">
+            </div>
+            <div class="w-offer-body">
+              <div class="w-offer-badge" data-i18n="offer.badge">عرض لفترة محدودة</div>
+              <div class="w-offer-title">
+                <span class="w-offer-title-gold" data-i18n="offer.titleGold">التركيب مجاناً لأول 100 عميل</span>
+              </div>
+              <div class="w-offer-remaining">متبقي <span id="welcome-offer-remaining">93</span></div>
+            </div>
+          </div>
+
+          <!-- Company Statistics -->
+          <div class="w-stats">
+            <div class="w-stat">
+              <div class="w-stat-val">🎁</div>
+              <div class="w-stat-lbl" data-i18n="welcome.stat3Label">تركيب مجاني</div>
+            </div>
+            <div class="w-stat">
+              <div class="w-stat-val" data-i18n="welcome.stat2Val">48</div>
+              <div class="w-stat-lbl" data-i18n="welcome.stat2Label">عام خبرة</div>
+            </div>
+            <div class="w-stat">
+              <div class="w-stat-val" data-i18n="welcome.stat1Val">1978</div>
+              <div class="w-stat-lbl" data-i18n="welcome.stat1Label">تأسست عام</div>
+            </div>
+          </div>
+
+          <!-- Live Status / Trust Badge -->
+          <div class="w-trust trust-ready-badge">
+            <span class="trust-ready-dot" aria-hidden="true"></span>
+            <div>
+              <div class="trust-ready-title" data-i18n="trust.readyTitle">النظام يوفر حسب احتياجاتك الآن</div>
+              <div class="trust-ready-sub"   data-i18n="trust.readySubtitle">حسابات فورية مبنية على الاستهلاك الفعلي</div>
+            </div>
+          </div>
+
+          <!-- Primary + Secondary CTA -->
+          <div class="w-cta-stack">
+            <button class="btn btn-primary anim-pulse" onclick="goToStep(2)">
+              <span data-i18n="welcome.ctaPrimary">ابدأ التقييم المجاني</span>
+              <span class="btn-icon" aria-hidden="true">☀️</span>
+            </button>
+            <button class="btn btn-secondary" onclick="goToStep(2)" data-i18n="welcome.ctaSecondary">كيف يعمل النظام؟</button>
+          </div>
+
+          <!-- $30 Mini Package Card -->
+          <div class="w-pkg-card">
+            <div class="w-pkg-img-wrap">
+              <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3G8hfXGld3ykullvffjm4Fw2l8K/hf_20260831_100048_03d493ce-fe6d-45de-8627-a809284fc0a8.png" alt="" loading="lazy" decoding="async" aria-hidden="true">
+            </div>
+            <div class="w-pkg-body">
+              <div class="w-pkg-ribbon" data-i18n="miniPackage.specialBadge">عرض خاص</div>
+              <div class="w-pkg-label"  data-i18n="miniPackage.badge">باقة التوفير</div>
+              <div class="w-pkg-price">$30</div>
+              <div class="w-pkg-title"  data-i18n="miniPackage.title">حل صغير للشحن اليومي</div>
+              <div class="w-pkg-specs">
+                <span data-i18n="miniPackage.specPanel">☀️ لوح شمسي 30 واط</span>
+                <span data-i18n="miniPackage.specBattery">🔋 بطارية 12 فولت</span>
+                <span data-i18n="miniPackage.specController">⚡ وحدة تحكم شحن</span>
+                <span data-i18n="miniPackage.specUsb">📱 شحن 5 أجهزة USB</span>
+              </div>
+              <div class="w-pkg-note"       data-i18n="miniPackage.suitable">مناسب لشحن الموبايل والباور بانك وأجهزة USB الصغيرة.</div>
+              <div class="w-pkg-disclaimer" data-i18n="miniPackage.unsuitable">ليس نظاماً لتشغيل الأجهزة المنزلية الكبيرة — لا يشغّل ثلاجة أو مكيف أو تلفزيون أو طلمبة.</div>
+            </div>
+            <a class="w-pkg-cta" id="mini-package-cta" href="#" target="_blank" rel="noopener" data-i18n="miniPackage.cta">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              اسأل عن باقة عبر واتساب
+            </a>
+          </div>
+
+        </div><!-- /w-content -->
+      </div><!-- /step-welcome -->
+    </div><!-- /step-1 -->
+
+        <!-- ═══ STEP 2: CUSTOMER PROFILE ═══════════════════════════════ -->
+    <div class="step" id="step-2">
+      <div class="step-shell">
+        <div class="step-header">
+          <div class="eyebrow" data-i18n="steps.profile.eyebrow">الخطوة 1 من 11</div>
+          <div class="step-title mt-2" data-i18n="steps.profile.title">بياناتك الشخصية</div>
+          <div class="step-subtitle mt-2" data-i18n="steps.profile.subtitle">نستخدمها لتجهيز عرضك وتقريرك الفني ومتابعة طلبك</div>
+        </div>
+        <div class="step-body">
+          <div class="form-group">
+            <label class="form-label" data-i18n="steps.profile.nameLabel">الاسم الكامل</label>
+            <input type="text" class="form-input" id="cust-name" placeholder="مثال: أحمد محمد" data-i18n-placeholder="steps.profile.namePlaceholder" oninput="onProfileFieldChange()" onblur="touchProfileField('cust-name')">
+            <div class="field-error" id="err-cust-name"></div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" data-i18n="steps.profile.mobileLabel">رقم الموبايل</label>
+            <div class="phone-input-row">
+              <div class="select-wrap phone-country-wrap">
+                <select class="form-select" id="cust-mobile-country" onchange="onMobileCountryChange(this.value)"></select>
+              </div>
+              <input type="tel" class="form-input" id="cust-mobile" placeholder="9XXXXXXXX" oninput="onMobileChange()" onblur="touchProfileField('cust-mobile')">
+            </div>
+            <div class="field-error" id="err-cust-mobile"></div>
+          </div>
+
+          <div class="form-group">
+            <div class="toggle-row" onclick="toggleWhatsappSame()">
+              <div class="toggle-text">
+                <div class="toggle-title" data-i18n="steps.profile.whatsappSameTitle">رقم الواتساب نفس رقم الموبايل</div>
+                <div class="toggle-sub" data-i18n="steps.profile.whatsappSameSub">ألغِ التفعيل لإدخال رقم واتساب مختلف</div>
+              </div>
+              <div class="toggle-switch on" id="whatsapp-same-toggle"><div class="toggle-knob"></div></div>
+            </div>
+            <div class="hidden" id="whatsapp-manual-wrap" style="margin-top:var(--space-3)">
+              <input type="tel" class="form-input" id="cust-whatsapp" placeholder="رقم الواتساب مع مفتاح الدولة" data-i18n-placeholder="steps.profile.whatsappPlaceholder" oninput="onProfileFieldChange()">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" data-i18n="steps.profile.locationLabel">أين تقيم حالياً؟</label>
+            <div class="select-wrap">
+              <select class="form-select" id="cust-location-select" onchange="onCustomerLocationChange(this.value)">
+                <option value="">اختر بلد إقامتك</option>
+              </select>
+            </div>
+            <div class="field-error" id="err-cust-location-select"></div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" data-i18n="steps.profile.beneficiaryLabel">النظام لمن؟</label>
+            <div class="choice-grid-2" id="beneficiary-grid">
+              <button class="choice-btn beneficiary-btn" data-beneficiary="myself" onclick="selectBeneficiary(this)" data-i18n="steps.profile.beneficiaryMyself">لنفسي</button>
+              <button class="choice-btn beneficiary-btn" data-beneficiary="family" onclick="selectBeneficiary(this)" data-i18n="steps.profile.beneficiaryFamily">لعائلتي في السودان</button>
+            </div>
+            <div class="field-error" id="err-beneficiary-grid"></div>
+          </div>
+
+          <!-- Buyer's own Sudan state/city — relevant when installing at the buyer's own address (beneficiary = myself) -->
+          <div id="buyer-location-wrap">
+            <div class="form-group">
+              <label class="form-label" data-i18n="steps.profile.stateLabel">الولاية</label>
+              <div class="select-wrap">
+                <select class="form-select" id="cust-state-select" onchange="onStateChange(this.value)">
+                  <option value="">اختر ولايتك</option>
+                </select>
+              </div>
+              <div class="field-error" id="err-cust-state-select"></div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label"><span data-i18n="steps.profile.cityLabel">المدينة</span> <span class="form-label-optional" data-i18n="steps.profile.optional">اختياري</span></label>
+              <div class="select-wrap">
+                <select class="form-select" id="cust-city-select" onchange="onCityChange(this.value)" disabled>
+                  <option value="">اختر ولايتك أولاً</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recipient section — only when buying for family in Sudan -->
+          <div class="hidden" id="recipient-wrap">
+            <div class="form-group">
+              <label class="form-label" data-i18n="steps.profile.recipientNameLabel">اسم المستفيد</label>
+              <input type="text" class="form-input" id="recipient-name" placeholder="اسم من سيستلم النظام في السودان" data-i18n-placeholder="steps.profile.recipientNamePlaceholder" oninput="onProfileFieldChange()" onblur="touchProfileField('recipient-name')">
+              <div class="field-error" id="err-recipient-name"></div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" data-i18n="steps.profile.recipientMobileLabel">رقم موبايل المستفيد (السودان)</label>
+              <input type="tel" class="form-input" id="recipient-mobile" placeholder="9XXXXXXXX" oninput="onProfileFieldChange()" onblur="touchProfileField('recipient-mobile')">
+              <div class="field-error" id="err-recipient-mobile"></div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" data-i18n="steps.profile.recipientStateLabel">ولاية المستفيد</label>
+              <div class="select-wrap">
+                <select class="form-select" id="recipient-state-select" onchange="onRecipientStateChange(this.value)">
+                  <option value="">اختر الولاية</option>
+                </select>
+              </div>
+              <div class="field-error" id="err-recipient-state-select"></div>
+            </div>
+            <div class="form-group">
+              <label class="form-label"><span data-i18n="steps.profile.recipientCityLabel">مدينة المستفيد</span> <span class="form-label-optional" data-i18n="steps.profile.optional">اختياري</span></label>
+              <div class="select-wrap">
+                <select class="form-select" id="recipient-city-select" onchange="onRecipientCityChange(this.value)" disabled>
+                  <option value="">اختر الولاية أولاً</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" data-i18n="steps.profile.customerTypeLabel">نوع العميل</label>
+            <div class="choice-grid-3" id="customer-type-grid">
+              <button class="choice-btn cust-type-btn" data-type="home_owner"     onclick="selectCustomerType(this)" data-i18n="steps.profile.customerTypes.home_owner">صاحب منزل</button>
+              <button class="choice-btn cust-type-btn" data-type="business_owner" onclick="selectCustomerType(this)" data-i18n="steps.profile.customerTypes.business_owner">صاحب عمل</button>
+              <button class="choice-btn cust-type-btn" data-type="farmer"         onclick="selectCustomerType(this)" data-i18n="steps.profile.customerTypes.farmer">مزارع</button>
+              <button class="choice-btn cust-type-btn" data-type="clinic_owner"   onclick="selectCustomerType(this)" data-i18n="steps.profile.customerTypes.clinic_owner">صاحب عيادة</button>
+              <button class="choice-btn cust-type-btn" data-type="engineer"       onclick="selectCustomerType(this)" data-i18n="steps.profile.customerTypes.engineer">مهندس</button>
+              <button class="choice-btn cust-type-btn" data-type="other"          onclick="selectCustomerType(this)" data-i18n="steps.profile.customerTypes.other">أخرى</button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label"><span data-i18n="steps.profile.emailLabel">البريد الإلكتروني</span> <span class="form-label-optional" data-i18n="steps.profile.optional">اختياري</span></label>
+            <input type="email" class="form-input" id="cust-email" placeholder="example@email.com" oninput="onProfileFieldChange()">
+          </div>
+        </div>
+        <div class="step-footer">
+          <div class="remaining-fields" id="remaining-fields"></div>
+          <button class="btn btn-primary" id="btn-step-profile" style="opacity:0.4;pointer-events:none" onclick="goToStep(3)" data-i18n="steps.profile.next">التالي</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ STEP 3: PROPERTY TYPE ══════════════════════════════════ -->
+    <div class="step" id="step-3">
+      <div class="step-shell">
+        <div class="step-header">
+          <div class="eyebrow" data-i18n="steps.property.eyebrow">الخطوة 2 من 11</div>
+          <div class="step-title mt-2" data-i18n="steps.property.title">ما نوع المكان؟</div>
+          <div class="step-subtitle mt-2" data-i18n="steps.property.subtitle">اختر نوع المكان الذي تريد تزويده بالطاقة الشمسية</div>
+        </div>
+        <div class="step-body">
+          <div class="property-grid anim-stagger" id="property-grid">
+            <div class="property-card anim-fade-in" data-type="house"    onclick="selectProperty(this)"><div class="property-icon">🏠</div><div class="property-name" data-i18n="steps.property.types.house">منزل</div></div>
+            <div class="property-card anim-fade-in" data-type="apartment" onclick="selectProperty(this)"><div class="property-icon">🏢</div><div class="property-name" data-i18n="steps.property.types.apartment">شقة</div></div>
+            <div class="property-card anim-fade-in" data-type="shop"     onclick="selectProperty(this)"><div class="property-icon">🏪</div><div class="property-name" data-i18n="steps.property.types.shop">محل تجاري</div></div>
+            <div class="property-card anim-fade-in" data-type="office"   onclick="selectProperty(this)"><div class="property-icon">🏗️</div><div class="property-name" data-i18n="steps.property.types.office">مكتب</div></div>
+            <div class="property-card anim-fade-in" data-type="farm"     onclick="selectProperty(this)"><div class="property-icon">🌾</div><div class="property-name" data-i18n="steps.property.types.farm">مزرعة</div></div>
+            <div class="property-card anim-fade-in" data-type="clinic"   onclick="selectProperty(this)"><div class="property-icon">🏥</div><div class="property-name" data-i18n="steps.property.types.clinic">عيادة</div></div>
+            <div class="property-card anim-fade-in" data-type="school"   onclick="selectProperty(this)"><div class="property-icon">🏫</div><div class="property-name" data-i18n="steps.property.types.school">مدرسة</div></div>
+            <div class="property-card anim-fade-in" data-type="mosque"   onclick="selectProperty(this)"><div class="property-icon">🕌</div><div class="property-name" data-i18n="steps.property.types.mosque">مسجد</div></div>
+            <div class="property-card anim-fade-in" data-type="workshop" onclick="selectProperty(this)"><div class="property-icon">🔧</div><div class="property-name" data-i18n="steps.property.types.workshop">ورشة</div></div>
+          </div>
+
+          <div class="hidden" id="shop-type-wrap" style="margin-top:var(--space-6)">
+            <div class="form-label" style="margin-bottom:var(--space-3)" data-i18n="steps.property.shopTypeLabel">ما نوع المحل التجاري؟</div>
+            <div class="property-grid" id="shop-type-grid">
+              <div class="property-card" data-shop="grocery"    onclick="selectShopType(this)"><div class="property-icon">🛒</div><div class="property-name" data-i18n="steps.property.shopTypes.grocery">بقالة</div></div>
+              <div class="property-card" data-shop="pharmacy"   onclick="selectShopType(this)"><div class="property-icon">💊</div><div class="property-name" data-i18n="steps.property.shopTypes.pharmacy">صيدلية</div></div>
+              <div class="property-card" data-shop="bakery"     onclick="selectShopType(this)"><div class="property-icon">🥖</div><div class="property-name" data-i18n="steps.property.shopTypes.bakery">مخبز</div></div>
+              <div class="property-card" data-shop="restaurant" onclick="selectShopType(this)"><div class="property-icon">🍽️</div><div class="property-name" data-i18n="steps.property.shopTypes.restaurant">مطعم</div></div>
+              <div class="property-card" data-shop="cafe"       onclick="selectShopType(this)"><div class="property-icon">☕</div><div class="property-name" data-i18n="steps.property.shopTypes.cafe">كافيه</div></div>
+              <div class="property-card" data-shop="barber"     onclick="selectShopType(this)"><div class="property-icon">💈</div><div class="property-name" data-i18n="steps.property.shopTypes.barber">صالون حلاقة</div></div>
+              <div class="property-card" data-shop="salon"      onclick="selectShopType(this)"><div class="property-icon">💅</div><div class="property-name" data-i18n="steps.property.shopTypes.salon">صالون تجميل</div></div>
+              <div class="property-card" data-shop="mobile"     onclick="selectShopType(this)"><div class="property-icon">📱</div><div class="property-name" data-i18n="steps.property.shopTypes.mobile">محل موبايلات</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="step-footer">
+          <button class="btn btn-primary" id="btn-step2" style="opacity:0.4;pointer-events:none" onclick="goToStep(4)" data-i18n="steps.property.next">التالي</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ STEP 4: BASIC INFO ════════════════════════════════════ -->
+    <div class="step" id="step-4">
+      <div class="step-shell">
+        <div class="step-header">
+          <div class="eyebrow" data-i18n="steps.basicInfo.eyebrow">الخطوة 3 من 11</div>
+          <div class="step-title mt-2" data-i18n="steps.basicInfo.title">معلومات أساسية</div>
+          <div class="step-subtitle mt-2" data-i18n="steps.basicInfo.subtitle">نستخدمها لتحديد النظام المثالي لموقعك</div>
+        </div>
+        <div class="step-body">
+          <div class="form-group">
+            <label class="form-label" data-i18n="steps.basicInfo.outageLabel">كم ساعة انقطاع كهرباء يومياً؟</label>
+            <div class="choice-grid-2">
+              <button class="choice-btn outage-btn" data-hours="4"  onclick="selectOutage(this)" data-i18n="steps.basicInfo.outage4">أقل من 4 ساعات</button>
+              <button class="choice-btn outage-btn" data-hours="8"  onclick="selectOutage(this)" data-i18n="steps.basicInfo.outage8">4 – 8 ساعات</button>
+              <button class="choice-btn outage-btn" data-hours="16" onclick="selectOutage(this)" data-i18n="steps.basicInfo.outage16">8 – 16 ساعة</button>
+              <button class="choice-btn outage-btn" data-hours="24" onclick="selectOutage(this)" data-i18n="steps.basicInfo.outage24">لا توجد كهرباء</button>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label"><span data-i18n="steps.basicInfo.expansionLabel">هل تخطط للتوسعة مستقبلاً؟</span> <span class="form-label-optional" data-i18n="steps.profile.optional">اختياري</span></label>
+            <div class="toggle-row" onclick="toggleExpansion()">
+              <div class="toggle-text">
+                <div class="toggle-title" data-i18n="steps.basicInfo.expansionTitle">تركيب مكيف أو ضخة مياه مستقبلاً</div>
+                <div class="toggle-sub" data-i18n="steps.basicInfo.expansionSub">سنصمم نظاماً يستوعب التوسعة بدون تغيير المحول</div>
+              </div>
+              <div class="toggle-switch" id="expansion-toggle"><div class="toggle-knob"></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="step-footer">
+          <button class="btn btn-primary" onclick="goToStep(5)" data-i18n="steps.basicInfo.next">التالي — اختيار الأجهزة</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ STEP 5: DEVICES ═══════════════════════════════════════ -->
+    <div class="step" id="step-5">
+      <div class="step-shell">
+        <div class="step-header">
+          <div class="eyebrow" data-i18n="steps.devices.eyebrow">الخطوة 4 من 11</div>
+          <div class="step-title mt-2" data-i18n="steps.devices.title">أجهزتك الكهربائية</div>
+          <div class="step-subtitle mt-2" data-i18n="steps.devices.subtitle">اختر الأجهزة التي تريد تشغيلها بالطاقة الشمسية</div>
+        </div>
+
+        <!-- Live Load Meter -->
+        <div id="load-meter">
+          <div class="load-main-row">
+            <div class="load-label" data-i18n="steps.devices.loadLabel">إجمالي استهلاك أجهزتك يومياً</div>
+            <div class="load-track"><div class="load-fill" id="load-fill" style="width:0%"></div></div>
+            <div class="load-val" id="load-val">0 Wh</div>
+          </div>
+          <div class="load-peak-row">
+            <span data-i18n="steps.devices.peakLabel">أعلى حمل متوقع</span>
+            <span id="load-peak-val">0 W</span>
+          </div>
+        </div>
+
+        <!-- Motor Load Warning -->
+        <div id="motor-warning" class="motor-warning" data-i18n="steps.devices.motorWarning">
+          ⚠ الأجهزة ذات المحركات (طلمبات، مكيفات) تحتاج محولاً بقدرة سيرج عالية — سنحسب ذلك تلقائياً.
+        </div>
+
+        <div class="step-body" style="padding-top:16px">
+          <!-- Category Tabs — rendered by DecisionEngine for the selected property/shop type -->
+          <div class="device-tabs" id="device-tabs"></div>
+          <div class="device-grid" id="device-grid"></div>
+        </div>
+        <div class="step-footer">
+          <button class="btn btn-primary" onclick="goToStep(6)">
+            <span id="btn-devices-txt" data-i18n="steps.devices.calcButton">حساب الاستهلاك</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ STEP 6: SUMMARY ═══════════════════════════════════════ -->
+    <div class="step" id="step-6">
+      <div class="step-shell">
+        <div class="step-header">
+          <div class="eyebrow" data-i18n="steps.summary.eyebrow">الخطوة 5 من 11</div>
+          <div class="step-title mt-2" data-i18n="steps.summary.title">ملخص استهلاكك</div>
+          <div class="step-subtitle mt-2" id="sum-subtitle" data-i18n="steps.summary.subtitle">بناءً على أجهزتك المختارة</div>
+        </div>
+        <div class="step-body">
+          <!-- Arc Gauge -->
+          <div class="arc-wrapper">
+            <svg id="arc-svg" width="200" height="120" viewBox="0 0 200 120" role="img" aria-label="Daily energy gauge">
+              <path d="M 20 100 A 80 80 0 0 1 180 100" fill="none" stroke="#163B27" stroke-width="14" stroke-linecap="round"/>
+              <path id="arc-fill" d="M 20 100 A 80 80 0 0 1 180 100" fill="none" stroke="#F2B632" stroke-width="14" stroke-linecap="round"
+                stroke-dasharray="251.2" stroke-dashoffset="251.2"/>
+              <text id="arc-val" x="100" y="88" text-anchor="middle" font-family="Cairo" font-size="28" font-weight="900" fill="#F2B632">0</text>
+              <text id="arc-unit" x="100" y="108" text-anchor="middle" font-family="Cairo" font-size="11" fill="#D9D9D9" data-i18n="steps.summary.arcUnit">كيلوواط ساعة / يوم</text>
+            </svg>
+          </div>
+
+          <!-- KPI Grid -->
+          <div class="grid-2 mb-6">
+            <div class="kpi-card"><div class="kpi-val" id="kpi-daily">0 Wh</div><div class="kpi-label" data-i18n="steps.summary.kpiDaily">الطاقة اليومية</div></div>
+            <div class="kpi-card"><div class="kpi-val" id="kpi-peak">0 W</div><div class="kpi-label" data-i18n="steps.summary.kpiPeak">ذروة الحمل</div></div>
+            <div class="kpi-card"><div class="kpi-val" id="kpi-surge">0 VA</div><div class="kpi-label" data-i18n="steps.summary.kpiSurge">حمل التشغيل (سيرج)</div></div>
+            <div class="kpi-card"><div class="kpi-val" id="kpi-monthly">0 kWh</div><div class="kpi-label" data-i18n="steps.summary.kpiMonthly">الاستهلاك الشهري</div></div>
+          </div>
+
+          <!-- Breakdown -->
+          <div class="breakdown-title" data-i18n="steps.summary.breakdownTitle">توزيع الاستهلاك حسب الجهاز</div>
+          <div id="breakdown-list"></div>
+        </div>
+        <div class="step-footer">
+          <button class="btn btn-primary" onclick="goToStep(7)" data-i18n="steps.summary.next">عرض التوصية الفنية ←</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ STEP 7: RECOMMENDATION ═══════════════════════════════ -->
+    <div class="step" id="step-7">
+      <div class="step-shell">
+        <div class="step-header">
+          <div class="eyebrow" data-i18n="steps.recommendation.eyebrow">الخطوة 6 من 11</div>
+          <div class="step-title mt-2" data-i18n="steps.recommendation.title">التوصية الفنية</div>
+          <div class="step-subtitle mt-2" id="rec-subtitle" data-i18n="steps.recommendation.subtitle">المواصفات المحسوبة بدقة هندسية لنظامك</div>
+        </div>
+        <div class="step-body">
+          <div class="section-title" data-i18n="steps.recommendation.picker.chargingTitle">شحن البطارية من الكهرباء</div>
+          <div class="step-subtitle mb-4" data-i18n="steps.recommendation.picker.chargingSubtitle">اختار الطريقة التي تفضلها لشحن البطارية.</div>
+          <div class="option-card-list mb-6" id="charging-picker-list"></div>
+
+          <div id="panel-picker-section">
+            <div class="section-title" data-i18n="steps.recommendation.picker.panelTitle">اختار نوع الألواح</div>
+            <div class="step-subtitle mb-4" id="panel-picker-subtitle" data-i18n="steps.recommendation.picker.panelSubtitle">اختار حجم اللوح الذي تفضله. الحاسبة تحسب عدد الألواح المطلوب حسب احتياجك الفعلي من الكهرباء.</div>
+            <div class="option-card-list mb-6" id="panel-picker-list"></div>
+          </div>
+          <div class="no-solar-note mb-6 hidden" id="no-solar-note" data-i18n="steps.recommendation.picker.noSolarNote">اخترت الشحن من الكهرباء بدون ألواح شمسية — لا حاجة لاختيار قدرة لوح في هذا الوضع.</div>
+
+          <div class="section-title" data-i18n="steps.recommendation.picker.batteryTitle">اختار نوع البطارية</div>
+          <div class="step-subtitle mb-4" id="battery-picker-subtitle" data-i18n="steps.recommendation.picker.batterySubtitle">اختار تقنية البطارية التي تفضلها. المعدات النهائية دائماً تعتمد على المنتج الفعلي المتوفر.</div>
+          <div class="option-card-list mb-6" id="battery-picker-list"></div>
+
+          <div class="your-choice-card mb-6" id="your-choice-card"></div>
+
+          <div class="section-title mt-2" id="rec-calculated-title" data-i18n="steps.recommendation.picker.calculatedTitle">احتياجك المحسوب</div>
+          <div id="rec-confidence" class="mb-6"></div>
+          <div id="rec-components" class="flex-col gap-3 mb-6"></div>
+          <div class="battery-sim mb-6">
+            <div class="battery-sim-title" data-i18n="steps.recommendation.batterySimTitle">🌙 محاكاة البطارية الليلية</div>
+            <div id="battery-timeline" class="flex-col gap-3"></div>
+          </div>
+          <div id="rec-expansion" class="mb-6"></div>
+          <div id="rec-gen-compare" class="card"></div>
+          <div id="rec-economic-options" class="mt-6 mb-6"></div>
+          <div id="rec-alternatives" class="mt-6 mb-6"></div>
+
+          <div class="section-title mt-2" data-i18n="education.sectionTitle">اعرف الفرق قبل ما تختار</div>
+          <div class="step-subtitle mb-4" data-i18n="education.sectionSubtitle">نظرة سريعة — وليست كتالوج منتجات</div>
+          <div class="flex-col gap-3 mb-6" id="edu-cards"></div>
+        </div>
+        <div class="step-footer">
+          <button class="btn btn-primary" onclick="goToStep(8)" data-i18n="steps.recommendation.next">عرض توصيتك ←</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ STEP 8: PACKAGES ══════════════════════════════════════ -->
+    <div class="step" id="step-8">
+      <div class="step-shell">
+        <div class="step-header">
+          <div class="eyebrow" data-i18n="steps.packages.eyebrow">الخطوة 7 من 11</div>
+          <div class="step-title mt-2" data-i18n="steps.packages.title">احتياجك</div>
+          <div class="step-subtitle mt-2" data-i18n="steps.packages.subtitle">بناءً على الأجهزة التي اخترتها — وليس باقة عامة</div>
+        </div>
+        <div class="step-body">
+          <div id="packages-list" class="flex-col gap-4"></div>
+        </div>
+        <div class="step-footer">
+          <button class="btn btn-primary" onclick="goToStep(9)" data-i18n="steps.packages.next">التالي — التركيب مجاني ←</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ STEP 9: FREE INSTALLATION HOOK ══════════════════════════ -->
+    <div class="step" id="step-9">
+      <div class="step-shell">
+        <div class="step-header">
+          <div class="eyebrow" data-i18n="steps.savings.eyebrow">الخطوة 8 من 11</div>
+          <div class="step-title mt-2" data-i18n="steps.savings.title">التركيب مجاني</div>
+          <div class="step-subtitle mt-2" data-i18n="steps.savings.subtitle">خدمة متكاملة ضمن عرض أندوريا</div>
+        </div>
+        <div class="step-body">
+          <div class="savings-hero">
+            <div class="savings-hero-label" data-i18n="steps.savings.heroLabel">FREE INSTALLATION</div>
+            <div class="savings-hero-val" id="free-install-headline" style="font-size:32px">🎁</div>
+            <div class="savings-hero-sub" data-i18n="steps.savings.heroSub">التركيب الكامل ضمن العرض — بدون تكلفة إضافية</div>
+          </div>
+          <div class="flex-col gap-3 mb-6" id="free-install-items"></div>
+        </div>
+        <div class="step-footer">
+          <button class="btn btn-primary" onclick="goToStep(10)" data-i18n="steps.savings.next">التالي — تجارب عملائنا ←</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ STEP 10: TRUST ════════════════════════════════════════ -->
+    <div class="step" id="step-10">
+      <div class="step-shell">
+        <div class="step-header">
+          <div class="eyebrow" data-i18n="steps.trust.eyebrow">الخطوة 9 من 11</div>
+          <div class="step-title mt-2" data-i18n="steps.trust.title">تجارب عملائنا</div>
+          <div class="step-subtitle mt-2" data-i18n="steps.trust.subtitle">ننشر فقط آراء حقيقية من عملائنا — هذا القسم سينمو كلما جمعنا المزيد.</div>
+        </div>
+        <div class="step-body">
+          <div class="section-title" data-i18n="steps.trust.testimonialsTitle">ماذا قال عملاؤنا</div>
+          <div class="flex-col gap-3 mb-6" id="testimonials-list"></div>
+          <div id="testimonials-placeholder" class="testimonial-placeholder hidden">
+            <div class="testimonial-placeholder-icon">💬</div>
+            <div class="testimonial-placeholder-title" data-i18n="steps.trust.testimonialsPlaceholderTitle">تجارب عملائنا الحقيقية قريباً</div>
+            <div class="testimonial-placeholder-desc" data-i18n="steps.trust.testimonialsPlaceholderDesc">نجمع آراء حقيقية من عملائنا لعرضها هنا قريباً.</div>
+          </div>
+
+          <div class="section-title mt-6" data-i18n="steps.trust.trustSignalsTitle">ما يمكنك الاعتماد عليه</div>
+          <div class="flex-col gap-3 mb-6" id="trust-items-list"></div>
+        </div>
+        <div class="step-footer">
+          <button class="btn btn-primary" onclick="goToStep(11)" data-i18n="steps.trust.next">المتابعة لمراجعة الطلب ←</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ STEP 11: CONFIRM DETAILS ═════════════════════════════════ -->
+    <div class="step" id="step-11">
+      <div class="step-shell">
+        <div class="step-header">
+          <div class="eyebrow" data-i18n="steps.review.eyebrow">الخطوة 10 من 11</div>
+          <div class="step-title mt-2" data-i18n="steps.review.title">تأكيد بياناتك</div>
+          <div class="step-subtitle mt-2" id="review-subtitle">تأكد من صحة بياناتك قبل التواصل مع فريق المبيعات</div>
+        </div>
+        <div class="step-body">
+          <div class="confidence-card">
+            <div class="confidence-title" data-i18n="steps.review.buyerTitle">👤 بيانات المشتري</div>
+            <div id="review-buyer-list"></div>
+          </div>
+
+          <div class="confidence-card hidden" id="review-recipient-card">
+            <div class="confidence-title" data-i18n="steps.review.recipientTitle">🏠 بيانات المستفيد (السودان)</div>
+            <div id="review-recipient-list"></div>
+          </div>
+
+          <div class="cta-result-card">
+            <div class="cta-result-title" data-i18n="steps.review.packageTitle">توصيتك الشمسية</div>
+            <div class="cta-result-package" id="review-pkg-name">—</div>
+          </div>
+
+          <div class="confidence-card">
+            <div class="confidence-title" data-i18n="steps.review.confirmedTitle">✅ نظامك مؤكد</div>
+            <div id="confidence-list"></div>
+          </div>
+        </div>
+        <div class="step-footer">
+          <button class="btn btn-primary" onclick="goToStep(12)" data-i18n="steps.review.next">التالي — تواصل مع فريقنا ←</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ STEP 12: WHATSAPP HANDOFF ═══════════════════════════════ -->
+    <div class="step" id="step-12">
+      <div class="step-shell">
+        <div class="step-header">
+          <div class="eyebrow" data-i18n="steps.payment.eyebrow">الخطوة 11 من 11</div>
+          <div class="step-title mt-2" data-i18n="steps.payment.title">تواصل مع فريق أندوريا</div>
+          <div class="step-subtitle mt-2" data-i18n="steps.payment.subtitle">فريقنا جاهز لمناقشة تفاصيل نظامك والأسعار الحالية</div>
+        </div>
+        <div class="step-body">
+
+          <!-- 2. Real diesel fuel savings — driven by the SAME calc object as
+               everything else (CalcEngine.calcDieselSavings(calc.raw_wh)) -->
+          <div class="savings-card" id="savings-card"></div>
+
+          <!-- 3+4. Limited installation offer + persistent remaining-slot counter
+               (Supabase campaign_slots / claim_campaign_slot — never a
+               client-side counter that resets on refresh) -->
+          <div class="offer-card" id="offer-card">
+            <div class="offer-badge" data-i18n="offer.badge">عرض لفترة محدودة</div>
+            <div class="offer-icon">🎁</div>
+            <div class="offer-title"><span class="offer-title-red" data-i18n="offer.titleRed">التركيب مجاناً</span> <span class="offer-title-gold" data-i18n="offer.titleGold">لأول 100 عميل</span></div>
+            <div class="offer-remaining" id="offer-remaining">—</div>
+            <div class="offer-cta" data-i18n="offer.cta">احجز تواصلك مع المهندس الآن</div>
+          </div>
+
+          <div class="cta-intro">
+            <div class="cta-intro-title" data-i18n="steps.payment.readyTitle">جاهز نجهز نظامك؟</div>
+            <div class="cta-intro-text" data-i18n="steps.payment.readyText">أرسل نتيجتك لمهندس من فريق أندوريا وناقش النظام المناسب لك.</div>
+          </div>
+
+          <!-- 5. ONE primary CTA — the customer shouldn't face competing
+               actions at the final decision point. PDF/Share/Engineer-chat
+               are hidden here (not deleted — downloadPDF()/shareResult()
+               stay callable elsewhere), per explicit product direction. -->
+          <div class="cta-actions">
+            <a class="cta-btn-link btn-whatsapp hidden" id="wa-engineer-link" href="#" target="_blank" rel="noopener">
+              <span class="btn-icon">💬</span><span data-i18n="steps.payment.engineerBtn">تواصل مع المهندس</span>
+            </a>
+            <a class="cta-btn-link" id="wa-invoice-link" href="#" target="_blank" rel="noopener" style="background:linear-gradient(135deg,#F2B632,#FFC94A);color:#071A12;font-weight:800;box-shadow:0 4px 20px rgba(242,182,50,0.3)">
+              <span class="btn-icon">🧾</span><span data-i18n="steps.payment.invoiceBtn">اطلب فاتورتك الآن عبر واتساب</span>
+            </a>
+            <!-- Hidden from the final-page UI (downloadPDF() still callable) -->
+            <button class="cta-btn-link hidden" id="pdf-download-btn" onclick="downloadPDF()" style="background:var(--color-surface);border:1.5px solid var(--color-surface3);color:var(--color-text);font-weight:800">
+              <span class="btn-icon">📄</span><span data-i18n="steps.payment.pdfBtn">تحميل التقرير PDF</span>
+            </button>
+            <!-- Hidden from the final-page UI (shareResult() still callable) -->
+            <button class="cta-btn-link hidden" id="share-result-btn" onclick="shareResult()" style="background:var(--color-surface2);border:1.5px solid var(--color-border);color:var(--color-text-muted);font-weight:700">
+              <span class="btn-icon">🔗</span><span data-i18n="steps.payment.shareBtn">مشاركة النتيجة</span>
+            </button>
+            <a class="cta-btn-link" id="cta-call-link" href="#" style="background:var(--color-surface2);border:1.5px solid var(--color-border);color:var(--color-text-muted);font-weight:700">
+              <span class="btn-icon">📞</span><span data-i18n="steps.payment.callBtn">اتصل بمهندس الآن</span>
+            </a>
+          </div>
+
+          <!-- 9. Trust signals -->
+          <div class="confidence-card mt-6">
+            <div id="final-trust-list"></div>
+          </div>
+
+          <!-- Facebook — a living, premium secondary social action near
+               the final CTA and trust signals. Clearly visible but
+               deliberately never gold-filled like WhatsApp above it, so
+               the visual hierarchy (WhatsApp > Facebook > heritage) stays
+               intact. href + aria-label are set from BrandConfig/i18n in
+               buildPayment(), same pattern as #cta-call-link; the
+               .reveal-in entrance class is re-triggered there too, each
+               time Step 12 is (re)entered. -->
+          <a class="facebook-cta mt-4" id="facebook-cta-link" href="#" target="_blank" rel="noopener noreferrer">
+            <span class="facebook-cta-icon-wrap" aria-hidden="true">
+              <span class="facebook-cta-ring"></span>
+              <span class="facebook-cta-icon">
+                <svg viewBox="0 0 24 24" width="30" height="30" focusable="false">
+                  <path d="M22 12a10 10 0 1 0-11.5 9.87v-6.98H7.9V12h2.6V9.8c0-2.57 1.49-3.99 3.83-3.99 1.11 0 2.27.2 2.27.2v2.5h-1.28c-1.26 0-1.65.78-1.65 1.58V12h2.81l-.45 2.89h-2.36v6.98A10 10 0 0 0 22 12z"/>
+                </svg>
+              </span>
+            </span>
+            <span class="facebook-cta-text">
+              <span class="facebook-cta-title" data-i18n="steps.payment.facebookCta">تابع أندوريا على فيسبوك</span>
+              <span class="facebook-cta-sub" data-i18n="steps.payment.facebookCtaSub">شاهد أعمالنا وتابع الجديد</span>
+            </span>
+          </a>
+
+          <!-- Brand heritage — near the final CTA, smaller than the ANDORIA mark -->
+          <div class="final-heritage-block" id="final-heritage-block"></div>
+
+          <!-- Dormant — wired up once Stripe is actually configured (assets/js/payment.js) -->
+          <div class="hidden" id="payment-success-block">
+            <div class="cta-result-card">
+              <div class="cta-result-title" data-i18n="steps.payment.successTitle">✅ تم الدفع بنجاح — شكراً لك</div>
+              <div class="cta-result-package" id="payment-order-number">—</div>
+              <div class="cta-result-price" id="payment-contact-eta">—</div>
+            </div>
+          </div>
+          <div class="hidden" id="payment-failure-block">
+            <div class="confidence-card">
+              <div class="confidence-title" data-i18n="steps.payment.failureTitle">⚠️ تعذر إتمام الدفع</div>
+              <div id="payment-failure-reason"></div>
+              <button class="btn btn-secondary mt-4" id="payment-retry-btn" data-i18n="steps.payment.retryBtn">إعادة المحاولة</button>
+            </div>
+          </div>
+
+        </div>
+        <div class="step-footer" style="text-align:center">
+          <button class="restart-link" onclick="restartAdvisor()" data-i18n="steps.payment.restart">← إعادة الحساب من البداية</button>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /steps -->
+</div><!-- /app -->
+
+<!-- GLOBAL FOOTER — present on every screen, welcome included.
+     Populated by BrandComponents.mount() (assets/js/brand.js). -->
+<div id="brand-footer"></div>
+
+<!-- GLOBAL FLOATING ACTIONS — fixed across every step (1-12), sits
+     outside #app/#steps entirely so Router.goTo()'s step-swapping can
+     never duplicate or destroy it, exactly like #brand-footer above.
+     hrefs/aria-labels are set once on load (and again on language
+     change) by renderFloatingActions() in app.js, which reuses
+     Utils.getWhatsAppTarget()/buildWhatsAppURL() and
+     BrandConfig.company().facebook — no new WhatsApp/Facebook logic. -->
+<div class="fab-group" id="fab-group">
+  <a class="fab-btn fab-whatsapp" id="fab-whatsapp-link" href="#" target="_blank" rel="noopener noreferrer">
+    <span class="fab-ring" aria-hidden="true"></span>
+    <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true" focusable="false">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+      <path d="M12.04 2C6.517 2 2.04 6.477 2.04 12c0 1.762.462 3.416 1.267 4.85L2.04 22l5.29-1.288A9.96 9.96 0 0 0 12.04 22c5.522 0 10-4.478 10-10S17.562 2 12.04 2zm0 18a7.95 7.95 0 0 1-4.062-1.11l-.29-.173-3.14.766.834-3.05-.19-.31A7.95 7.95 0 0 1 4.04 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z"/>
+    </svg>
+  </a>
+  <a class="fab-btn fab-facebook" id="fab-facebook-link" href="#" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false">
+      <path d="M22 12a10 10 0 1 0-11.5 9.87v-6.98H7.9V12h2.6V9.8c0-2.57 1.49-3.99 3.83-3.99 1.11 0 2.27.2 2.27.2v2.5h-1.28c-1.26 0-1.65.78-1.65 1.58V12h2.81l-.45 2.89h-2.36v6.98A10 10 0 0 0 22 12z"/>
+    </svg>
+  </a>
+</div>
+
+<!-- PDF REPORT — off-screen by default; populated by buildPDFReport() and
+     rendered via window.print() (see assets/css/responsive.css @media print) -->
+<div class="pdf-report" id="pdf-report">
+  <div class="pdf-header">
+    <svg class="pdf-logo" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g transform="skewX(-18)">
+        <rect x="8"  y="55" width="15" height="28" rx="3" fill="#C1272D"/>
+        <rect x="30" y="40" width="15" height="43" rx="3" fill="#E8862E"/>
+        <rect x="52" y="18" width="15" height="65" rx="3" fill="#F2B632"/>
+      </g>
+    </svg>
+    <div class="pdf-brand">
+      <div class="pdf-brand-name">ANDORIA</div>
+      <div class="pdf-brand-tagline">DIESEL ENGINES &amp; SOLAR SOLUTIONS</div>
+    </div>
+    <div class="pdf-report-title" id="pdf-report-title">تقرير تقييم الطاقة الشمسية</div>
+  </div>
+
+  <div class="pdf-section">
+    <div class="pdf-section-title" id="pdf-buyer-info-title">بيانات المشتري</div>
+    <div class="pdf-grid">
+      <div><span id="pdf-label-name">الاسم</span><strong id="pdf-name">—</strong></div>
+      <div><span id="pdf-label-phone">رقم الهاتف</span><strong id="pdf-phone">—</strong></div>
+      <div><span id="pdf-label-residence">بلد الإقامة</span><strong id="pdf-buyer-location">—</strong></div>
+      <div><span id="pdf-label-state">الولاية</span><strong id="pdf-state">—</strong></div>
+      <div><span id="pdf-label-city">المدينة</span><strong id="pdf-city">—</strong></div>
+      <div><span id="pdf-label-date">تاريخ التقييم</span><strong id="pdf-date">—</strong></div>
+      <div><span id="pdf-label-property">نوع المكان</span><strong id="pdf-property">—</strong></div>
+    </div>
+  </div>
+
+  <div class="pdf-section hidden" id="pdf-recipient-section">
+    <div class="pdf-section-title" id="pdf-recipient-info-title">بيانات المستفيد (السودان)</div>
+    <div class="pdf-grid">
+      <div><span id="pdf-label-rname">الاسم</span><strong id="pdf-recipient-name">—</strong></div>
+      <div><span id="pdf-label-rphone">رقم الهاتف</span><strong id="pdf-recipient-phone">—</strong></div>
+      <div><span id="pdf-label-rstate">الولاية</span><strong id="pdf-recipient-state">—</strong></div>
+      <div><span id="pdf-label-rcity">المدينة</span><strong id="pdf-recipient-city">—</strong></div>
+    </div>
+  </div>
+
+  <div class="pdf-section">
+    <div class="pdf-section-title" id="pdf-consumption-title">ملخص الاستهلاك</div>
+    <div class="pdf-grid" id="pdf-consumption"></div>
+  </div>
+
+  <div class="pdf-section">
+    <div class="pdf-section-title" id="pdf-system-title">النظام الموصى به</div>
+    <div id="pdf-system" class="pdf-list"></div>
+  </div>
+
+  <div class="pdf-section">
+    <div class="pdf-section-title" id="pdf-calc-basis-title">أساس الحساب</div>
+    <div id="pdf-calc-basis" class="pdf-list"></div>
+  </div>
+
+  <div class="pdf-section">
+    <div class="pdf-section-title" id="pdf-products-title">المنتجات والمواصفات</div>
+    <div id="pdf-products" class="pdf-list"></div>
+  </div>
+
+  <div class="pdf-section">
+    <div class="pdf-section-title" id="pdf-savings-title">التوفير المتوقع</div>
+    <div class="pdf-grid" id="pdf-savings"></div>
+  </div>
+
+  <div class="pdf-section pdf-badges">
+    <div id="pdf-badge-install">✅ تركيب مجاني</div>
+    <div id="pdf-badge-delivery">🚚 توصيل مجانية</div>
+    <div id="pdf-badge-support">🛠️ دعم فني مستمر</div>
+  </div>
+
+  <div class="pdf-footer">
+    <div class="pdf-footer-logo">
+      <svg width="28" height="28" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g transform="skewX(-18)">
+          <rect x="8"  y="55" width="15" height="28" rx="3" fill="#C1272D"/>
+          <rect x="30" y="40" width="15" height="43" rx="3" fill="#E8862E"/>
+          <rect x="52" y="18" width="15" height="65" rx="3" fill="#F2B632"/>
+        </g>
+      </svg>
+    </div>
+    <div class="pdf-footer-company" id="pdf-footer-company">—</div>
+    <div id="pdf-contact">—</div>
+    <a id="pdf-whatsapp" href="#" target="_blank" rel="noopener">—</a>
+    <div class="pdf-powered"><span id="pdf-powered-label">Powered by</span> <span id="pdf-powered-name">—</span></div>
+  </div>
+</div>
+
+<!-- Referral/share gate — a non-destructive overlay shown every few
+     calculator uses. It never clears StateManager or navigates away;
+     it only blocks entering step 7 until the customer taps Share. -->
+<div class="referral-gate hidden" id="referral-gate" role="dialog" aria-modal="true">
+  <div class="referral-gate-card">
+    <button type="button" class="referral-gate-close" id="referral-gate-close-btn" aria-label="Close">✕</button>
+    <div class="referral-gate-icon">🤝</div>
+    <div class="referral-gate-title" data-i18n="referral.title">جربت النظام أكثر من مرة؟</div>
+    <div class="referral-gate-body" data-i18n="referral.body">شارك الحاسبة مع 5 أشخاص ثم واصل تجربتك.</div>
+    <button type="button" class="btn btn-primary referral-gate-share" id="referral-gate-share-btn" data-i18n="referral.shareCta">مشاركة الحاسبة</button>
+    <div class="referral-gate-hint" data-i18n="referral.hint">اضغط مشاركة لإرسال رابط الحاسبة، ثم تابع تلقائياً.</div>
+  </div>
+</div>
+
+<!-- JS — order matters: i18n → constants → brand-config → brand → data → utils → state → calc → devices → decision-engine → locations → personalization → recommendations → charts → router → app -->
+<script src="assets/js/i18n.js"></script>
+<script src="assets/js/constants.js"></script>
+<script src="assets/js/brand-config.js"></script>
+<script>
+/**
+ * SOLAR SMART ADVISOR — IMAGE MAP
+ * image-map.js
+ *
+ * Single source of truth for all visual assets.
+ *
+ * NO Cloudinary dependency. NO dynamic URL building.
+ * All image URLs are direct Higgsfield CDN links —
+ * pre-generated, permanent, served from CloudFront.
+ *
+ * API is backward-compatible with CloudinaryImages so
+ * call sites in app.js need only rename the global:
+ *   CloudinaryImages → AppImages
+ *
+ * url(src) is a simple identity function — every source
+ * stored here is already a complete, load-ready URL.
+ * It exists only so iconOrImage() in utils.js works
+ * without modification.
+ *
+ * Fallback rule:
+ *   Real URL exists → show image
+ *   null            → caller renders emoji / icon
+ */
+
+'use strict';
+
+const AppImages = (() => {
+
+  // CDN base — all Higgsfield assets live here
+  const CDN = 'https://d8j0ntlcm91z4.cloudfront.net/user_3G8hfXGld3ykullvffjm4Fw2l8K/';
+
+  // Cloudinary delivery base for optimized assets (f_auto/q_auto = auto
+  // WebP/AVIF + auto compression, c_fill,g_auto = smart-cropped to the
+  // card size, dpr_auto = right pixel density). Same account/cloud name
+  // as the old cloudinary-config.js.
+  const CL = 'https://res.cloudinary.com/dd9m8ypgl/image/upload/f_auto,q_auto,c_fill,g_auto,dpr_auto,w_400/';
+
+  // ─────────────────────────────────────────────────────────────────
+  // PROPERTY IMAGES  (Step 2)
+  // 4:3 architectural / exterior photography
+  // Same Higgsfield-generated photos (seedream_v4_5, 2026-08-31), now
+  // mirrored to Cloudinary for optimized delivery — the originals were
+  // 5-8MB uncompressed PNGs served straight off Higgsfield's CDN with
+  // no resizing/compression, which was the slow-load cause.
+  // ─────────────────────────────────────────────────────────────────
+  const PROPERTY = {
+    house:     CL + 'property_house.png',
+    apartment: CL + 'property_apartment.png',
+    shop:      CL + 'property_shop.png',
+    office:    CL + 'property_office.png',
+    farm:      CL + 'property_farm.png',
+    clinic:    CL + 'property_clinic.png',
+    mosque:    CL + 'property_mosque.png',
+    school:    CL + 'property_school.png',
+    workshop:  CL + 'property_workshop.png',
+  };
+
+  // ─────────────────────────────────────────────────────────────────
+  // SYSTEM COMPONENT IMAGES  (Step 7)
+  // 1:1 product photography on dark studio background
+  // ─────────────────────────────────────────────────────────────────
+  const SYSTEM = {
+    panel:      CDN + 'hf_20260830_211936_bd4c5d52-c27a-44b1-bf4e-3230cae46b21.png',
+    battery:    CDN + 'hf_20260830_211941_4ee6902f-8254-4165-adb1-f508e2629765.png',
+    inverter:   CDN + 'hf_20260830_211947_42a63c60-1924-481d-add2-be37d77706d2.png',
+    controller: null, // none generated — keeps icon fallback
+  };
+
+  // Battery by chemistry — same photo covers all three chemistry types
+  const BATTERY = {
+    LITHIUM:   CDN + 'hf_20260830_211941_4ee6902f-8254-4165-adb1-f508e2629765.png',
+    GEL:       CDN + 'hf_20260830_211941_4ee6902f-8254-4165-adb1-f508e2629765.png',
+    LEAD_ACID: CDN + 'hf_20260830_211941_4ee6902f-8254-4165-adb1-f508e2629765.png',
+  };
+
+  // ─────────────────────────────────────────────────────────────────
+  // APPLIANCE GROUPS  (Steps 4 & 5)
+  // device_id → semantic_group
+  // ─────────────────────────────────────────────────────────────────
+  const APPLIANCE_GROUPS = {
+    // Lighting
+    'led-bulb': 'lighting-bulb', 'mirror-light': 'lighting-tube',
+    'led-tube': 'lighting-tube', 'led-strip': 'lighting-tube',
+    'flood-light': 'lighting-floodlight', 'pole-light': 'lighting-floodlight', 'brooding-lamp': 'lighting-floodlight',
+    'emergency-lantern': 'lighting-lantern',
+    'exam-light': 'medical-exam-light',
+    // Fans
+    'fan-ceil': 'fan-ceiling',
+    'fan-stand': 'fan-standing',
+    'fan-desk': 'fan-desk',
+    'exhaust-fan': 'fan-exhaust', 'poultry-fan': 'fan-exhaust',
+    // Cooling
+    'cooler-evap-small': 'cooling-evaporative', 'cooler-evap-med': 'cooling-evaporative', 'cooler-evap-lg': 'cooling-evaporative',
+    'ac-1-inv': 'ac-split', 'ac-1.5-inv': 'ac-split', 'ac-2-inv': 'ac-split', 'ac-1.5-conv': 'ac-split',
+    'ac-3-commercial': 'ac-commercial',
+    // Refrigeration
+    'fridge-inv': 'refrigerator-standard', 'fridge-nf': 'refrigerator-standard', 'fridge-single': 'refrigerator-standard',
+    'vaccine-fridge': 'refrigerator-standard', 'medical-fridge-general': 'refrigerator-standard',
+    'display-fridge': 'refrigerator-display',
+    'freezer': 'freezer-chest',
+    // Kitchen
+    'washing-machine': 'kitchen-washer',
+    'kettle': 'kitchen-kettle',
+    'microwave': 'kitchen-microwave',
+    'water-heater': 'kitchen-waterheater',
+    'water-dispenser': 'kitchen-dispenser',
+    'espresso-machine': 'kitchen-espresso',
+    'dough-mixer': 'kitchen-mixer',
+    'proofing-cabinet': 'kitchen-cabinet',
+    // Entertainment
+    'tv-32': 'tv', 'tv-55': 'tv', 'display-screen': 'tv',
+    'receiver': 'entertainment-receiver',
+    'speaker-system': 'entertainment-speaker', 'amplifier-pa': 'entertainment-speaker', 'minaret-speaker': 'entertainment-speaker',
+    // Computing
+    'laptop': 'computing-laptop',
+    'desktop': 'computing-desktop',
+    'printer': 'computing-printer', 'photocopier': 'computing-printer',
+    'projector': 'computing-projector',
+    'cctv': 'computing-cctv',
+    // Pumps
+    'pump-surface-0.5hp': 'pump-surface', 'pump-surface-1hp': 'pump-surface', 'pump-solar-dc': 'pump-surface',
+    'pump-sub-1.5hp': 'pump-submersible', 'pump-sub-2hp': 'pump-submersible', 'pump-sub-3hp': 'pump-submersible',
+    'pump-sub-5hp': 'pump-submersible', 'pump-sub-7.5hp': 'pump-submersible',
+    // DC solar pump gets same as surface (both are above-ground installations)
+    // Electronics
+    'water-tank-control': 'other-electronic', 'electric-fence': 'other-electronic',
+    'microphone': 'other-electronic',
+    'hair-clippers': 'commercial-salon',
+    'phone-charging-station': 'other-charging',
+    'router': 'other-router',
+    // Medical — each device in its own semantic group
+    'oxygen':         'medical-oxygen',
+    'autoclave':      'medical-autoclave',
+    'incubator':      'medical-incubator',
+    'dental-unit':    'medical-dental',
+    'ultrasound':     'medical-ultrasound',
+    'ecg':            'medical-ecg',
+    'lab-centrifuge': 'medical-centrifuge',
+    // Agriculture
+    'milking': 'agriculture-equipment',
+    'milk-tank': 'agriculture-milk-tank',
+    'feed-mixer': 'agriculture-feed-mixer',
+    // Workshop
+    'grain-mill': 'workshop-machine',
+    // Workshop — individual semantic groups
+    'air-compressor-1hp': 'workshop-compressor', 'air-compressor-2hp': 'workshop-compressor',
+    'welder-inverter': 'workshop-welder-inv', 'welder-transformer': 'workshop-welder-tx',
+    'bench-lathe': 'workshop-lathe',
+    'angle-grinder': 'workshop-tool',
+    'drill': 'workshop-drill',
+    'metal-saw': 'workshop-saw',
+    // Commercial
+    'pos-terminal': 'commercial-pos',
+    'hair-dryer': 'commercial-salon', 'facial-steamer': 'commercial-salon', 'nail-uv-lamp': 'commercial-salon',
+  };
+
+  // ─────────────────────────────────────────────────────────────────
+  // APPLIANCE GROUP → IMAGE URL
+  // All Higgsfield CDN (CloudFront), generated 2026-08-30
+  // ─────────────────────────────────────────────────────────────────
+  const APPLIANCE_URLS = {
+    // COOLING — semantically correct per product type
+    'ac-split':               CDN + 'hf_20260830_195524_8878097a-fb4f-41c0-83f1-4ff775fe25bc.png',   // ✓ split AC wall unit
+    'ac-commercial':          CDN + 'hf_20260830_195713_78e8a756-be68-4403-9b34-f9ecf9c82182.png',   // ✓ commercial cassette AC
+    'cooling-evaporative':    CDN + 'hf_20260830_195542_6fb6dc5f-a3c9-4a56-909f-04d11921ff10.png',   // ✓ evaporative/desert cooler
+    'fan-ceiling':            CDN + 'hf_20260830_215253_c6600c63-8056-406a-b386-eb6a02a14f74.png',   // ✓ ceiling fan (newly generated)
+    'fan-standing':           CDN + 'hf_20260830_215258_dbbaf887-1740-417d-a079-a07e06b6107c.png',   // ✓ pedestal standing fan (newly generated)
+    'fan-desk':               CDN + 'hf_20260830_195604_74fa2a1c-1403-4450-8fd8-747250ba69ad.png',   // ✓ desk fan
+    'fan-exhaust':            CDN + 'hf_20260830_195609_c203281d-550f-470e-a427-a56f57dd98a9.png',   // ✓ exhaust wall fan
+    // REFRIGERATION — each type gets its own correct image
+    'refrigerator-standard':  CDN + 'hf_20260830_215149_dcafd823-e490-493a-90fd-5cef5cf36e4a.png',  // ✓ standard home fridge (newly generated)
+    'refrigerator-display':   CDN + 'hf_20260830_195708_292d31cb-b354-4632-8309-0296e0aef82c.png',  // ✓ glass-door display fridge
+    'freezer-chest':          CDN + 'hf_20260830_215153_83df478f-d99c-4eb7-8867-a9f0dc072e55.png',  // ✓ chest freezer (newly generated)
+    // ENTERTAINMENT — TV gets its own TV image, not receiver
+    'tv':                     CDN + 'hf_20260830_215144_ca7681bb-b1bc-4431-a150-91141917d09a.png',   // ✓ flat-screen TV (newly generated)
+    'entertainment-receiver': CDN + 'hf_20260830_195624_38a632a5-3458-42be-8c0e-c12237c822da.png',  // ✓ satellite receiver set-top box
+    'entertainment-speaker':  CDN + 'hf_20260830_195644_e8ef6462-a0ed-40e4-a2eb-8ba6d5f3ed44.png',  // ✓ PA speaker cabinet
+    // LIGHTING — each type gets its correct image
+    'lighting-bulb':          CDN + 'hf_20260830_215159_3c8669b2-6862-4248-8cbe-1e78520a0076.png',  // ✓ LED light bulb (newly generated)
+    'lighting-tube':          CDN + 'hf_20260830_215204_f034c94b-2e57-4618-8a14-6781118d182d.png',  // ✓ LED tube light (newly generated)
+    'lighting-floodlight':    CDN + 'hf_20260830_195614_b0805750-5204-448e-b4d8-3a4f4d2dcd16.png',  // ✓ LED flood light fixture
+    'lighting-lantern':       CDN + 'hf_20260830_195619_60e92b53-bf61-40db-94c8-80c5be9da518.png',  // ✓ emergency lantern
+    // KITCHEN — each appliance gets its own correct image
+    'kitchen-washer':         CDN + 'hf_20260830_215209_0695d5e5-df0c-4c89-998c-e77ae3419e9f.png',  // ✓ washing machine (newly generated)
+    'kitchen-kettle':         CDN + 'hf_20260830_215230_568a6776-2f37-4b0b-b0d2-996bac4a0b48.png',  // ✓ electric kettle (newly generated)
+    'kitchen-microwave':      CDN + 'hf_20260830_215235_7fdaaa8c-d3eb-46e9-96c4-af989e0ef960.png',  // ✓ microwave oven (newly generated)
+    'kitchen-waterheater':    CDN + 'hf_20260830_215241_3810c2fd-7e3a-49a3-9594-18aa0538347a.png',  // ✓ electric water heater (newly generated)
+    'kitchen-dispenser':      CDN + 'hf_20260830_195559_f4d90407-93cf-4e9d-901b-a61aeaf00266.png',  // ✓ hot/cold water dispenser
+    'kitchen-espresso':       CDN + 'hf_20260830_200355_8d3099de-72a5-4e56-9df3-3c891f4bed12.png',  // ✓ espresso/coffee machine
+    'kitchen-mixer':          CDN + 'hf_20260830_200400_ae324aec-6d71-459a-9c6e-06517278101a.png',  // ✓ commercial dough mixer
+    'kitchen-cabinet':        CDN + 'hf_20260830_200405_b575b8f4-4018-4b14-a3a2-ea4049fd98cd.png',  // ✓ proofing cabinet
+    // COMPUTING / OFFICE
+    'computing-laptop':       CDN + 'hf_20260830_195529_7bdb8ffa-0e14-4c2b-8b69-76fb9094f26e.png',  // ✓ laptop computer
+    'computing-desktop':      CDN + 'hf_20260830_195529_7bdb8ffa-0e14-4c2b-8b69-76fb9094f26e.png',  // ✓ desktop (same laptop image — acceptable)
+    'computing-printer':      CDN + 'hf_20260830_195554_78ce9236-2bff-4b24-a884-10fe5905d817.png',  // ✓ laser printer
+    'computing-projector':    CDN + 'hf_20260830_195639_dd3b7758-d708-47d4-9121-f3c2db503e1d.png',  // ✓ business projector
+    'computing-cctv':         CDN + 'hf_20260830_195629_4fd7a8ba-51f2-4824-af7f-11579f08c8cb.png',  // ✓ dome CCTV camera
+    // PUMPS
+    'pump-surface':           CDN + 'hf_20260830_195534_e7b9040d-795a-4888-a699-dcc43f1a214e.png',  // ✓ surface centrifugal pump
+    'pump-submersible':       CDN + 'hf_20260831_091003_09f3ca84-70e8-49c8-bc1c-e9e3e45195e7.png',  // ✓ submersible borehole pumpusings)
+    // ELECTRONICS / MISC
+    'other-charging':         CDN + 'hf_20260830_195548_bddc8cb7-f49b-4152-8139-79158142b078.png',  // ✓ multi-port USB charging hub
+    'other-router':           CDN + 'hf_20260830_215247_d6ade3f4-a166-4368-9cd7-459c06c5e8b7.png',  // ✓ WiFi router with antennas (newly generated)
+    'other-electronic':       CDN + 'hf_20260830_200417_cedf0950-81df-423e-83d7-5a4e5dae5233.png',  // ✓ electronic controller device
+    // SPECIALIST
+    // Medical — individual semantic images (generated 2026-08-31)
+    'medical-oxygen':     CDN + 'hf_20260830_195720_a538ebe4-7173-4791-b8d2-2307611f9140.png',  // ✓ oxygen concentrator
+    'medical-autoclave':  CDN + 'hf_20260831_084858_72f8f260-b9a1-45ec-b593-dd009055c6a3.png',  // ✓ autoclave sterilizer
+    'medical-incubator':  CDN + 'hf_20260831_084904_c9c4021a-b97d-4c0c-979b-feb01732f7a5.png',  // ✓ infant incubator
+    'medical-dental':     CDN + 'hf_20260831_084851_fbc0b792-c351-4671-b0fe-6dca43c3611c.png',  // ✓ dental unit chair
+    'medical-ultrasound': CDN + 'hf_20260831_084847_3ca2bdb6-e5f1-446b-8b71-dbec92238981.png',  // ✓ ultrasound machine
+    'medical-ecg':        CDN + 'hf_20260831_084915_964c2551-9463-458e-8c4c-651ba0e7d1dd.png',  // ✓ ECG machine
+    'medical-centrifuge': CDN + 'hf_20260831_084909_a3c10219-1c15-4992-b1d3-44628b2e965c.png',  // ✓ lab centrifuge
+    'medical-exam-light': CDN + 'hf_20260831_091036_f77b7c88-b81b-4978-b53e-68ea9a29d7cf.png',  // ✓ medical exam light
+    'agriculture-equipment':  CDN + 'hf_20260830_200411_0a0ac923-d800-4777-96ce-4cd2cae5819a.png',  // ✓ milking machine
+    'agriculture-milk-tank':  CDN + 'hf_20260831_091050_fd177b85-4ad6-4686-9f7f-7b2ec9a3b025.png',  // ✓ milk bulk cooling tank
+    'agriculture-feed-mixer': CDN + 'hf_20260831_091043_7c8dad61-cf7c-4b62-87b0-a2145e39962b.png',  // ✓ animal feed mixer
+    'workshop-machine':       CDN + 'hf_20260830_195655_7f9d0d46-69b0-41cc-89e5-355a44d3be84.png',  // ✓ grain mill
+    'workshop-tool':          CDN + 'hf_20260830_195649_09b2e1bc-91e4-4e8f-a388-3248fd610f8f.png',  // ✓ angle grinder
+    // Workshop — individual tool images (generated 2026-08-31)
+    'workshop-compressor':    CDN + 'hf_20260831_091014_e716fdbd-ec72-43b2-b0c4-7c13bb3af5b5.png',  // ✓ air compressor with tank
+    'workshop-welder-inv':    CDN + 'hf_20260831_091009_3a8621d9-46f6-46b1-9e6b-5813c4b63227.png',  // ✓ inverter welder
+    'workshop-welder-tx':     CDN + 'hf_20260831_091057_a15a4004-91a0-41bd-86ee-23663eb60eae.png',  // ✓ transformer welder
+    'workshop-lathe':         CDN + 'hf_20260831_091019_4daabaa6-3ab4-46eb-9701-c1a1aa8ad08d.png',  // ✓ bench lathe
+    'workshop-drill':         CDN + 'hf_20260831_091025_23e07a93-13e0-4981-b4ec-682489e7d87f.png',  // ✓ cordless drill
+    'workshop-saw':           CDN + 'hf_20260831_091031_2c87c2c8-01f6-4f48-b10f-8d702a9f4bc9.png',  // ✓ metal cutting saw
+    'commercial-pos':         CDN + 'hf_20260830_195634_91f04dec-6114-4dea-b1fc-59e993496015.png',  // ✓ POS payment terminal
+    'commercial-salon':       CDN + 'hf_20260830_195700_8223f823-b6f6-41b2-8cc2-23e2ae3d335e.png',  // ✓ professional hair dryer
+  };
+
+  /**
+   * url(src) — identity function.
+   * Every source stored here is already a complete https:// URL.
+   * Kept for backward compatibility with iconOrImage() callers.
+   */
+  function url(src) {
+    if (!src) return null;
+    if (typeof src === 'string' && src.startsWith('https://')) return src;
+    return null;
+  }
+
+  return {
+    property(typeId)     { return PROPERTY[typeId] || null; },
+    appliance(deviceId)  {
+      const group = APPLIANCE_GROUPS[deviceId];
+      return (group && APPLIANCE_URLS[group]) || null;
+    },
+    system(componentId)  { return SYSTEM[componentId] || null; },
+    battery(chemistryId) { return BATTERY[chemistryId] || null; },
+    url,
+  };
+
+})();
+
+if (typeof window !== 'undefined') window.AppImages = AppImages;
+
+// JITTER FIX + PROGRESSIVE LOADING: Override Utils.iconOrImage so a card's
+// real image URL is held in data-src instead of src. Nothing fetches at
+// insertion time; OVERRIDE 3 below (IntersectionObserver, scoped to each
+// step's own .step-body scroll container) assigns src from data-src only
+// once an image is actually visible or about to be. Elements already
+// on-screen at observe() time fire their callback almost immediately —
+// same as the old eager behavior for visible cards (no rebuild flash) —
+// while off-screen cards in the same grid no longer fetch at all until
+// scrolled into view. This is what fixes the "9 images at once" burst
+// from the image-loading investigation without touching the CDN/assets.
+// This override runs after utils.js loads (it's a DOMContentLoaded-safe patch).
+document.addEventListener('DOMContentLoaded', function() {
+
+  // OVERRIDE 1: iconOrImage — emit data-src instead of src (see note above).
+  if (typeof Utils !== 'undefined' && Utils.iconOrImage) {
+    Utils.iconOrImage = function(fallbackEmoji, imageUrl, altText, opts) {
+      var iconClass = (opts && opts.iconClass) || 'property-icon';
+      var iconHtml = '<div class="' + iconClass + '">' + fallbackEmoji + '</div>';
+      if (!imageUrl) return iconHtml;
+      var src = (typeof AppImages !== 'undefined') ? AppImages.url(imageUrl) : imageUrl;
+      if (!src) return iconHtml;
+      var wrapClass = (opts && opts.wrapClass) || 'card-image-wrap';
+      var safeAlt = String(altText || '').replace(/"/g, '&quot;');
+      var safeEmoji = String(fallbackEmoji || '').replace(/'/g, '&#39;');
+      return '<div class="' + wrapClass + '"><img data-src="' + src + '" alt="' + safeAlt + '" loading="eager" decoding="async" onerror="Utils.handleImageFallback(this, \'' + safeEmoji + '\', \'' + iconClass + '\')"></div>';
+    };
+  }
+
+  // OVERRIDE 2: MutationObserver post-processor for device cards.
+  //
+  // renderDeviceGrid() is a LOCAL function in app.js — we cannot override it
+  // via window.renderDeviceGrid because internal calls bypass window.*.
+  //
+  // Instead, we watch #device-grid for DOM changes and post-process each card
+  // immediately after it is inserted. This adds:
+  //   • .device-state-badge  (green + or red ✕, top-left corner)
+  //   • .device-add-link     ("أضف الجهاز" / "Add Device" for unselected cards)
+  //
+  // All business logic (toggleDevice, changeQty, etc.) remains in app.js.
+  function enhanceDeviceCard(card) {
+    // Don't process twice
+    if (card.dataset.enhanced === '1') return;
+    card.dataset.enhanced = '1';
+
+    var media = card.querySelector('.device-card-media');
+    if (media && !media.querySelector('.device-state-badge')) {
+      var badge = document.createElement('div');
+      badge.className = 'device-state-badge';
+      badge.textContent = card.classList.contains('added') ? '✕' : '+';
+      badge.setAttribute('aria-hidden', 'true');
+      media.insertBefore(badge, media.firstChild);
+    }
+
+    // Add "أضف الجهاز" link for unselected cards
+    var body = card.querySelector('.device-card-body');
+    if (body && !card.classList.contains('added') && !card.querySelector('.device-add-link')) {
+      // Hardcode the label — do NOT use I18n.t() here.
+      // The live i18n.js may not have addBtn, causing the raw key to render.
+      var lang = (typeof I18n !== 'undefined' && I18n.getLang) ? I18n.getLang() : 'ar';
+      var addLabel = lang === 'en' ? 'Add Device' : 'أضف الجهاز';
+      var link = document.createElement('div');
+      link.className = 'device-add-link';
+      link.textContent = '+ ' + addLabel;
+      body.insertAdjacentElement('afterend', link);
+    }
+  }
+
+  function enhanceAllCards(grid) {
+    if (!grid) return;
+    grid.querySelectorAll('.device-card').forEach(enhanceDeviceCard);
+  }
+
+  // OVERRIDE 3: progressive image loading. Assigns img.src from the
+  // data-src OVERRIDE 1 now emits, but only once the image is actually
+  // visible (or ~60px from being visible — roughly a third of one card
+  // row, tuned against this app's actual compact grids where a larger
+  // margin would cover almost the whole grid and defeat the point) within
+  // its step's own .step-body scroll container — steps in this SPA scroll
+  // internally, not the window, so the observer root must be .step-body,
+  // not the default viewport. Images already on-screen when a grid first
+  // renders get revealed almost immediately (IntersectionObserver reports
+  // their initial state on the very next frame), matching the old eager
+  // behavior for visible cards with no rebuild flash; images further down
+  // the same grid no longer fetch until scrolled near. Verified: a 9-card
+  // property grid on a compact viewport now fires ~6 requests on render
+  // instead of 9, with the rest loading on scroll, no duplicates.
+  function revealCardImages(container) {
+    if (!container) return;
+    var imgs = container.querySelectorAll('img[data-src]:not([data-src-observed])');
+    if (!imgs.length) return;
+    var root = container.closest('.step-body') || null;
+    var io = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (!entry.isIntersecting) return;
+        var img = entry.target;
+        if (img.dataset.src) { img.src = img.dataset.src; }
+        observer.unobserve(img);
+      });
+    }, { root: root, rootMargin: '60px 0px', threshold: 0.01 });
+    imgs.forEach(function(img) {
+      img.setAttribute('data-src-observed', '1');
+      io.observe(img);
+    });
+  }
+
+  // Observe #device-grid for grid rebuilds (childList) and class changes (attributes)
+  var grid = document.getElementById('device-grid');
+  if (grid) {
+    enhanceAllCards(grid);
+    revealCardImages(grid);
+    var obs = new MutationObserver(function(mutations) {
+      // Only act on childList mutations (full grid rebuild) or class changes on cards
+      mutations.forEach(function(m) {
+        if (m.type === 'childList') {
+          // Grid was rebuilt — enhance all new cards
+          grid.querySelectorAll('.device-card').forEach(function(card) {
+            card.removeAttribute('data-enhanced'); // reset so badge updates
+            enhanceDeviceCard(card);
+          });
+          revealCardImages(grid);
+        } else if (m.type === 'attributes' && m.attributeName === 'class') {
+          var card = m.target;
+          if (card.classList.contains('device-card')) {
+            card.removeAttribute('data-enhanced');
+            enhanceDeviceCard(card);
+          }
+        }
+      });
+    });
+    obs.observe(grid, { childList: true, subtree: false, attributes: true, attributeFilter: ['class'] });
+  }
+
+  // Property grid (Step 3) and system-components list (Step 7) don't get
+  // the badge/add-link treatment above, but their images go through the
+  // same data-src pattern and need the same progressive reveal. Each
+  // renders its images at a different DOM depth relative to the observed
+  // node (property icons are swapped several levels deep inside existing
+  // static cards; rec-components rebuilds its own direct children), so
+  // subtree:true is used for both rather than assuming the exact depth.
+  ['property-grid', 'rec-components'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    revealCardImages(el);
+    var mo = new MutationObserver(function() { revealCardImages(el); });
+    mo.observe(el, { childList: true, subtree: true });
+  });
+
+}, false);
+// Alias: backward-compat for utils.js/app.js that still reference CloudinaryImages.
+// This makes the live site work without requiring utils.js or app.js to be redeployed.
+if (typeof window !== 'undefined') window.CloudinaryImages = {
+  property:  function(t) { return AppImages.property(t); },
+  appliance: function(d) { return AppImages.appliance(d); },
+  system:    function(k) { return AppImages.system(k); },
+  battery:   function(c) { return AppImages.battery(c); },
+  // url() in old code expects a public_id string; now receives a full URL — pass through.
+  url:       function(src, opts) { return (src && src.startsWith && src.startsWith('https://')) ? src : null; },
+};
+</script>
+<script src="assets/js/brand.js"></script>
+<script src="assets/js/utils.js"></script>
+<script src="assets/js/state.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="assets/js/supabase-client.js"></script>
+<script src="assets/js/settings-store.js"></script>
+<script src="assets/js/crm-store.js"></script>
+<script src="assets/js/product-categories.js"></script>
+<script src="assets/js/pricing-engine.js"></script>
+<script src="assets/js/packages-store.js"></script>
+<script src="assets/js/package-catalog.js"></script>
+<script src="assets/js/calculations.js"></script>
+<script src="assets/js/devices.js"></script>
+<script src="assets/js/decision-engine.js"></script>
+<script src="assets/js/countries.js"></script>
+<script src="assets/js/locations.js"></script>
+<script src="assets/js/personalization.js"></script>
+<script src="assets/js/payment.js"></script>
+<script src="assets/js/recommendations.js"></script>
+<script src="assets/js/charts.js"></script>
+<script src="assets/js/router.js"></script>
+<script src="assets/js/app.js"></script>
+
+</body>
+</html>

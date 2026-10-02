@@ -1,0 +1,1728 @@
+/* ═══════════════════════════════════════════════
+   SOLAR SMART ADVISOR — COMPONENTS
+   components.css
+   Every reusable UI component in one file.
+   Organized by component type.
+═══════════════════════════════════════════════ */
+
+/* ══════════════════════════════════════════════
+   BUTTONS
+══════════════════════════════════════════════ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  font-family: var(--font-primary);
+  font-weight: var(--weight-extrabold);
+  font-size: var(--text-base);
+  border-radius: var(--radius-full);
+  padding: 17px var(--space-8);
+  width: 100%;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--duration-fast) var(--ease-out),
+              box-shadow var(--duration-fast) var(--ease-out),
+              background var(--duration-fast) var(--ease-out);
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+.btn:active { transform: scale(0.97); }
+
+/* Primary — gold */
+.btn-primary {
+  background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-light) 100%);
+  color: var(--color-bg);
+  box-shadow: 0 6px 28px rgba(212, 168, 67, 0.28), 0 2px 8px rgba(0,0,0,0.25);
+}
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.18), transparent);
+  opacity: 0;
+  transition: opacity var(--duration-fast);
+}
+.btn-primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 36px rgba(212, 168, 67, 0.38), 0 4px 12px rgba(0,0,0,0.3);
+}
+.btn-primary:hover::after { opacity: 1; }
+
+/* Secondary — outline */
+.btn-secondary {
+  background: transparent;
+  color: var(--color-text);
+  border: 1.5px solid var(--color-surface3);
+}
+.btn-secondary:hover:not(:disabled) {
+  border-color: var(--color-gold);
+  color: var(--color-gold);
+  background: var(--color-gold-dim);
+}
+
+/* Ghost */
+.btn-ghost {
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  border: 1.5px solid var(--color-border);
+}
+.btn-ghost:hover { color: var(--color-text); border-color: var(--color-surface3); }
+
+/* Disabled */
+.btn:disabled,
+.btn[aria-disabled="true"] {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* WhatsApp CTA */
+.btn-whatsapp {
+  background: #25D366;
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
+}
+.btn-whatsapp:hover { background: #1fba5a; }
+
+/* Icon inside button */
+.btn-icon { font-size: 20px; flex-shrink: 0; }
+
+
+/* ══════════════════════════════════════════════
+   CARDS
+══════════════════════════════════════════════ */
+
+.card {
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-surface3);
+  border-radius: var(--radius);
+  padding: var(--space-5);
+  transition: border-color var(--duration-fast) var(--ease-out),
+              transform var(--duration-fast) var(--ease-out),
+              box-shadow var(--duration-fast) var(--ease-out);
+}
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
+}
+
+.card-lg {
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+}
+
+.card-selected {
+  border-color: var(--color-gold) !important;
+  background: linear-gradient(135deg, var(--color-surface), rgba(212,168,67,0.07));
+  box-shadow: var(--shadow-gold);
+}
+
+.card-gold {
+  background: linear-gradient(135deg, rgba(212,168,67,0.1), rgba(212,168,67,0.04));
+  border: 1px solid var(--color-border-gold);
+}
+
+
+/* ══════════════════════════════════════════════
+   FORM ELEMENTS
+══════════════════════════════════════════════ */
+
+.form-group { margin-bottom: var(--space-6); }
+
+.form-label {
+  display: block;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
+  color: var(--color-text-bone);
+  margin-bottom: var(--space-3);
+  letter-spacing: 0.5px;
+}
+
+.form-label-optional {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-regular);
+  color: var(--color-text-muted);
+  margin-inline-start: var(--space-2);
+}
+
+.form-select,
+.form-input {
+  width: 100%;
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-surface3);
+  border-radius: var(--radius-sm);
+  color: var(--color-text);
+  font-size: var(--text-base);
+  font-family: var(--font-primary);
+  font-weight: var(--weight-medium);
+  padding: 16px var(--space-5);
+  appearance: none;
+  -webkit-appearance: none;
+  transition: border-color var(--duration-fast), box-shadow var(--duration-fast);
+  outline: none;
+}
+
+.form-select:focus,
+.form-input:focus {
+  border-color: var(--color-gold);
+  box-shadow: 0 0 0 3px var(--color-gold-dim);
+}
+
+/* ── Inline Validation ───────────────────── */
+.form-input.invalid,
+.form-select.invalid {
+  border-color: var(--color-danger);
+}
+.form-input.invalid:focus,
+.form-select.invalid:focus {
+  box-shadow: 0 0 0 3px rgba(240, 85, 79, 0.18);
+}
+
+.field-error {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  color: var(--color-danger);
+  margin-top: var(--space-2);
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height var(--duration-normal) var(--ease-out),
+              opacity var(--duration-fast) var(--ease-out),
+              margin-top var(--duration-normal) var(--ease-out);
+}
+.field-error.visible {
+  max-height: 40px;
+  opacity: 1;
+}
+.field-error::before {
+  content: '⚠';
+  flex-shrink: 0;
+}
+
+.remaining-fields {
+  text-align: center;
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  color: var(--color-text-dim);
+  margin-bottom: var(--space-3);
+  transition: color var(--duration-fast) var(--ease-out);
+}
+.remaining-fields.all-done {
+  color: var(--color-success);
+}
+
+.select-wrap {
+  position: relative;
+}
+.select-wrap::after {
+  content: '▾';
+  position: absolute;
+  inset-inline-end: var(--space-4);
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-gold);
+  font-size: 14px;
+  pointer-events: none;
+}
+
+/* Phone number field: country-code select + national number input */
+.phone-input-row {
+  display: flex;
+  gap: var(--space-2);
+}
+.phone-country-wrap {
+  flex: 0 0 120px;
+}
+.phone-country-wrap .form-select {
+  padding-inline-end: var(--space-6);
+}
+.phone-input-row .form-input {
+  flex: 1;
+  min-width: 0;
+}
+
+
+/* ══════════════════════════════════════════════
+   TOGGLE SWITCH
+══════════════════════════════════════════════ */
+
+.toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-surface3);
+  border-radius: var(--radius-sm);
+  padding: var(--space-4) var(--space-5);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: border-color var(--duration-fast);
+}
+.toggle-row:hover { border-color: var(--color-gold-dim); }
+
+.toggle-text { flex: 1; }
+.toggle-title { font-size: var(--text-base); font-weight: var(--weight-semibold); }
+.toggle-sub   { font-size: var(--text-xs); color: var(--color-text-muted); margin-top: 2px; }
+
+.toggle-switch {
+  width: 52px;
+  height: 28px;
+  background: var(--color-surface3);
+  border-radius: var(--radius-full);
+  position: relative;
+  flex-shrink: 0;
+  transition: background var(--duration-normal) var(--ease-out);
+}
+.toggle-switch.on { background: var(--color-gold); }
+
+.toggle-knob {
+  position: absolute;
+  top: 3px;
+  inset-inline-start: 3px;
+  width: 22px;
+  height: 22px;
+  background: var(--color-text);
+  border-radius: 50%;
+  transition: inset-inline-start var(--duration-normal) var(--ease-spring);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+.toggle-switch.on .toggle-knob { inset-inline-start: 27px; }
+
+
+/* ══════════════════════════════════════════════
+   CHOICE BUTTONS (outage / budget / property)
+══════════════════════════════════════════════ */
+
+.choice-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-3); }
+.choice-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-3); }
+
+.choice-btn {
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-surface3);
+  border-radius: var(--radius-sm);
+  padding: 14px var(--space-3);
+  color: var(--color-text);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
+  font-family: var(--font-primary);
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-out);
+  text-align: center;
+  -webkit-tap-highlight-color: transparent;
+}
+.choice-btn:active { transform: scale(0.96); }
+.choice-btn.selected {
+  border-color: var(--color-gold);
+  background: var(--color-gold-dim);
+  color: var(--color-gold);
+}
+
+
+/* ══════════════════════════════════════════════
+   PROPERTY CARDS (step 2)
+══════════════════════════════════════════════ */
+
+.property-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+}
+
+/* Premium catalog-style card: photo occupies its own dedicated area at
+   the top (bled to the card's edges), name sits in a separate padded
+   area below — never overlaid on the image. */
+.property-card {
+  position: relative;
+  background: var(--color-surface);
+  border: 2px solid var(--color-surface3);
+  border-radius: var(--radius);
+  padding: 0 0 var(--space-4);
+  text-align: center;
+  cursor: pointer;
+  transition: border-color var(--duration-fast) var(--ease-out),
+              background var(--duration-fast) var(--ease-out),
+              box-shadow var(--duration-fast) var(--ease-out),
+              transform var(--duration-fast) var(--ease-out);
+  display: flex;
+  flex-direction: column;
+  -webkit-tap-highlight-color: transparent;
+  overflow: hidden; /* lets the edge-bled photo respect the card's own radius */
+  box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+}
+.property-card:active { transform: scale(0.97); }
+.property-card.selected {
+  border-color: var(--color-gold);
+  background: var(--color-gold-dim);
+  box-shadow: var(--shadow-gold), 0 10px 26px rgba(0,0,0,0.3);
+  transform: translateY(-2px);
+}
+.property-icon {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 34px;
+  line-height: 1;
+  background:
+    radial-gradient(circle at 50% 45%, var(--color-gold-dim) 0%, transparent 65%),
+    linear-gradient(160deg, var(--color-surface3), var(--color-surface2));
+}
+.property-name {
+  padding: var(--space-3) var(--space-3) 0;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
+}
+.property-card.selected .property-name { color: var(--color-gold); }
+
+/* Real-photo variant — a larger, more prominent square image area
+   (was 4:3) sitting at the top of the card, name below in its own
+   padded area (.property-name above), never overlaid on the photo. */
+.property-image-wrap {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: var(--color-surface3);
+}
+.property-image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s var(--ease-out);
+}
+.property-card:hover .property-image-wrap img { transform: scale(1.05); }
+.property-card.selected .property-image-wrap img { transform: scale(1.03); }
+@media (prefers-reduced-motion: reduce) {
+  .property-image-wrap img { transition: none; }
+}
+
+
+/* ══════════════════════════════════════════════
+   OPTION CARDS — panel/battery picker (step 7)
+   A stacked radio-list, not a grid: each option needs a short
+   explanatory sentence, which a 3-column grid would crush on mobile.
+══════════════════════════════════════════════ */
+
+.option-card-list { display: flex; flex-direction: column; gap: var(--space-3); }
+.option-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  background: var(--color-surface);
+  border: 2px solid var(--color-surface3);
+  border-radius: var(--radius);
+  padding: var(--space-4) var(--space-5);
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-out);
+  -webkit-tap-highlight-color: transparent;
+}
+.option-card:active { transform: scale(0.98); }
+.option-card.selected {
+  border-color: var(--color-gold);
+  background: var(--color-gold-dim);
+  box-shadow: var(--shadow-gold);
+}
+.option-card-radio {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid var(--color-surface3);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--duration-fast) var(--ease-out);
+}
+.option-card.selected .option-card-radio { border-color: var(--color-gold); background: var(--color-gold); }
+.option-card.selected .option-card-radio::after { content: ''; width: 10px; height: 10px; border-radius: 50%; background: var(--color-bg); }
+.option-card-body { flex: 1; min-width: 0; }
+.option-card-title { font-size: var(--text-base); font-weight: var(--weight-extrabold); margin-bottom: 3px; }
+.option-card.selected .option-card-title { color: var(--color-gold); }
+.option-card-desc { font-size: var(--text-xs); color: var(--color-text-muted); line-height: var(--leading-normal); }
+
+/* "Your Choice" recap strip above the calculated-requirement cards */
+.your-choice-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-gold);
+  border-radius: var(--radius);
+  padding: var(--space-5);
+}
+.your-choice-title { font-size: var(--text-sm); font-weight: var(--weight-bold); color: var(--color-text-bone); margin-bottom: var(--space-3); }
+.your-choice-row { display: flex; align-items: center; justify-content: space-between; padding: 6px 0; font-size: var(--text-sm); }
+.your-choice-row span:first-child { color: var(--color-text-muted); }
+.your-choice-row span:last-child { font-weight: var(--weight-bold); color: var(--color-text); }
+/* Shown instead of the panel picker when the customer selects a
+   grid-charged, no-solar-panels charging mode. */
+.no-solar-note {
+  background: var(--color-gold-dim);
+  border: 1px dashed var(--color-border-gold);
+  border-radius: var(--radius);
+  padding: var(--space-4) var(--space-5);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  line-height: var(--leading-normal);
+}
+.no-solar-note.hidden { display: none !important; }
+
+.change-selection-link {
+  display: block;
+  text-align: center;
+  margin-top: var(--space-3);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  color: var(--color-gold);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--space-2);
+  font-family: var(--font-primary);
+}
+
+/* Economic-option comparison cards (step 7) — two real, calculated
+   configurations, never priced against each other. */
+.econ-options-grid { display: flex; flex-direction: column; gap: var(--space-3); }
+.econ-option-card {
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-surface3);
+  border-radius: var(--radius);
+  padding: var(--space-4) var(--space-5);
+}
+.econ-option-card.recommended { border-color: var(--color-gold); background: var(--color-gold-dim); }
+.econ-option-badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: var(--weight-black);
+  letter-spacing: 0.3px;
+  border-radius: var(--radius-full);
+  padding: 3px 10px;
+  margin-bottom: var(--space-2);
+  background: var(--color-surface3);
+  color: var(--color-text-muted);
+}
+.econ-option-badge:not(.alt) { background: var(--color-gold); color: var(--color-bg); }
+.econ-option-badge.alt { background: var(--color-surface3); color: var(--color-text-muted); }
+.econ-option-title { font-size: var(--text-sm); font-weight: var(--weight-extrabold); margin-bottom: 4px; }
+.econ-option-desc  { font-size: var(--text-xs); color: var(--color-text-muted); line-height: var(--leading-normal); }
+
+/* $30 "Saver Package" — a real commercial hook on the welcome hero: a
+   premium glowing gold card. Visually bold on purpose (per explicit
+   product direction), but the COPY still does the work of keeping it
+   correctly scoped as a small entry-level product, never the main
+   system — see .mini-package-suitable/.unsuitable below. */
+/* Photo-ready — same mechanism as .offer-card above: inert until
+   #the-package-card gets style="--card-photo:url(...); --card-overlay-
+   opacity:1" set inline (one change, no markup/JS edits). */
+.mini-package-card {
+  position: relative;
+  overflow: hidden;
+  /* #step-welcome is a flex column; overflow:hidden (needed to clip the
+     ribbon corner below) makes this item's CSS auto min-height resolve
+     to 0 per the flexbox spec, so without flex-shrink:0 the container
+     silently crushes it to a sliver instead of scrolling past it. */
+  flex-shrink: 0;
+  margin-top: var(--space-6);
+  background: linear-gradient(160deg, rgba(242,182,50,0.16), var(--color-surface) 55%);
+  background-image: var(--card-photo, none);
+  background-size: cover;
+  background-position: center;
+  border: 1.5px solid var(--color-gold);
+  border-radius: var(--radius-lg, var(--radius));
+  padding: var(--space-6) var(--space-5) var(--space-5);
+  text-align: center;
+  box-shadow: 0 0 0 1px var(--color-gold-dim), 0 12px 40px rgba(242,182,50,0.16), 0 8px 24px rgba(0,0,0,0.28);
+}
+.mini-package-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(7,26,18,0.2) 0%, rgba(7,26,18,0.6) 55%, rgba(7,26,18,0.94) 100%);
+  opacity: var(--card-overlay-opacity, 0);
+  pointer-events: none;
+}
+.mini-package-content {
+  position: relative;
+  z-index: 2;
+}
+.mini-package-ribbon {
+  position: absolute;
+  top: var(--space-3);
+  inset-inline-end: var(--space-3);
+  z-index: 3;
+  background: linear-gradient(135deg, var(--color-gold), var(--color-gold-light));
+  color: var(--color-bg);
+  font-size: 10px;
+  font-weight: var(--weight-black);
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  border-radius: var(--radius-full);
+  padding: 4px 11px;
+  box-shadow: 0 2px 10px rgba(242,182,50,0.4);
+}
+.mini-package-badge {
+  display: inline-block;
+  font-size: var(--text-xs);
+  font-weight: var(--weight-black);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: var(--space-2);
+}
+.mini-package-price {
+  margin-bottom: var(--space-2);
+}
+.mini-package-price-val {
+  font-size: 44px;
+  font-weight: var(--weight-black);
+  line-height: 1;
+  background: linear-gradient(135deg, var(--color-gold), var(--color-gold-light));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 24px var(--color-gold-glow);
+}
+.mini-package-title {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
+  color: var(--color-text-bone);
+  margin-bottom: var(--space-4);
+}
+.mini-package-specs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-2) var(--space-4);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-4);
+}
+.mini-package-suitable {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  line-height: var(--leading-normal);
+  margin-bottom: 4px;
+}
+.mini-package-unsuitable {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  line-height: var(--leading-normal);
+  opacity: 0.85;
+  margin-bottom: var(--space-5);
+}
+.mini-package-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-extrabold);
+  color: var(--color-bg);
+  background: linear-gradient(135deg, var(--color-gold), var(--color-gold-light));
+  border-radius: var(--radius-full);
+  padding: var(--space-3) var(--space-5);
+  text-decoration: none;
+  box-shadow: 0 4px 20px rgba(242,182,50,0.3);
+}
+.mini-package-cta:hover { filter: brightness(1.06); text-decoration: none; }
+
+/* Referral/share gate — a full-screen overlay shown every few calculator
+   uses. It never touches StateManager or navigates the wizard; it only
+   sits on top and blocks entering step 7 until Share is tapped. */
+.referral-gate {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  background: rgba(4, 15, 10, 0.82);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-6);
+}
+.referral-gate.hidden { display: none !important; }
+.referral-gate-card {
+  position: relative;
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border-gold);
+  border-radius: var(--radius-lg, var(--radius));
+  padding: var(--space-8) var(--space-6);
+  max-width: 360px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+}
+.referral-gate-close {
+  position: absolute;
+  top: var(--space-3);
+  inset-inline-end: var(--space-3);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: none;
+  background: var(--color-surface3);
+  color: var(--color-text-muted);
+  font-size: 13px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.referral-gate-close:hover { background: var(--color-gold-dim); color: var(--color-gold); }
+.referral-gate-icon { font-size: 40px; margin-bottom: var(--space-3); }
+.referral-gate-title {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-extrabold);
+  color: var(--color-text-bone);
+  margin-bottom: var(--space-2);
+}
+.referral-gate-body {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  line-height: var(--leading-normal);
+  margin-bottom: var(--space-6);
+}
+.referral-gate-share { width: 100%; }
+.referral-gate-hint {
+  font-size: var(--text-xs);
+  color: var(--color-text-dim);
+  margin-top: var(--space-3);
+  line-height: var(--leading-normal);
+}
+
+
+/* ══════════════════════════════════════════════
+   DEVICE CARDS (step 4)
+══════════════════════════════════════════════ */
+
+.device-tabs {
+  display: flex;
+  gap: var(--space-2);
+  overflow-x: auto;
+  padding-bottom: var(--space-4);
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.device-tabs::-webkit-scrollbar { display: none; }
+
+.device-tab {
+  flex-shrink: 0;
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-surface3);
+  border-radius: var(--radius-full);
+  padding: 10px var(--space-5);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
+  color: var(--color-text-muted);
+  font-family: var(--font-primary);
+  cursor: pointer;
+  transition: all var(--duration-fast);
+  white-space: nowrap;
+}
+.device-tab.active {
+  background: var(--color-gold-dim);
+  border-color: var(--color-gold);
+  color: var(--color-gold);
+}
+
+.device-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-3);
+}
+
+.device-card {
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-surface3);
+  border-radius: var(--radius);
+  padding: 0 0 var(--space-4);
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-out);
+  position: relative;
+  overflow: hidden; /* clips the media to the card's own corners */
+  -webkit-tap-highlight-color: transparent;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+}
+.device-card.added {
+  border-color: var(--color-gold);
+  background: linear-gradient(180deg, var(--color-surface), rgba(212,168,67,0.07));
+  box-shadow: var(--shadow-gold), 0 8px 20px rgba(0,0,0,0.22);
+  transform: translateY(-2px);
+}
+.device-card.added .device-image-wrap img,
+.device-card.added .device-emoji {
+  transform: scale(1.04);
+}
+.device-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-border-gold);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* ── Media (top of card) ──────────────────────────────────────────
+   A real product catalog reads left-to-right/top-to-bottom as PHOTO
+   first, spec second — a large full-width strip is the card's visual
+   anchor, with name/watts/controls in their own padded area below,
+   never overlaid on the photo. */
+.device-card-media { position: relative; width: 100%; }
+.device-image-wrap {
+  width: 100%;
+  height: 156px;
+  overflow: hidden;
+  background: linear-gradient(160deg, var(--color-surface3), var(--color-surface2));
+}
+.device-image-wrap img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform var(--duration-normal) var(--ease-out);
+}
+.device-card:hover .device-image-wrap img { transform: scale(1.05); }
+/* Emoji fallback fills the SAME full-width media slot as a real photo
+   would — a large centered glyph on a soft gold-glow backdrop, so it
+   reads as a deliberate placeholder, not an undersized leftover icon. */
+.device-emoji {
+  width: 100%;
+  height: 156px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 46px;
+  line-height: 1;
+  background:
+    radial-gradient(circle at 50% 45%, var(--color-gold-dim) 0%, transparent 65%),
+    linear-gradient(160deg, var(--color-surface3), var(--color-surface2));
+  transition: transform var(--duration-normal) var(--ease-out);
+}
+.device-added-badge {
+  position: absolute;
+  top: var(--space-2);
+  inset-inline-end: var(--space-2);
+  background: var(--color-gold);
+  color: var(--color-bg);
+  font-size: 10px;
+  font-weight: var(--weight-black);
+  border-radius: var(--radius-full);
+  padding: 3px 9px;
+  opacity: 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  transition: opacity var(--duration-fast);
+  white-space: nowrap;
+}
+.device-card.added .device-added-badge { opacity: 1; }
+/* Small +/✕ state indicator (top-start corner), injected alongside
+   .device-added-badge — was previously unstyled. */
+.device-state-badge {
+  position: absolute;
+  top: var(--space-2);
+  inset-inline-start: var(--space-2);
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(7,26,18,0.75);
+  color: var(--color-gold-light, var(--color-gold));
+  font-size: 13px;
+  font-weight: var(--weight-black);
+  border-radius: var(--radius-full);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+/* ── Body (name → specs → watts → add action) ─────────────────────
+   Media bleeds to the card's own edges (padding:0 above), so the text
+   and controls sections carry their own side padding instead. Typed
+   hierarchy: name is the primary read, watts is a secondary pill,
+   the add-action is the clear final call-to-action. */
+.device-card-body { padding: var(--space-3) var(--space-4) 0; }
+.device-name {
+  font-size: 14px;
+  font-weight: var(--weight-bold);
+  line-height: 1.35;
+  margin-bottom: 6px;
+  /* Clamp to 2 lines so a long product name can never stretch one
+     card taller than its row-mates — keeps grid rows aligned. */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: calc(14px * 1.35 * 2);
+}
+.device-watts {
+  display: inline-block;
+  font-size: var(--text-xs);
+  color: var(--color-gold);
+  font-weight: var(--weight-bold);
+  background: var(--color-gold-dim);
+  border: 1px solid var(--color-border-gold);
+  border-radius: var(--radius-full);
+  padding: 2px 10px;
+}
+/* "+ أضف الجهاز" — injected by the device-card enhancer for unselected
+   cards; was completely unstyled before (plain inherited text). Given
+   its own clear, obviously-actionable treatment as the card's final
+   call-to-action, matching the same visual language as .device-watts. */
+.device-add-link {
+  margin: var(--space-2) var(--space-4) 0;
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--color-border);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  color: var(--color-gold);
+  text-align: center;
+}
+
+/* Device controls (visible when added) */
+.device-controls {
+  display: none;
+  margin: var(--space-3) var(--space-4) 0;
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border);
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.device-card.added .device-controls { display: flex; }
+
+.device-ctrl-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+.device-ctrl-label {
+  font-size: 11px;
+  color: var(--color-text-muted);
+  font-weight: var(--weight-semibold);
+}
+
+/* Quantity control */
+.qty-ctrl { display: flex; align-items: center; gap: var(--space-2); }
+.qty-btn {
+  width: 28px;
+  height: 28px;
+  background: var(--color-surface3);
+  border-radius: 50%;
+  color: var(--color-text);
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--duration-fast);
+  font-family: var(--font-primary);
+  font-weight: var(--weight-bold);
+  line-height: 1;
+}
+.qty-btn:hover { background: var(--color-gold); color: var(--color-bg); }
+.qty-val {
+  font-size: var(--text-base);
+  font-weight: var(--weight-extrabold);
+  min-width: 22px;
+  text-align: center;
+}
+
+/* Hours slider */
+.hours-slider {
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  background: var(--color-surface3);
+  border-radius: var(--radius-full);
+  outline: none;
+  cursor: pointer;
+}
+.hours-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--color-gold);
+  cursor: pointer;
+  box-shadow: 0 0 8px var(--color-gold-glow);
+  transition: transform var(--duration-fast);
+}
+.hours-slider::-webkit-slider-thumb:active { transform: scale(1.2); }
+.hours-val {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  color: var(--color-gold);
+  min-width: 44px;
+  text-align: start;
+}
+
+/* Remove-device control — a dedicated, unambiguous action separate from
+   the card's own select/deselect click zone, so removing an appliance
+   is never confused with re-selecting it. Full-width, min 40px tall for
+   a reliable mobile tap target. */
+.device-remove-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  min-height: 40px;
+  margin-top: 2px;
+  background: transparent;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  font-family: var(--font-primary);
+  transition: all var(--duration-fast) var(--ease-out);
+}
+.device-remove-btn:hover,
+.device-remove-btn:active {
+  color: var(--color-danger);
+  border-color: var(--color-danger);
+  background: rgba(240, 85, 79, 0.08);
+}
+
+/* Live Load Meter */
+#load-meter {
+  position: sticky;
+  top: var(--progress-height);
+  z-index: var(--z-sticky);
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  padding: 10px var(--space-6) 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.load-main-row { display: flex; align-items: center; gap: var(--space-4); }
+.load-peak-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 10px;
+  color: var(--color-text-muted);
+  font-weight: var(--weight-semibold);
+}
+.load-peak-row span:last-child { color: var(--color-text-bone); font-weight: var(--weight-bold); }
+.load-label  { font-size: var(--text-xs); font-weight: var(--weight-bold); color: var(--color-text-muted); white-space: nowrap; }
+.load-track  { flex: 1; height: 8px; background: var(--color-surface3); border-radius: var(--radius-full); overflow: hidden; }
+.load-fill   {
+  height: 100%;
+  border-radius: var(--radius-full);
+  background: linear-gradient(90deg, var(--color-gold), var(--color-gold-light));
+  transition: width 0.4s var(--ease-out), background 0.4s;
+}
+.load-fill.warm { background: linear-gradient(90deg, #F59E0B, #EF4444); }
+.load-fill.hot  { background: linear-gradient(90deg, #EF4444, #DC2626); box-shadow: 0 0 8px rgba(239,68,68,0.4); }
+.load-val   { font-size: var(--text-sm); font-weight: var(--weight-extrabold); color: var(--color-gold); white-space: nowrap; min-width: 64px; text-align: start; }
+
+
+/* ══════════════════════════════════════════════
+   KPI CARDS (step 5)
+══════════════════════════════════════════════ */
+
+.kpi-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: var(--space-5) var(--space-4);
+  transition: transform var(--duration-fast) var(--ease-out),
+              box-shadow var(--duration-fast) var(--ease-out),
+              border-color var(--duration-fast) var(--ease-out);
+}
+.kpi-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-border-gold);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+.kpi-icon { font-size: 18px; line-height: 1; margin-bottom: 6px; }
+.kpi-val  { font-size: 26px; font-weight: var(--weight-black); color: var(--color-gold); line-height: 1; margin-bottom: 6px; }
+.kpi-unit { font-size: var(--text-sm); font-weight: var(--weight-semibold); }
+.kpi-label{ font-size: var(--text-xs); color: var(--color-text-muted); font-weight: var(--weight-medium); }
+.kpi-desc { font-size: 10px; color: var(--color-text-dim); margin-top: 4px; line-height: var(--leading-snug); }
+
+
+/* ══════════════════════════════════════════════
+   DEVICE BREAKDOWN (step 5)
+══════════════════════════════════════════════ */
+
+.breakdown-title {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
+  color: var(--color-text-bone);
+  margin-bottom: var(--space-4);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+}
+.breakdown-item {
+  display: flex;
+  align-items: center;
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  gap: var(--space-3);
+}
+.breakdown-item:last-child { border-bottom: none; }
+.breakdown-left { display: flex; align-items: center; gap: var(--space-3); min-width: 0; flex: 1; }
+.breakdown-emoji { font-size: 20px; flex-shrink: 0; }
+.breakdown-name  { font-size: var(--text-sm); font-weight: var(--weight-semibold); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.breakdown-detail{ font-size: 11px; color: var(--color-text-muted); }
+.breakdown-bar-wrap { flex: 1; margin: 0 var(--space-3); min-width: 40px; }
+.breakdown-bar { height: 4px; background: var(--color-surface3); border-radius: var(--radius-full); overflow: hidden; }
+.breakdown-bar-fill { height: 100%; background: linear-gradient(90deg, var(--color-gold), var(--color-gold-light)); border-radius: var(--radius-full); }
+.breakdown-wh { font-size: var(--text-sm); font-weight: var(--weight-bold); color: var(--color-gold); min-width: 72px; text-align: start; }
+
+
+/* ══════════════════════════════════════════════
+   RECOMMENDATION COMPONENTS (step 6)
+══════════════════════════════════════════════ */
+
+.rec-component {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: var(--space-5);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+}
+.rec-comp-icon {
+  width: 68px;
+  height: 68px;
+  background: var(--color-gold-dim);
+  border: 1.5px solid var(--color-border-gold);
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  flex-shrink: 0;
+}
+/* Real-photo variant — same slot as .rec-comp-icon so a row reads
+   consistently whether a component has a matched photo or still shows
+   its emoji. A rounded square (not a circle) so real equipment photos
+   — panels, battery packs, inverters — keep their recognizable
+   rectangular silhouette instead of being cropped into a disc. */
+.system-image-wrap {
+  width: 68px;
+  height: 68px;
+  border-radius: 18px;
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 1.5px solid var(--color-border-gold);
+  background: var(--color-surface3);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.3);
+}
+.system-image-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.rec-comp-title { font-size: var(--text-base); font-weight: var(--weight-extrabold); margin-bottom: 4px; }
+.rec-comp-spec  { font-size: 20px; font-weight: var(--weight-black); color: var(--color-gold); margin-bottom: 4px; }
+.rec-comp-why   { font-size: var(--text-xs); color: var(--color-text-muted); line-height: var(--leading-normal); }
+
+/* Confidence Indicator */
+.rec-confidence-badge {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+.rec-confidence-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: var(--weight-black);
+  flex-shrink: 0;
+}
+.rec-confidence-level { font-size: var(--text-sm); font-weight: var(--weight-bold); margin-bottom: 2px; }
+.rec-confidence-note  { font-size: var(--text-xs); color: var(--color-text-muted); line-height: var(--leading-normal); }
+.conf-high .rec-confidence-icon { background: rgba(52, 211, 153, 0.15); color: var(--color-success); }
+.conf-high .rec-confidence-level { color: var(--color-success); }
+.conf-good .rec-confidence-icon { background: var(--color-gold-dim); color: var(--color-gold); }
+.conf-good .rec-confidence-level { color: var(--color-gold); }
+.conf-fair .rec-confidence-icon { background: rgba(239, 68, 68, 0.15); color: var(--color-danger); }
+.conf-fair .rec-confidence-level { color: var(--color-danger); }
+
+/* Future Expansion Card */
+.rec-expansion-card {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  border-radius: var(--radius);
+  border: 1px dashed var(--color-border);
+  background: var(--color-surface);
+}
+.rec-expansion-card.active {
+  border: 1px solid var(--color-border-gold);
+  background: linear-gradient(135deg, var(--color-surface), rgba(212,168,67,0.06));
+}
+.rec-expansion-icon { font-size: 26px; flex-shrink: 0; line-height: 1; }
+.rec-expansion-title { font-size: var(--text-sm); font-weight: var(--weight-bold); margin-bottom: 4px; }
+.rec-expansion-text  { font-size: var(--text-xs); color: var(--color-text-muted); line-height: var(--leading-normal); }
+
+/* Generator vs. Solar Comparison */
+.compare-title { font-size: var(--text-sm); font-weight: var(--weight-bold); color: var(--color-text-bone); margin-bottom: var(--space-4); }
+.compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); }
+.compare-col {
+  border-radius: var(--radius-sm);
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+}
+.compare-solar {
+  border-color: var(--color-border-gold);
+  background: linear-gradient(135deg, var(--color-surface), rgba(212,168,67,0.06));
+}
+.compare-col-label {
+  font-size: 11px;
+  font-weight: var(--weight-black);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: var(--space-3);
+  color: var(--color-text-muted);
+}
+.compare-solar .compare-col-label { color: var(--color-gold); }
+.compare-row {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 11px;
+  color: var(--color-text-muted);
+  padding: var(--space-2) 0;
+  border-top: 1px solid rgba(255,255,255,0.04);
+}
+.compare-row:first-of-type { border-top: none; }
+.compare-row b { font-size: var(--text-sm); color: var(--color-text); font-weight: var(--weight-bold); }
+.compare-solar .compare-row b { color: var(--color-gold); }
+
+/* Battery Simulator */
+.battery-sim {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: var(--space-5);
+}
+.battery-sim-title { font-size: var(--text-sm); font-weight: var(--weight-bold); color: var(--color-text-bone); margin-bottom: var(--space-4); }
+.bat-row { display: flex; align-items: center; gap: var(--space-3); }
+.bat-time { font-size: var(--text-xs); color: var(--color-text-muted); font-weight: var(--weight-semibold); min-width: 52px; text-align: end; }
+.bat-bar-wrap { flex: 1; height: 10px; background: var(--color-surface3); border-radius: var(--radius-full); overflow: hidden; }
+.bat-bar-fill { height: 100%; border-radius: var(--radius-full); transition: width 0.6s var(--ease-spring); }
+.bat-green  { background: linear-gradient(90deg, #34D399, #10B981); }
+.bat-yellow { background: linear-gradient(90deg, #FBBF24, #F59E0B); }
+.bat-red    { background: linear-gradient(90deg, #F87171, #EF4444); }
+.bat-pct { font-size: var(--text-xs); font-weight: var(--weight-extrabold); min-width: 36px; }
+
+
+/* ══════════════════════════════════════════════
+   PACKAGE CARDS (step 7)
+══════════════════════════════════════════════ */
+
+.pkg-card {
+  background: var(--color-surface);
+  border: 2px solid var(--color-surface3);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: all var(--duration-normal) var(--ease-out);
+}
+.pkg-card.recommended {
+  border-color: var(--color-gold);
+  box-shadow: var(--shadow-gold);
+}
+.pkg-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--color-border-gold);
+}
+.pkg-card.recommended:hover {
+  transform: translateY(-3px) scale(1.01);
+}
+.pkg-recommended-badge {
+  background: linear-gradient(135deg, var(--color-gold), var(--color-gold-light));
+  color: var(--color-bg);
+  font-size: 11px;
+  font-weight: var(--weight-black);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 9px var(--space-5);
+  text-align: center;
+}
+.pkg-body { padding: var(--space-5); }
+.pkg-tier  { font-size: 11px; font-weight: var(--weight-bold); color: var(--color-gold); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; }
+.pkg-name  { font-size: var(--text-2xl); font-weight: var(--weight-extrabold); margin-bottom: 6px; }
+.pkg-desc  { font-size: var(--text-sm); color: var(--color-text-muted); line-height: var(--leading-normal); margin-bottom: var(--space-4); }
+.pkg-price { display: flex; align-items: baseline; gap: var(--space-2); margin-bottom: var(--space-4); }
+.pkg-price-val  { font-size: 34px; font-weight: var(--weight-black); color: var(--color-gold); }
+.pkg-price-unit { font-size: var(--text-sm); color: var(--color-text-muted); }
+.pkg-features   { display: flex; flex-direction: column; gap: var(--space-3); margin-bottom: var(--space-5); }
+.pkg-feature    { display: flex; align-items: flex-start; gap: var(--space-3); }
+.pkg-feat-icon  { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+.pkg-feat-text  { font-size: var(--text-sm); color: var(--color-text-bone); line-height: var(--leading-snug); }
+.pkg-select-btn {
+  width: 100%;
+  padding: 14px;
+  border-radius: var(--radius-sm);
+  font-size: var(--text-base);
+  font-weight: var(--weight-extrabold);
+  font-family: var(--font-primary);
+  cursor: pointer;
+  transition: all var(--duration-fast);
+  border: none;
+}
+.pkg-select-btn.gold {
+  background: linear-gradient(135deg, var(--color-gold), var(--color-gold-light));
+  color: var(--color-bg);
+  box-shadow: 0 4px 16px rgba(212,168,67,0.3);
+}
+.pkg-select-btn.outline {
+  background: transparent;
+  border: 1.5px solid var(--color-surface3);
+  color: var(--color-text);
+}
+.pkg-select-btn.outline:hover { border-color: var(--color-gold); color: var(--color-gold); }
+
+
+/* ══════════════════════════════════════════════
+   SAVINGS (step 8)
+══════════════════════════════════════════════ */
+
+.savings-hero {
+  background: var(--color-gold-dim);
+  border: 1px solid var(--color-border-gold);
+  border-radius: var(--radius-lg);
+  padding: var(--space-7) var(--space-6);
+  text-align: center;
+  margin-bottom: var(--space-6);
+}
+.savings-hero-label { font-size: var(--text-sm); color: var(--color-gold); font-weight: var(--weight-bold); letter-spacing: 1px; margin-bottom: var(--space-2); }
+.savings-hero-val   { font-size: clamp(44px, 12vw, 60px); font-weight: var(--weight-black); color: var(--color-gold); line-height: 1; margin-bottom: var(--space-2); }
+.savings-hero-sub   { font-size: var(--text-sm); color: var(--color-text-muted); }
+
+.sav-card      { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius); padding: var(--space-5) var(--space-4); text-align: center; }
+.sav-val       { font-size: 22px; font-weight: var(--weight-extrabold); color: var(--color-success); line-height: 1; margin-bottom: 6px; }
+.sav-label     { font-size: var(--text-xs); color: var(--color-text-muted); }
+
+.payback-wrap  { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius); padding: var(--space-5); }
+.payback-label { font-size: var(--text-sm); font-weight: var(--weight-bold); color: var(--color-text-bone); margin-bottom: var(--space-3); }
+.payback-track { height: 12px; background: var(--color-surface3); border-radius: var(--radius-full); overflow: hidden; margin-bottom: var(--space-2); }
+.payback-fill  { height: 100%; background: linear-gradient(90deg, var(--color-gold), var(--color-success)); border-radius: var(--radius-full); transition: width 1s var(--ease-spring); }
+.payback-note  { font-size: var(--text-xs); color: var(--color-text-muted); }
+.payback-note span { color: var(--color-gold); font-weight: var(--weight-bold); }
+
+
+/* ══════════════════════════════════════════════
+   TRUST ITEMS (step 9)
+══════════════════════════════════════════════ */
+
+.trust-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: var(--space-5);
+}
+.trust-icon {
+  width: 48px;
+  height: 48px;
+  background: var(--color-gold-dim);
+  border: 1.5px solid var(--color-border-gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  flex-shrink: 0;
+}
+.trust-title { font-size: var(--text-base); font-weight: var(--weight-extrabold); margin-bottom: 4px; }
+.trust-desc  { font-size: var(--text-sm); color: var(--color-text-muted); line-height: var(--leading-normal); }
+
+.testimonial-card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius); padding: var(--space-4); }
+.testimonial-stars{ color: var(--color-gold); font-size: var(--text-sm); margin-bottom: var(--space-2); }
+.testimonial-text { font-size: var(--text-sm); color: var(--color-text-bone); line-height: var(--leading-normal); margin-bottom: var(--space-3); font-style: italic; }
+.testimonial-author{ font-size: var(--text-xs); font-weight: var(--weight-bold); color: var(--color-text-muted); }
+
+/* Honest placeholder shown until real testimonials exist — never
+   fabricated quotes. */
+.testimonial-placeholder {
+  text-align: center;
+  background: var(--color-surface);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius);
+  padding: var(--space-8) var(--space-5);
+  margin-bottom: var(--space-6);
+}
+.testimonial-placeholder-icon { font-size: 32px; margin-bottom: var(--space-3); opacity: 0.7; }
+.testimonial-placeholder-title { font-size: var(--text-sm); font-weight: var(--weight-bold); color: var(--color-text-bone); margin-bottom: 4px; }
+.testimonial-placeholder-desc  { font-size: var(--text-xs); color: var(--color-text-muted); }
+
+
+/* ══════════════════════════════════════════════
+   FINAL PAGE — savings, offer, CTA intro, heritage (step 12)
+══════════════════════════════════════════════ */
+
+/* Diesel fuel-savings callout — prominent, but never claims solar has
+   zero operating cost (see savings.framing/disclaimer copy). */
+.savings-card {
+  background: linear-gradient(135deg, rgba(76,217,100,0.10), rgba(76,217,100,0.03));
+  border: 1px solid rgba(76,217,100,0.3);
+  border-radius: var(--radius);
+  padding: var(--space-5);
+  margin-bottom: var(--space-5);
+}
+.savings-title { font-size: var(--text-sm); font-weight: var(--weight-extrabold); color: var(--color-text-bone); margin-bottom: var(--space-4); display: flex; align-items: center; gap: 8px; }
+.savings-fuel-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: var(--space-3);
+  margin-bottom: var(--space-3);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.savings-fuel-label { font-size: var(--text-xs); color: var(--color-text-muted); }
+.savings-fuel-val   { font-size: var(--text-base); font-weight: var(--weight-black); color: var(--color-text-bone); }
+.savings-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-3); margin-bottom: var(--space-3); }
+.savings-item { text-align: center; }
+.savings-item-val   { font-size: 18px; font-weight: var(--weight-black); color: var(--color-success); line-height: 1.2; }
+.savings-item-label { font-size: 10px; color: var(--color-text-muted); font-weight: var(--weight-semibold); margin-top: 2px; }
+.savings-framing { font-size: var(--text-xs); font-weight: var(--weight-bold); color: var(--color-success); text-align: center; margin-bottom: var(--space-2); }
+.savings-disclaimer { font-size: 10px; color: var(--color-text-muted); line-height: var(--leading-normal); text-align: center; }
+
+/* Scarcity offer + persistent remaining-slot counter */
+/* Photo-ready: this card renders exactly as it does today (solid gold-
+   tinted panel) until a real Cloudinary asset is wired in. Activating a
+   photo later needs exactly one change here — set the two custom
+   properties inline on #welcome-offer-card:
+     style="--card-photo:url(...); --card-overlay-opacity:1"
+   No class toggle, no JS, no markup change. Both default to "off" below
+   so this is fully inert right now. */
+.offer-card {
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  text-align: center;
+  background: linear-gradient(135deg, rgba(212,168,67,0.14), rgba(212,168,67,0.04));
+  background-image: var(--card-photo, none);
+  background-size: cover;
+  background-position: center;
+  border: 1.5px solid var(--color-border-gold);
+  border-radius: var(--radius);
+  padding: var(--space-6) var(--space-5);
+  margin-bottom: var(--space-6);
+}
+.offer-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(7,26,18,0.25) 0%, rgba(7,26,18,0.55) 55%, rgba(7,26,18,0.92) 100%);
+  opacity: var(--card-overlay-opacity, 0);
+  pointer-events: none;
+}
+.offer-card-content {
+  position: relative;
+  z-index: 2;
+}
+.offer-badge {
+  display: inline-block;
+  background: var(--color-gold);
+  color: var(--color-bg);
+  font-size: 10px;
+  font-weight: var(--weight-black);
+  letter-spacing: 0.5px;
+  border-radius: var(--radius-full);
+  padding: 3px 12px;
+  margin-bottom: var(--space-3);
+  text-transform: uppercase;
+}
+.offer-icon  { font-size: 34px; margin-bottom: var(--space-2); }
+.offer-title { font-size: var(--text-lg); font-weight: var(--weight-black); color: var(--color-text); line-height: 1.3; margin-bottom: var(--space-3); }
+/* "Free Installation" gets a premium red accent so it draws the eye —
+   reserved for this one phrase, never applied to the whole design. */
+.offer-title-red  { color: var(--color-danger); }
+.offer-title-gold { color: var(--color-gold); }
+.offer-remaining {
+  display: inline-block;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  padding: 6px 18px;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-extrabold);
+  color: var(--color-gold);
+  margin-bottom: var(--space-3);
+}
+.offer-cta { font-size: var(--text-xs); color: var(--color-text-muted); font-weight: var(--weight-semibold); }
+
+.cta-intro { text-align: center; margin-bottom: var(--space-5); }
+.cta-intro-title { font-size: var(--text-lg); font-weight: var(--weight-extrabold); margin-bottom: 6px; }
+.cta-intro-text  { font-size: var(--text-sm); color: var(--color-text-muted); line-height: var(--leading-normal); }
+
+/* Facebook follow CTA — a premium, visibly "alive" secondary social
+   action near the final CTA and trust signals. Clearly more present
+   than a footer link, but deliberately never gold-filled, so the
+   hierarchy (WhatsApp > Facebook > heritage) stays unambiguous. Facebook
+   blue appears only as a subtle accent (ring glow, hover state), never
+   as a large fill. All motion here (ring pulse, icon float, border
+   shimmer) is real CSS animation, so the global prefers-reduced-motion
+   rule in reset.css (animation-duration: 0.01ms !important) neutralizes
+   every bit of it automatically — nothing extra needed here for that.
+   Keyframes: reveal-in-up/fbRingPulse/fbIconFloat/fbShimmer — animations.css. */
+.facebook-cta {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  min-height: 48px;
+  background: linear-gradient(155deg, var(--color-surface2), var(--color-surface) 60%);
+  border: 1.5px solid var(--color-border-gold);
+  border-radius: var(--radius-lg, var(--radius));
+  color: var(--color-text-bone);
+  text-decoration: none;
+  padding: var(--space-4) var(--space-5);
+  /* Base state is always fully visible — the reveal below is a bonus
+     entrance effect, never a precondition for the button to be seen, so
+     nothing about it depends on JS actually running to be usable. */
+  opacity: 1;
+  transition: border-color 0.25s var(--ease-out), transform 0.2s var(--ease-out), box-shadow 0.25s var(--ease-out);
+}
+.facebook-cta.reveal-in { animation: fbRevealIn 0.6s var(--ease-spring) backwards; }
+.facebook-cta:hover {
+  border-color: #1877F2;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(24,119,242,0.16);
+  text-decoration: none;
+}
+.facebook-cta:active { transform: translateY(-1px) scale(0.97); }
+.facebook-cta:focus-visible { outline: 2px solid var(--color-gold); outline-offset: 3px; }
+
+/* A slow highlight sweep across the card — one pass every few seconds,
+   not a constant shine. */
+.facebook-cta::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, transparent 40%, rgba(242,182,50,0.10) 50%, transparent 60%);
+  background-size: 240% 100%;
+  animation: fbShimmer 6s linear infinite;
+  pointer-events: none;
+}
+
+.facebook-cta-icon-wrap {
+  position: relative;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* The orbit/glow ring — an expanding, fading ring pulse around the icon
+   badge, Facebook-blue-tinted so it reads as "this connects to Facebook"
+   at a glance, slow enough to feel premium rather than urgent. */
+.facebook-cta-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1.5px solid rgba(24,119,242,0.5);
+  animation: fbRingPulse 2.8s var(--ease-out) infinite;
+}
+.facebook-cta-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--color-surface3);
+  color: var(--color-gold);
+  box-shadow: 0 0 0 1px var(--color-border-gold);
+  animation: fbIconFloat 3.2s ease-in-out infinite;
+  transition: color 0.25s var(--ease-out), background 0.25s var(--ease-out), transform 0.2s var(--ease-out);
+}
+.facebook-cta-icon svg { display: block; fill: currentColor; }
+.facebook-cta:hover .facebook-cta-icon { color: #1877F2; background: rgba(24,119,242,0.14); transform: scale(1.08); }
+.facebook-cta:active .facebook-cta-icon { transform: scale(0.95); }
+
+.facebook-cta-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.facebook-cta-title { font-size: var(--text-sm); font-weight: var(--weight-extrabold); color: var(--color-text-bone); }
+.facebook-cta-sub   { font-size: 11px; color: var(--color-text-muted); font-weight: var(--weight-medium); }
+
+.final-heritage-block {
+  text-align: center;
+  margin-top: var(--space-6);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--color-border);
+}
+.final-heritage-brand { font-size: var(--text-base); font-weight: var(--weight-black); color: var(--color-text); letter-spacing: 1px; margin-bottom: 4px; }
+.final-heritage-legal { font-size: var(--text-xs); color: var(--color-text-muted); font-weight: var(--weight-medium); }
+.final-heritage-since { font-size: 10px; color: var(--color-text-dim); margin-top: 2px; }
+
+/* Per-device computed daily energy — the whole point is the customer
+   never has to mentally multiply W × h × qty themselves. */
+.device-daily-energy {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  color: var(--color-gold);
+  text-align: center;
+  padding-top: 2px;
+}
+
+
+/* ══════════════════════════════════════════════
+   EDUCATIONAL CARDS — "Know the Difference" (step 7)
+   Native <details>/<summary> for expand/collapse — no JS toggle logic,
+   no unnecessary dialogs. Same premium card language as .trust-item.
+══════════════════════════════════════════════ */
+
+.edu-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: border-color var(--duration-fast) var(--ease-out);
+}
+.edu-card[open] {
+  border-color: var(--color-border-gold);
+}
+.edu-card-summary {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.edu-card-summary::-webkit-details-marker { display: none; }
+.edu-card-icon {
+  width: 48px;
+  height: 48px;
+  background: var(--color-gold-dim);
+  border: 1.5px solid var(--color-border-gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  flex-shrink: 0;
+}
+.edu-card-head { flex: 1; min-width: 0; }
+.edu-card-title { font-size: var(--text-base); font-weight: var(--weight-extrabold); margin-bottom: 2px; }
+.edu-card-hint  { font-size: var(--text-xs); color: var(--color-text-muted); line-height: var(--leading-normal); }
+.edu-card-tap-hint { font-size: 10px; color: var(--color-gold); font-weight: var(--weight-bold); margin-top: 4px; }
+.edu-card[open] .edu-card-tap-hint { display: none; }
+.edu-card-chevron {
+  font-size: 18px;
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+.edu-card[open] .edu-card-chevron { transform: rotate(180deg); color: var(--color-gold); }
+
+.edu-card-body {
+  padding: 0 var(--space-5) var(--space-5);
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--space-4);
+}
+.edu-points {
+  margin: 0 0 var(--space-3);
+  padding-inline-start: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.edu-points li { font-size: var(--text-sm); color: var(--color-text-bone); line-height: var(--leading-normal); }
+.edu-classes-note {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  color: var(--color-gold);
+}
+.edu-subrow {
+  padding-bottom: var(--space-3);
+  margin-bottom: var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+}
+.edu-subrow:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+.edu-subrow-name { font-size: var(--text-sm); font-weight: var(--weight-extrabold); color: var(--color-gold); margin-bottom: 6px; }
+.edu-qa-row {
+  font-size: var(--text-xs);
+  color: var(--color-text-bone);
+  line-height: var(--leading-normal);
+  margin-bottom: 4px;
+}
+.edu-qa-row:last-child { margin-bottom: 0; }
+.edu-qa-row b { color: var(--color-text-muted); font-weight: var(--weight-bold); }
+.edu-disclaimer {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  line-height: var(--leading-normal);
+  padding: var(--space-3) var(--space-2) 0;
+  text-align: center;
+}
+
+
+/* ══════════════════════════════════════════════
+   CTA (step 10)
+══════════════════════════════════════════════ */
+
+.cta-result-card {
+  background: var(--color-gold-dim);
+  border: 1px solid var(--color-border-gold);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  margin-bottom: var(--space-6);
+  text-align: center;
+}
+.cta-result-title   { font-size: var(--text-sm); color: var(--color-text-muted); margin-bottom: var(--space-2); }
+.cta-result-package { font-size: var(--text-2xl); font-weight: var(--weight-extrabold); margin-bottom: 4px; }
+.cta-result-price   { font-size: var(--text-lg); color: var(--color-gold); font-weight: var(--weight-bold); margin-bottom: var(--space-4); }
+.cta-specs          { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-2); }
+.cta-spec-val  { font-size: var(--text-base); font-weight: var(--weight-extrabold); color: var(--color-gold); }
+.cta-spec-lbl  { font-size: 10px; color: var(--color-text-muted); font-weight: var(--weight-semibold); }
+
+.confidence-card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius); padding: var(--space-5); margin-bottom: var(--space-5); }
+.confidence-title { font-size: var(--text-sm); font-weight: var(--weight-bold); color: var(--color-text-bone); margin-bottom: var(--space-3); }
+.confidence-item  { font-size: var(--text-sm); color: var(--color-text-bone); padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,0.04); line-height: var(--leading-snug); }
+.confidence-item:last-child { border-bottom: none; }
+
+.cta-actions { display: flex; flex-direction: column; gap: var(--space-3); }
+.cta-btn-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  padding: 18px var(--space-6);
+  border-radius: var(--radius);
+  font-size: var(--text-base);
+  font-weight: var(--weight-extrabold);
+  font-family: var(--font-primary);
+  cursor: pointer;
+  transition: all var(--duration-fast);
+  border: none;
+  text-decoration: none;
+  width: 100%;
+}
+
+
+/* ══════════════════════════════════════════════
+   SECTION TITLES
+══════════════════════════════════════════════ */
+
+.section-title {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
+  color: var(--color-text-bone);
+  margin-bottom: var(--space-4);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+}

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#071A12">
+<title>نظام أندوريا الداخلي</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cg transform='skewX(-18)'%3E%3Crect x='8' y='55' width='15' height='28' rx='3' fill='%23C1272D'/%3E%3Crect x='30' y='40' width='15' height='43' rx='3' fill='%23E8862E'/%3E%3Crect x='52' y='18' width='15' height='65' rx='3' fill='%23F2B632'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Design system tokens/components (local copies in assets/css) -->
+<link rel="stylesheet" href="assets/css/variables.css">
+<link rel="stylesheet" href="assets/css/reset.css">
+<link rel="stylesheet" href="assets/css/typography.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/animations.css">
+<link rel="stylesheet" href="assets/css/layout.css">
+<!-- CRM-only: admin shell + widgets not needed by the wizard -->
+<link rel="stylesheet" href="assets/css/crm-layout.css?v=2">
+<link rel="stylesheet" href="assets/css/crm-components.css?v=2">
+</head>
+<body>
+
+<div id="crm-shell">
+  <aside id="crm-sidebar">
+    <div class="crm-sidebar-brand" id="crm-brand-slot"></div>
+
+    <nav class="crm-nav">
+      <a href="#/dashboard" class="crm-nav-link" data-nav-link="/dashboard">
+        <span class="crm-nav-icon">📊</span><span class="crm-nav-label" data-i18n="crm.nav.dashboard">لوحة التحكم</span>
+      </a>
+      <a href="#/requests" class="crm-nav-link" data-nav-link="/requests">
+        <span class="crm-nav-icon">📋</span><span class="crm-nav-label" data-i18n="crm.nav.requests">الطلبات</span>
+      </a>
+      <a href="#/inventory" class="crm-nav-link" data-nav-link="/inventory">
+        <span class="crm-nav-icon">📦</span><span class="crm-nav-label" data-i18n="crm.nav.inventory">المخزون</span>
+      </a>
+      <a href="#/packages" class="crm-nav-link" data-nav-link="/packages">
+        <span class="crm-nav-icon">🧩</span><span class="crm-nav-label" data-i18n="crm.nav.packages">الباقات</span>
+      </a>
+      <a href="#/projects" class="crm-nav-link" data-nav-link="/projects">
+        <span class="crm-nav-icon">🏗️</span><span class="crm-nav-label" data-i18n="crm.nav.projects">المشاريع</span>
+      </a>
+      <a href="#/settings" class="crm-nav-link" data-nav-link="/settings" id="nav-settings-link" style="display:none">
+        <span class="crm-nav-icon">⚙️</span><span class="crm-nav-label" data-i18n="crm.nav.settings">الإعدادات</span>
+      </a>
+    </nav>
+
+    <div class="crm-sidebar-footer">
+      <div class="crm-actor" id="crm-actor-slot" onclick="signOutOfCRM()"></div>
+      <div class="lang-switcher-slot"></div>
+      <div id="crm-footer-slot"></div>
+    </div>
+  </aside>
+
+  <div id="crm-main">
+    <header id="crm-topbar">
+      <div id="crm-topbar-title"></div>
+    </header>
+    <main id="page-root"></main>
+  </div>
+</div>
+
+<!-- Supabase — must load before supabase-client.js/auth-client.js/crm-store.js -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+
+<!-- Shared modules (same files the customer wizard uses) -->
+<script src="assets/js/i18n.js"></script>
+<script src="assets/js/brand-config.js"></script>
+<script src="assets/js/brand.js"></script>
+<script src="assets/js/utils.js"></script>
+<script src="assets/js/countries.js"></script>
+<script src="assets/js/locations.js"></script>
+<script src="assets/js/constants.js"></script>
+<script src="assets/js/supabase-client.js"></script>
+<script src="assets/js/crm-store.js"></script>
+<script src="assets/js/inventory-store.js"></script>
+<script src="assets/js/product-categories.js"></script>
+<script src="assets/js/pricing-engine.js"></script>
+<script src="assets/js/packages-store.js"></script>
+<script src="assets/js/settings-store.js"></script>
+
+<!-- CRM-only modules -->
+<script src="assets/js/toast.js"></script>
+<script src="assets/js/auth-client.js"></script>
+<script src="assets/js/status.js"></script>
+<script src="assets/js/project-status.js"></script>
+<script src="assets/js/projects-store.js"></script>
+<script src="assets/js/branches.js"></script>
+<script src="assets/js/users-store.js"></script>
+<script src="assets/js/report.js"></script>
+<script src="assets/js/suppliers-store.js"></script>
+<script src="assets/js/crm-router.js"></script>
+<script src="assets/js/pages/dashboard.js"></script>
+<script src="assets/js/pages/requests.js"></script>
+<script src="assets/js/pages/customer-detail.js"></script>
+<script src="assets/js/pages/edit-request.js"></script>
+<script src="assets/js/pages/inventory-dashboard.js"></script>
+<script src="assets/js/pages/inventory-list.js"></script>
+<script src="assets/js/pages/inventory-detail.js"></script>
+<script src="assets/js/pages/project-list.js"></script>
+<script src="assets/js/pages/project-detail.js"></script>
+<script src="assets/js/pages/inventory-form.js"></script>
+<script src="assets/js/pages/package-list.js"></script>
+<script src="assets/js/pages/package-form.js"></script>
+<script src="assets/js/pages/settings.js"></script>
+<script src="assets/js/crm-app.js"></script>
+
+</body>
+</html>

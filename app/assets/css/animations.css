@@ -1,0 +1,183 @@
+/* ═══════════════════════════════════════════════
+   SOLAR SMART ADVISOR — ANIMATIONS
+   animations.css
+   All keyframes and animation utility classes.
+═══════════════════════════════════════════════ */
+
+/* ── Keyframes ───────────────────────────── */
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in-scale {
+  from { opacity: 0; transform: scale(0.94); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-8px); }
+}
+
+@keyframes pulse-ring {
+  0%   { box-shadow: 0 0 0 0px rgba(242, 182, 50, 0.5); }
+  70%  { box-shadow: 0 0 0 14px rgba(242, 182, 50, 0); }
+  100% { box-shadow: 0 0 0 0px rgba(242, 182, 50, 0); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes success-pop {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+@keyframes loader-bar {
+  from { width: 0%; }
+  to   { width: 100%; }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes count-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.6; }
+  50%       { opacity: 1; }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Global floating actions (WhatsApp + Facebook) — see .fab-* in layout.css */
+@keyframes fabEnter {
+  from { opacity: 0; transform: translateY(20px) scale(0.8); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes fabWhatsappGlow {
+  0%, 100% { box-shadow: 0 8px 22px rgba(29,168,81,0.4); }
+  50%       { box-shadow: 0 8px 28px rgba(29,168,81,0.7); }
+}
+@keyframes fabRingPulse {
+  0%   { transform: scale(0.88); opacity: 0.55; }
+  70%, 100% { transform: scale(1.4); opacity: 0; }
+}
+@keyframes fabFacebookBreathe {
+  0%, 100% { opacity: 0.8; }
+  50%       { opacity: 1; }
+}
+
+/* Step 12 Facebook CTA — see .facebook-cta in components.css */
+@keyframes fbRevealIn {
+  from { opacity: 0; transform: translateY(14px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes fbRingPulse {
+  0%   { transform: scale(0.85); opacity: 0.65; }
+  70%  { transform: scale(1.35); opacity: 0; }
+  100% { transform: scale(1.35); opacity: 0; }
+}
+@keyframes fbIconFloat {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-3px); }
+}
+@keyframes fbShimmer {
+  0%   { background-position: -140% 0; }
+  100% { background-position: 140% 0; }
+}
+
+/* ── Animation Utilities ─────────────────── */
+
+.anim-fade-in {
+  animation: fade-in 0.4s var(--ease-out) both;
+}
+
+.anim-fade-in-scale {
+  animation: fade-in-scale 0.35s var(--ease-spring) both;
+}
+
+.anim-slide-up {
+  animation: slide-up 0.5s var(--ease-spring) both;
+}
+
+.anim-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.anim-pulse {
+  animation: pulse-ring 2s ease-out infinite;
+}
+
+.anim-spin {
+  animation: spin 1s linear infinite;
+}
+
+.anim-success-pop {
+  animation: success-pop 0.4s var(--ease-spring);
+}
+
+/* ── Skeleton Loading ─────────────────────── */
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-surface2);
+  border-radius: var(--radius);
+  color: transparent !important;
+  pointer-events: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.skeleton::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(242, 182, 50, 0.10) 50%,
+    transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.3s ease-in-out infinite;
+}
+
+/* Staggered children */
+.anim-stagger > *:nth-child(1) { animation-delay: 0ms; }
+.anim-stagger > *:nth-child(2) { animation-delay: 80ms; }
+.anim-stagger > *:nth-child(3) { animation-delay: 160ms; }
+.anim-stagger > *:nth-child(4) { animation-delay: 240ms; }
+.anim-stagger > *:nth-child(5) { animation-delay: 320ms; }
+.anim-stagger > *:nth-child(6) { animation-delay: 400ms; }
+.anim-stagger > *:nth-child(7) { animation-delay: 440ms; }
+.anim-stagger > *:nth-child(8) { animation-delay: 480ms; }
+.anim-stagger > *:nth-child(9) { animation-delay: 520ms; }
+
+/* ── Loader Bar ──────────────────────────── */
+.loader-bar-fill {
+  animation: loader-bar 1.2s var(--ease-out) forwards;
+}
+
+/* ── Arc SVG ─────────────────────────────── */
+#arc-fill {
+  transition: stroke-dashoffset 1.2s var(--ease-spring);
+}
+
+/* ── Welcome background grid ─────────────── */
+.welcome-grid-bg {
+  background-image:
+    linear-gradient(rgba(242,182,50,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(242,182,50,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  animation: glow-pulse 4s ease-in-out infinite;
+}

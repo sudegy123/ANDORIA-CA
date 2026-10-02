@@ -1,0 +1,81 @@
+/* ═══════════════════════════════════════════════
+   SOLAR SMART ADVISOR — RESPONSIVE
+   responsive.css
+   Mobile-first breakpoints.
+   Base styles = mobile (320px+).
+   Enhancements at wider viewports.
+═══════════════════════════════════════════════ */
+
+/* ── Base: 320px (smallest Android) ─────── */
+.property-grid { grid-template-columns: repeat(3, 1fr); }
+.device-grid   { grid-template-columns: repeat(2, 1fr); }
+
+/* ── Small: 400px+ ───────────────────────── */
+@media (min-width: 400px) {
+  .step-body { padding: var(--space-6); }
+  .savings-hero-val { font-size: 52px; }
+}
+
+/* ── Medium: 480px+ ──────────────────────── */
+@media (min-width: 480px) {
+  .property-grid { grid-template-columns: repeat(3, 1fr); }
+  .device-grid   { grid-template-columns: repeat(2, 1fr); }
+
+  .welcome-h1 { font-size: 40px; }
+  .welcome-stats { max-width: 380px; }
+}
+
+/* ── Tablet: 640px+ ──────────────────────── */
+@media (min-width: 640px) {
+  #app { max-width: var(--max-content-width); margin: 0 auto; }
+
+  .property-grid { grid-template-columns: repeat(4, 1fr); }
+  .device-grid   { grid-template-columns: repeat(3, 1fr); }
+
+  .step-header { padding: var(--space-8) var(--space-8) var(--space-6); }
+  .step-body   { padding: var(--space-6) var(--space-8); }
+  .step-footer { padding: var(--space-5) var(--space-8) calc(var(--space-4) + var(--brand-footer-height)); }
+
+  #load-meter { padding: 12px var(--space-8); }
+}
+
+/* ── Desktop: 768px+ ─────────────────────── */
+@media (min-width: 768px) {
+  body { background: #04100A; }
+
+  #app {
+    max-width: 460px;
+    min-height: 100dvh;
+    box-shadow: 0 0 80px rgba(0,0,0,0.6);
+  }
+
+  #progress-bar,
+  #brand-footer {
+    max-width: 460px;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+  }
+}
+
+/* ── Touch target enforcement ────────────── */
+@media (pointer: coarse) {
+  .qty-btn     { min-width: 44px; min-height: 44px; }
+  .device-tab  { min-height: 44px; }
+  .choice-btn  { min-height: 52px; }
+  .outage-btn  { min-height: 52px; }
+  .btn         { min-height: 56px; }
+}
+
+/* ── High contrast mode ──────────────────── */
+@media (forced-colors: active) {
+  .btn-primary  { forced-color-adjust: none; }
+  .progress-fill { forced-color-adjust: none; }
+}
+
+/* ── Print (PDF report) ──────────────────── */
+@media print {
+  #app, #loading-screen, #brand-footer { display: none !important; }
+  body { background: white; }
+  .pdf-report { display: block !important; }
+}

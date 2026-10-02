@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#071A12">
+<title>تسجيل الدخول — نظام أندوريا الداخلي</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cg transform='skewX(-18)'%3E%3Crect x='8' y='55' width='15' height='28' rx='3' fill='%23C1272D'/%3E%3Crect x='30' y='40' width='15' height='43' rx='3' fill='%23E8862E'/%3E%3Crect x='52' y='18' width='15' height='65' rx='3' fill='%23F2B632'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/variables.css">
+<link rel="stylesheet" href="assets/css/reset.css">
+<link rel="stylesheet" href="assets/css/typography.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/animations.css">
+<style>
+  body {
+    min-height: 100dvh;
+    background: var(--color-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-6);
+  }
+  .login-card {
+    width: 100%;
+    max-width: 380px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-8) var(--space-6);
+    box-shadow: var(--shadow-lg);
+  }
+  .login-brand { display: flex; justify-content: center; margin-bottom: var(--space-6); }
+  .login-title { font-size: var(--text-xl); font-weight: var(--weight-extrabold); text-align: center; margin-bottom: var(--space-2); }
+  .login-subtitle { font-size: var(--text-sm); color: var(--color-text-muted); text-align: center; margin-bottom: var(--space-7); }
+  .login-error {
+    display: none;
+    background: rgba(240, 85, 79, 0.1);
+    border: 1px solid rgba(240, 85, 79, 0.3);
+    color: var(--color-danger);
+    border-radius: var(--radius-sm);
+    padding: var(--space-3) var(--space-4);
+    font-size: var(--text-sm);
+    margin-bottom: var(--space-5);
+  }
+  .login-error.visible { display: block; }
+</style>
+</head>
+<body>
+
+<div class="login-card anim-fade-in-scale">
+  <div class="login-brand" id="login-brand-slot"></div>
+  <div class="login-title">نظام أندوريا الداخلي</div>
+  <div class="login-subtitle">سجّل الدخول للمتابعة إلى لوحة التحكم</div>
+
+  <div class="login-error" id="login-error"></div>
+
+  <form id="login-form">
+    <div class="form-group">
+      <label class="form-label">البريد الإلكتروني</label>
+      <input type="email" class="form-input" id="login-email" autocomplete="username" required>
+    </div>
+    <div class="form-group">
+      <label class="form-label">كلمة المرور</label>
+      <input type="password" class="form-input" id="login-password" autocomplete="current-password" required>
+    </div>
+    <button type="submit" class="btn btn-primary" id="login-submit">تسجيل الدخول</button>
+  </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="assets/js/supabase-client.js"></script>
+<script src="assets/js/brand.js"></script>
+<script src="assets/js/auth-client.js"></script>
+<script>
+  (function () {
+    const brandSlot = document.getElementById('login-brand-slot');
+    if (brandSlot) brandSlot.innerHTML = BrandComponents.badge(28);
+
+    const form = document.getElementById('login-form');
+    const errorBox = document.getElementById('login-error');
+    const submitBtn = document.getElementById('login-submit');
+
+    function showError(message) {
+      errorBox.textContent = message;
+      errorBox.classList.add('visible');
+    }
+
+    // Already signed in? Skip straight to the dashboard.
+    CRMAuth.getSession().then((session) => {
+      if (session) window.location.href = 'index.html';
+    });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      errorBox.classList.remove('visible');
+
+      if (!SupabaseClient.isConfigured) {
+        showError('Supabase غير مُهيّأ بعد — راجع assets/js/supabase-client.js وأضف بيانات مشروعك.');
+        return;
+      }
+
+      const email = document.getElementById('login-email').value.trim();
+      const password = document.getElementById('login-password').value;
+      submitBtn.style.opacity = '0.6';
+      submitBtn.style.pointerEvents = 'none';
+
+      try {
+        await CRMAuth.signIn(email, password);
+        window.location.href = 'index.html';
+      } catch (err) {
+        showError('بيانات الدخول غير صحيحة. حاول مرة أخرى.');
+        submitBtn.style.opacity = '1';
+        submitBtn.style.pointerEvents = 'auto';
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>
