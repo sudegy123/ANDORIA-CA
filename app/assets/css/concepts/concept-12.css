@@ -1,0 +1,1099 @@
+/* ═══════════════════════════════════════════════
+   CONCEPT 12 — DASHBOARD INTAKE  (step 2 only)
+   Same recipe as concept-5 (Premium Dashboard): cinematic backdrop
+   photo behind the whole shell (not just the header), sharp gold
+   text-shadow glow on numerals/labels, fading-border gradient seams
+   instead of flat rules, technical mono eyebrow. New photo
+   (hero-desk.jpg — intake form + blueprint on a desk).
+   No new hex — color-mix()/rgba() off tokens only.
+═══════════════════════════════════════════════ */
+
+#step-2 .step-shell {
+  position: relative;
+  background:
+    linear-gradient(180deg, rgba(7,26,18,0.55) 0%, rgba(7,26,18,0.85) 40%, var(--color-bg) 78%),
+    url("../../images/concepts/concept-12/hero-desk.jpg");
+  background-size: auto, cover;
+  background-position: center, center top;
+  background-repeat: no-repeat;
+}
+#step-2 .step-header {
+  position: relative;
+  padding: clamp(56px, 26vw, 150px) var(--space-5) var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+  isolation: isolate;
+}
+#step-2 .step-header::after {
+  /* fading-border seam: gradient rule instead of a hard 1px line */
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: -1px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-gold) 50%, transparent);
+  opacity: 0.6;
+}
+#step-2 .eyebrow {
+  position: relative;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-gold-light);
+  text-shadow: 0 0 16px color-mix(in srgb, var(--color-gold) 40%, transparent);
+}
+#step-2 .step-title {
+  position: relative;
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-bold);
+  text-shadow: 0 3px 24px rgba(0,0,0,0.65);
+}
+#step-2 .step-subtitle { position: relative; font-size: var(--text-sm); color: var(--color-text-muted); }
+
+#step-2 .step-body {
+  padding: var(--space-4);
+  padding-bottom: var(--brand-footer-height); /* flush against the brand-footer bar, no extra gap */
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  counter-reset: dash-field;
+}
+
+#step-2 .form-group {
+  position: relative;
+  flex-shrink: 0;
+  counter-increment: dash-field;
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--color-gold) 6%, transparent) 0%, transparent 45%),
+    color-mix(in srgb, var(--color-surface) 22%, transparent);
+  backdrop-filter: blur(8px) saturate(1.05);
+  -webkit-backdrop-filter: blur(8px) saturate(1.05);
+  isolation: isolate; /* contain the blur compositing layer — mitigates a real iOS Safari bug where adjacent backdrop-filter blurs bleed into a white blob */
+  border: 1px solid var(--color-border-gold);
+  border-radius: var(--radius-lg);
+  padding: var(--space-3);
+  margin-bottom: 0;
+  overflow: hidden;
+  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--color-gold-light) 8%, transparent), 0 8px 20px -10px rgba(0,0,0,0.5);
+}
+#step-2 .form-group::before {
+  /* top gradient rule — same fading-border technique as concept-5's kpi-card */
+  content: '';
+  position: absolute;
+  top: 0; right: 0; left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+}
+#step-2 .form-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--color-text-dim);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+#step-2 .form-label::before {
+  content: counter(dash-field, decimal-leading-zero);
+  font-weight: var(--weight-bold);
+  color: var(--color-gold);
+  text-shadow: 0 0 12px color-mix(in srgb, var(--color-gold) 55%, transparent);
+}
+#step-2 .form-input, #step-2 .form-select {
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-surface3);
+  background: color-mix(in srgb, var(--color-surface2) 70%, transparent);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+}
+#step-2 .form-input:focus, #step-2 .form-select:focus {
+  border-color: var(--color-gold);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-gold) 20%, transparent);
+}
+
+#step-2 .choice-btn {
+  border-radius: var(--radius-lg);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  border: 1px solid var(--color-border-gold);
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--color-gold) 6%, transparent) 0%, transparent 45%),
+    color-mix(in srgb, var(--color-surface) 22%, transparent);
+  backdrop-filter: blur(8px) saturate(1.05);
+  -webkit-backdrop-filter: blur(8px) saturate(1.05);
+  isolation: isolate; /* contain the blur compositing layer — mitigates a real iOS Safari bug where adjacent backdrop-filter blurs bleed into a white blob */
+  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--color-gold-light) 8%, transparent), 0 8px 20px -10px rgba(0,0,0,0.5);
+}
+#step-2 .choice-btn.selected,
+#step-2 .choice-btn[data-selected="true"] {
+  border-color: var(--color-gold);
+  box-shadow: 0 0 18px -6px color-mix(in srgb, var(--color-gold) 55%, transparent);
+}
+
+#step-2 .step-footer {
+  border-top: 1px solid var(--color-surface3);
+  background: color-mix(in srgb, var(--color-bg) 80%, transparent);
+  backdrop-filter: blur(8px) saturate(1.05);
+  -webkit-backdrop-filter: blur(8px) saturate(1.05);
+  isolation: isolate; /* contain the blur compositing layer — mitigates a real iOS Safari bug where adjacent backdrop-filter blurs bleed into a white blob */
+}
+#step-2 .btn-primary {
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  box-shadow: var(--shadow-gold);
+}
+
+@media (max-width: 480px) { #step-2 .step-header { padding-top: 110px; } }
+
+/* ═══════════════════════════════════════════════
+   STEP 3 — same Dashboard Intake recipe: cinematic backdrop behind
+   the whole shell, fading-border seam under the header, glow-numeral
+   badges (here: numbered property tiles instead of numbered fields),
+   mono technical labels. New photo (hero-buildings.jpg — architect's
+   blueprint sketch of a house/shop/silo/clinic on graph paper).
+═══════════════════════════════════════════════ */
+
+#step-3 .step-shell {
+  position: relative;
+  background:
+    linear-gradient(180deg, rgba(7,26,18,0.55) 0%, rgba(7,26,18,0.85) 40%, var(--color-bg) 78%),
+    url("../../images/concepts/concept-12-step3/hero-photoreal.jpg");
+  background-size: auto, cover;
+  background-position: center, center top;
+  background-repeat: no-repeat;
+}
+#step-3 .step-header {
+  position: relative;
+  padding: clamp(56px, 26vw, 150px) var(--space-5) var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+  isolation: isolate;
+}
+#step-3 .step-header::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: -1px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-gold) 50%, transparent);
+  opacity: 0.6;
+}
+#step-3 .eyebrow {
+  position: relative;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-gold-light);
+  text-shadow: 0 0 16px color-mix(in srgb, var(--color-gold) 40%, transparent);
+}
+#step-3 .step-title {
+  position: relative;
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-bold);
+  text-shadow: 0 3px 24px rgba(0,0,0,0.65);
+}
+#step-3 .step-subtitle { position: relative; font-size: var(--text-sm); color: var(--color-text-muted); }
+
+#step-3 .step-body {
+  padding: var(--space-4);
+  padding-bottom: var(--brand-footer-height);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* Poster tiles: the photo fills the ENTIRE card (not just a top square),
+   the label sits overlaid at the bottom on a dark gradient scrim
+   instead of a separate padded row below — more image-forward, reads
+   like a technical dossier/specimen card. Numeral badge top-start,
+   gold ring + glow on selected, same fading-border top rule technique. */
+#step-3 .property-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-2);
+  counter-reset: dash-tile;
+}
+#step-3 .property-card {
+  position: relative;
+  flex-shrink: 0;
+  counter-increment: dash-tile;
+  aspect-ratio: 3 / 4;
+  padding: 0;
+  border: 1px solid var(--color-border-gold);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: border-color var(--duration-fast), transform var(--duration-fast), box-shadow var(--duration-fast);
+}
+#step-3 .property-card::before {
+  /* fading-border top rule — same technique as concept-2's kpi-card */
+  content: '';
+  position: absolute;
+  top: 0; right: 0; left: 0;
+  height: 2px;
+  z-index: 3;
+  background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+}
+#step-3 .property-card::after {
+  content: counter(dash-tile, decimal-leading-zero);
+  position: absolute;
+  top: var(--space-2);
+  inset-inline-start: var(--space-2);
+  z-index: 3;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: var(--weight-bold);
+  color: var(--color-gold-light);
+  background: color-mix(in srgb, var(--color-bg) 55%, transparent);
+  backdrop-filter: blur(8px) saturate(1.05);
+  -webkit-backdrop-filter: blur(8px) saturate(1.05);
+  isolation: isolate; /* contain the blur compositing layer — mitigates a real iOS Safari bug where adjacent backdrop-filter blurs bleed into a white blob */
+  border: 1px solid var(--color-border-gold);
+  border-radius: var(--radius-sm);
+  padding: 2px 5px;
+  text-shadow: 0 0 10px color-mix(in srgb, var(--color-gold) 55%, transparent);
+}
+
+#step-3 .property-card:hover,
+#step-3 .property-card.selected,
+#step-3 .property-card[data-selected="true"] {
+  border-color: var(--color-gold);
+  box-shadow: 0 0 22px -6px color-mix(in srgb, var(--color-gold) 60%, transparent);
+  transform: translateY(-3px);
+}
+
+/* Photo fills the whole tile (both the real Cloudinary image and the
+   emoji fallback background get the same full-bleed treatment) */
+#step-3 .property-image-wrap,
+#step-3 .property-icon {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: auto;
+}
+#step-3 .property-image-wrap img { width: 100%; height: 100%; object-fit: cover; }
+#step-3 .property-icon {
+  font-size: 30px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 40px;
+  background: radial-gradient(circle at 50% 40%, color-mix(in srgb, var(--color-gold) 14%, transparent), var(--color-surface2) 75%);
+}
+
+/* Bottom gradient scrim + overlaid mono label, instead of a separate row */
+#step-3 .property-name { z-index: 3; }
+#step-3 .property-name {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  padding: var(--space-4) var(--space-2) var(--space-2);
+  background: linear-gradient(0deg, rgba(7,26,18,0.95) 0%, rgba(7,26,18,0.55) 60%, transparent 100%);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: var(--weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--color-text);
+}
+#step-3 .property-card.selected .property-name,
+#step-3 .property-card[data-selected="true"] .property-name { color: var(--color-gold-light); }
+
+/* ═══════════════════════════════════════════════
+   ORBIT FAN — replaces the static 3-column grid for the MAIN
+   property-type picker (#property-grid, 9 items) with a draggable
+   wheel/fan carousel (cards on a hidden circle). #shop-type-grid
+   (the secondary shop-vertical picker) is untouched, still a plain
+   grid. Driven by assets/js/property-fan.js, which reuses the exact
+   Set 5 "Orbit Fan" algorithm and calls the REAL card's own .click()
+   on tap-select, so the existing onclick="selectProperty(this)" wiring
+   fires exactly as before — no selection logic duplicated here.
+═══════════════════════════════════════════════ */
+#step-3 #property-grid {
+  position: relative;
+  display: block;
+  /* Was a flat 46vh with min-height:300px — measured on a real iPhone
+     13 Safari profile (664px viewport, NOT 844px like a plain browser
+     tab, because Safari's own UI chrome eats real space) that this
+     genuinely overlapped the fixed WhatsApp FAB icon. clamp() with a
+     lower floor fixes it on short real viewports while staying full
+     size on taller ones. dvh (not vh) matches the unit .step itself
+     sizes off — plain vh assumes the address bar is already hidden, so
+     it overshoots on a fresh load and pushes content below it out of
+     view until the address bar later auto-collapses (same class of bug
+     found and fixed on step-5's dial stage). */
+  height: clamp(220px, 38dvh, 400px);
+  flex-shrink: 0; /* same bug class caught twice already this session:
+    overflow!=visible inside a flex column resets automatic min-size to
+    0, letting the flex algorithm crush this below its own clamp()
+    height on short viewports instead of respecting it. */
+  overflow: hidden;
+  overflow: clip;
+  touch-action: none;
+  cursor: grab;
+  margin: 0 -4px; /* let side cards bleed slightly past the body's own padding */
+}
+#step-3 #property-grid.dragging { cursor: grabbing; }
+#step-3 #property-grid .property-card {
+  position: absolute;
+  left: 0;
+  top: 0;
+  aspect-ratio: auto; /* JS sets explicit width/height for fan cards */
+  /* Fan cards get a fresh inline `transform` every frame from property-fan.js.
+     The base .property-card rule transitions `transform`, which made a card
+     that had been visibility:hidden (off the visible arc) snap-transition
+     from its frozen last position to its real fan slot once rotated back
+     into view — looked like the photo sliding in from the left edge. Only
+     border/shadow should ease here; position must jump immediately. */
+  transition: border-color var(--duration-fast), box-shadow var(--duration-fast);
+}
+#step-3 #property-grid .property-card.fan-active {
+  border-color: var(--color-gold);
+  box-shadow: 0 0 26px -4px color-mix(in srgb, var(--color-gold) 60%, transparent);
+}
+#step-3 .fan-panel {
+  text-align: center;
+  /* The selected category sits close to the active card, below the stage. */
+  margin-top: clamp(-64px, calc(8px - 7dvh), -40px);
+}
+#step-3 .fan-panel .fan-name {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-bold);
+  color: var(--color-gold-light);
+}
+#step-3 .fan-panel .fan-count {
+  margin-top: 2px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-text-muted);
+}
+#step-3 .fan-ctl {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+}
+#step-3 .fan-ctl button {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border-gold);
+  background: color-mix(in srgb, var(--color-surface) 55%, transparent);
+  color: var(--color-gold);
+  font-size: 15px;
+  cursor: pointer;
+}
+#step-3 .fan-ctl button:active { background: var(--color-gold); color: var(--color-bg); }
+
+#step-3 .form-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--color-text-dim);
+}
+
+#step-3 .step-footer {
+  border-top: 1px solid var(--color-surface3);
+  background: color-mix(in srgb, var(--color-bg) 80%, transparent);
+  backdrop-filter: blur(8px) saturate(1.05);
+  -webkit-backdrop-filter: blur(8px) saturate(1.05);
+  isolation: isolate; /* contain the blur compositing layer — mitigates a real iOS Safari bug where adjacent backdrop-filter blurs bleed into a white blob */
+}
+#step-3 .btn-primary {
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  box-shadow: var(--shadow-gold);
+}
+
+@media (max-width: 480px) { #step-3 .step-header { padding-top: 110px; } }
+@media (max-height: 700px) {
+  /* Real Safari on an iPhone 13 has only a 664px viewport (its own UI
+     chrome eats the rest) — not enough combined room for the full
+     cinematic header + a comfortably-sized fan before it reaches the
+     fixed WhatsApp/Facebook FAB icons. Shrink the header specifically
+     on short viewports to free up room for the fan instead of
+     shrinking the fan itself down to an unusable size. */
+  #step-3 .step-header { padding-top: 56px; padding-bottom: var(--space-3); }
+  #step-3 #property-grid { height: clamp(170px, 30dvh, 400px); }
+  #step-3 .fan-panel { margin-top: clamp(-32px, calc(8px - 6dvh), -22px); }
+}
+
+/* ═══════════════════════════════════════════════
+   STEP 4 — chosen direction: night-sky-over-village backdrop
+   (real photo, self-hosted), glass icon cards for the outage-hours
+   choices, gold check-badge on the selected one, the toggle restyled
+   as its own icon card — same visual language the Gemini mockup
+   explored, now wired to the REAL copy/fields (no invented text).
+   No new hex — color-mix()/rgba() off tokens only.
+═══════════════════════════════════════════════ */
+
+#step-4 .step-shell {
+  position: relative;
+  background:
+    linear-gradient(180deg, rgba(7,26,18,0.1) 0%, rgba(7,26,18,0.35) 60%, rgba(7,26,18,0.55) 100%),
+    url("../../images/concepts/concept-12-step4/hero-nightsky.jpg");
+  background-size: auto, cover;
+  background-position: center, center top;
+  background-repeat: no-repeat;
+  background-attachment: scroll, fixed;
+}
+#step-4 .step-header {
+  position: relative;
+  padding: clamp(56px, 26vw, 150px) var(--space-5) var(--space-4);
+  isolation: isolate;
+}
+#step-4 .step-header::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: -1px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-gold) 50%, transparent);
+  opacity: 0.6;
+}
+#step-4 .eyebrow {
+  position: relative;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-gold-light);
+  text-shadow: 0 0 16px color-mix(in srgb, var(--color-gold) 40%, transparent);
+}
+#step-4 .step-title {
+  position: relative;
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-bold);
+  text-shadow: 0 3px 24px rgba(0,0,0,0.7);
+}
+#step-4 .step-subtitle { position: relative; font-size: var(--text-sm); color: var(--color-text-muted); }
+
+#step-4 .step-body {
+  padding: var(--space-4);
+  padding-bottom: var(--brand-footer-height);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+#step-4 .form-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--color-text-dim);
+}
+
+/* Glass icon cards for the 4 outage-hour options — matches the Gemini
+   mockup's glassier treatment: stronger frosted blur, a soft diagonal
+   sheen highlight, rounder corners, a real solar-panel+battery
+   pictograph (inline SVG data-URI, gold stroke) instead of a plain
+   glyph character. */
+#step-4 .choice-grid-2 { gap: var(--space-3); }
+#step-4 .outage-btn {
+  position: relative;
+  flex-shrink: 0;
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--color-gold) 8%, transparent) 0%, transparent 40%),
+    color-mix(in srgb, var(--color-surface) 22%, transparent);
+  backdrop-filter: blur(8px) saturate(1.05);
+  -webkit-backdrop-filter: blur(8px) saturate(1.05);
+  isolation: isolate; /* contain the blur compositing layer — mitigates a real iOS Safari bug where adjacent backdrop-filter blurs bleed into a white blob */
+  border: 1px solid var(--color-border-gold);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5) var(--space-3) var(--space-4);
+  font-weight: var(--weight-semibold);
+  overflow: hidden;
+  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--color-gold-light) 10%, transparent), 0 8px 20px -10px rgba(0,0,0,0.5);
+  transition: border-color var(--duration-fast), box-shadow var(--duration-fast), transform var(--duration-fast);
+}
+#step-4 .outage-btn::before {
+  /* solar-panel + battery pictograph, gold stroke on transparent */
+  content: "";
+  display: block;
+  width: 36px;
+  height: 28px;
+  margin-bottom: var(--space-3);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 36' fill='none' stroke='%23F2B632' stroke-width='1.6'%3E%3Cpath d='M2 8 L18 4 L18 24 L2 28 Z'/%3E%3Cpath d='M2 15 L18 11' /%3E%3Cpath d='M10 4.5 L10 27' /%3E%3Cpath d='M18 12 L24 12' /%3E%3Crect x='26' y='6' width='11' height='20' rx='2'/%3E%3Cpath d='M29.5 3 h4 v3 h-4z'/%3E%3Cpath d='M30 20 l3 -6 l3 0 l-3 6 z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+  filter: drop-shadow(0 0 10px color-mix(in srgb, var(--color-gold) 55%, transparent));
+}
+#step-4 .outage-btn:hover {
+  border-color: var(--color-gold);
+  transform: translateY(-2px);
+}
+#step-4 .outage-btn.selected,
+#step-4 .outage-btn[data-selected="true"] {
+  border-color: var(--color-gold);
+  box-shadow: var(--shadow-gold), 0 0 28px -6px color-mix(in srgb, var(--color-gold) 60%, transparent);
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--color-gold) 16%, transparent) 0%, transparent 55%),
+    color-mix(in srgb, var(--color-gold) 8%, color-mix(in srgb, var(--color-surface) 22%, transparent));
+}
+#step-4 .outage-btn.selected::after,
+#step-4 .outage-btn[data-selected="true"]::after {
+  content: "\2713";
+  position: absolute;
+  top: var(--space-2);
+  inset-inline-end: var(--space-2);
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--color-gold);
+  color: var(--color-bg);
+  font-size: 12px;
+  font-weight: var(--weight-bold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 12px color-mix(in srgb, var(--color-gold) 60%, transparent);
+}
+
+/* Toggle row restyled as its own glass icon card */
+#step-4 .toggle-row {
+  position: relative;
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--color-gold) 8%, transparent) 0%, transparent 40%),
+    color-mix(in srgb, var(--color-surface) 22%, transparent);
+  backdrop-filter: blur(8px) saturate(1.05);
+  -webkit-backdrop-filter: blur(8px) saturate(1.05);
+  isolation: isolate; /* contain the blur compositing layer — mitigates a real iOS Safari bug where adjacent backdrop-filter blurs bleed into a white blob */
+  border: 1px solid var(--color-border-gold);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+}
+#step-4 .toggle-title { font-weight: var(--weight-semibold); }
+#step-4 .toggle-sub { font-size: var(--text-xs); color: var(--color-text-dim); }
+
+#step-4 .step-footer {
+  border-top: 1px solid var(--color-surface3);
+  background: color-mix(in srgb, var(--color-bg) 80%, transparent);
+  backdrop-filter: blur(8px) saturate(1.05);
+  -webkit-backdrop-filter: blur(8px) saturate(1.05);
+  isolation: isolate; /* contain the blur compositing layer — mitigates a real iOS Safari bug where adjacent backdrop-filter blurs bleed into a white blob */
+}
+#step-4 .btn-primary {
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-gold);
+}
+
+@media (max-width: 480px) { #step-4 .step-header { padding-top: 110px; } }
+
+/* ═══════════════════════════════════════════════
+   STEP 5 — DEVICES: same Dashboard recipe carried into the densest,
+   most data-heavy step. Full-bleed industrial control-room backdrop
+   (real photo, self-hosted), the load meter restyled as a glowing
+   technical gauge, glass device tabs, and poster-style device tiles
+   (same pattern as step-3's property cards: photo fills the tile,
+   numbered glow badge, name+watts overlaid on a bottom scrim).
+   No new hex — color-mix()/rgba() off tokens only.
+═══════════════════════════════════════════════ */
+
+#step-5 .step-shell {
+  position: relative;
+  /* darkened significantly more than the other steps — the bulb photo's
+     bright glowing filament was shining straight through the blurred
+     glass cards sitting over it (backdrop-filter shows a blurred version
+     of whatever is behind it), reading as unwanted white blob artifacts
+     on real device screens */
+  background:
+    linear-gradient(180deg, rgba(7,26,18,0.55) 0%, rgba(7,26,18,0.78) 40%, rgba(7,26,18,0.9) 100%),
+    url("../../images/concepts/concept-12-rest/hero-bulb.jpg");
+  background-size: auto, cover;
+  background-position: center, center top;
+  background-repeat: no-repeat;
+  background-attachment: scroll, fixed;
+}
+#step-5 .step-header {
+  position: relative;
+  /* Was clamp(56px,26vw,150px) — a lot of purely decorative backdrop-photo
+     breathing room. Step 5 now holds a category picker (and will grow
+     carousels/other content), so the header is compact instead: just
+     enough to read the title, freeing the rest of the viewport for
+     content. The backdrop photo/gradient itself is untouched. */
+  padding: clamp(20px, 8vw, 40px) var(--space-5) var(--space-3);
+  isolation: isolate;
+}
+#step-5 .step-header::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: -1px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-gold) 50%, transparent);
+  opacity: 0.6;
+}
+#step-5 .eyebrow {
+  position: relative;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-gold-light);
+  text-shadow: 0 0 16px color-mix(in srgb, var(--color-gold) 40%, transparent);
+}
+#step-5 .step-title { position: relative; font-size: var(--text-2xl); font-weight: var(--weight-bold); text-shadow: 0 3px 24px rgba(0,0,0,0.7); }
+#step-5 .step-subtitle { position: relative; font-size: var(--text-sm); color: var(--color-text-muted); }
+
+/* Load meter as a glowing technical gauge */
+#step-5 #load-meter {
+  position: relative;
+  top: 0; /* base CSS makes #load-meter `position:sticky; top:var(--progress-height)` —
+    changing position to relative here without also resetting `top` left it inheriting
+    that offset, which for position:relative shifts the box DOWN from its normal flex
+    slot while the slot itself stays reserved above, so it visually overlapped the
+    device cards below it. Real bug, found by outlining the boxes and comparing to
+    the base rule, not guessed. */
+  margin: 0 var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--color-gold) 6%, transparent) 0%, transparent 45%),
+    color-mix(in srgb, var(--color-surface) 22%, transparent);
+  backdrop-filter: blur(8px) saturate(1.05);
+  -webkit-backdrop-filter: blur(8px) saturate(1.05);
+  isolation: isolate; /* contain the blur compositing layer — mitigates a real iOS Safari bug where adjacent backdrop-filter blurs bleed into a white blob */
+  border: 1px solid var(--color-border-gold);
+  border-radius: var(--radius-lg);
+}
+#step-5 .load-label { font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--color-text-dim); }
+#step-5 .load-track { background: var(--color-surface3); border-radius: var(--radius-full); overflow: hidden; }
+#step-5 .load-fill { background: linear-gradient(90deg, var(--color-gold), var(--color-gold-light)); box-shadow: 0 0 12px color-mix(in srgb, var(--color-gold) 60%, transparent); }
+#step-5 .load-val { font-family: var(--font-mono); font-weight: var(--weight-bold); color: var(--color-gold-light); text-shadow: 0 0 12px color-mix(in srgb, var(--color-gold) 45%, transparent); }
+#step-5 .load-peak-row { font-family: var(--font-mono); font-size: 11px; }
+
+#step-5 .motor-warning {
+  margin: var(--space-3) var(--space-4) 0;
+  background: color-mix(in srgb, var(--color-warning) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-warning) 40%, transparent);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-xs);
+}
+
+/* Category picker (landing view of step 5) + the "back to categories"
+   affordance shown above the drilled-in device grid. Both views share
+   .step-body's flex column, so each gets flex-shrink:0 — the same
+   crush-to-a-sliver bug class documented throughout this file whenever a
+   flex child has non-visible overflow. */
+#step-5 #device-category-view,
+#step-5 #device-list-view {
+  flex-shrink: 0;
+}
+#step-5 .device-grid { flex-shrink: 0; }
+
+#step-5 .device-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+  padding: 8px var(--space-4);
+  background: color-mix(in srgb, var(--color-surface) 55%, transparent);
+  border: 1px solid var(--color-border-gold);
+  border-radius: var(--radius-full);
+  color: var(--color-gold-light);
+  font-family: var(--font-primary);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
+  cursor: pointer;
+}
+#step-5 .device-back-btn:active { background: color-mix(in srgb, var(--color-gold) 16%, transparent); }
+#step-5 .device-back-icon { font-size: 18px; line-height: 1; }
+/* ‹ literally points left. In LTR "back" reads left — no change needed.
+   In RTL "back" reads right (you're returning to a category card that
+   sits to the right in reading order), so mirror it — same convention
+   already used for .progress-back-icon. */
+[dir="rtl"] #step-5 .device-back-icon { display: inline-block; transform: scaleX(-1); }
+
+/* Category cards reuse the exact .device-card poster treatment below —
+   just a bigger centered emoji (no photo/watts/controls to share space
+   with) and the added-badge repurposed as a plain selected-count pill,
+   shown unconditionally rather than gated on .added (these cards are
+   never themselves "added"). */
+#step-5 .device-cat-card .device-emoji { font-size: 38px; }
+#step-5 .device-cat-card .device-card-body {
+  padding: var(--space-1) var(--space-2) var(--space-1);
+  text-align: center;
+  height: 36px; /* fixed, guaranteed room for the name — see media note below */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#step-5 .device-cat-card .device-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+  font-size: 11px;
+}
+#step-5 .device-cat-card .device-added-badge { opacity: 1; }
+/* `aspect-ratio: auto` with no explicit height, feeding children set to
+   height:100%, left the actual rendered media height unresolved — a
+   percentage height against an auto-height parent computes as auto too,
+   per spec — so different photos ended up rendering the media area at
+   inconsistent heights. Some quietly grew to fill the ENTIRE card,
+   pushing .device-card-body (and the category name in it) out past the
+   card's own overflow:hidden edge, so some cards showed no name at all
+   while others did. Fixed height here + the fixed .device-card-body
+   height above guarantees identical, correct proportions on every card
+   regardless of the source photo's own dimensions. */
+#step-5 .device-cat-card .device-card-media { height: calc(100% - 36px); aspect-ratio: auto; }
+#step-5 .device-cat-card .device-image-wrap,
+#step-5 .device-cat-card .device-image-wrap img { width: 100%; height: 100%; }
+
+/* ═══ Category picker as a Radial Dial carousel ═══
+   #device-category-grid stops being a CSS grid and becomes a JS-driven
+   stage (assets/js/device-category-dial.js): cards sit on a hidden
+   ellipse, dragged/scrolled to rotate, with depth-based scale/opacity/
+   z-index standing in for a pseudo-3D turntable — same 2D-transform
+   trick already used for step-3's orbit fan, just projected as an
+   ellipse instead of an arc. */
+#step-5 #device-category-grid {
+  display: block;
+  position: relative;
+  /* Was 52vh — plain vh assumes the browser's address bar is already
+     hidden (the LARGER possible viewport), while .step itself sizes off
+     100dvh (the REAL current visible height, address bar included). On a
+     fresh load with the address bar still expanded, vh overshoots the
+     real space, so the stage claimed more height than actually existed —
+     pushing the name/hint panel and the Next button below the fold and
+     forcing a scroll to reach them, until the browser's chrome later
+     auto-collapsed and dvh (but not the already-computed vh height)
+     caught up. dvh here matches the container's own unit so the two
+     never disagree, and the compact layout is correct on the very first
+     paint instead of only after scrolling once. */
+  height: clamp(195px, 28dvh, 260px);
+  overflow: hidden;
+  overflow: clip;
+  touch-action: none;
+  cursor: grab;
+  flex-shrink: 0; /* same crush-to-sliver bug class as every other flex child with non-visible overflow in this file */
+  user-select: none; /* dragging across the photos was selecting page text on desktop */
+}
+/* Desktop mouse-drag over a photo triggers the browser's OWN native
+   image drag-and-drop, which hijacks the gesture: it suppresses the
+   pointermove events the carousel's drag tracking depends on, so a real
+   drag reported zero movement and read as a tap — instantly opening
+   whichever category was under the cursor instead of rotating the
+   wheel. draggable="false" on the <img> itself (set in app.js) is the
+   real fix; this is the CSS-level backstop for the same browser
+   behavior. */
+#step-5 #device-category-grid img {
+  -webkit-user-drag: none;
+  user-drag: none;
+}
+#step-5 #device-category-grid.dragging { cursor: grabbing; }
+#step-5 #device-category-grid .device-cat-card {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 140px;
+  height: 140px;
+  margin: 0;
+  /* Fan cards get a fresh inline `transform` every rAF frame from
+     device-category-dial.js. The base .device-card rule transitions
+     `transform`, which — proven via getComputedStyle() returning the
+     identity matrix() on a real WebKit iPhone 13 profile no matter what
+     transform was set — left every card permanently stuck at its
+     untransformed position in WebKit specifically: the continuous
+     per-frame overwrite interrupts the CSS transition before WebKit ever
+     commits a frame, so it never actually paints anywhere but the start
+     value. Exact same bug class already found and fixed for step-3's
+     orbit fan cards; only border/shadow should ease here, position must
+     apply immediately every frame. */
+  transition: border-color var(--duration-fast), box-shadow var(--duration-fast);
+}
+#step-5 #device-category-grid .device-cat-card.dial-front {
+  border-color: var(--color-gold);
+  box-shadow: 0 0 26px -4px color-mix(in srgb, var(--color-gold) 60%, transparent);
+}
+#step-5 .dial-panel {
+  text-align: center;
+  /* Was space-2 (8px) — the ellipse's card cluster can extend fairly
+     close to the stage's own bottom edge (side cards angled low), so a
+     tight gap read as the panel's name text sitting right on top of /
+     cutting into the cards above it instead of clearly being its own
+     separate line below the wheel. */
+  margin-top: 40px;
+  flex-shrink: 0;
+}
+#step-5 .dial-panel .dial-name {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-bold);
+  color: var(--color-gold-light);
+}
+#step-5 .dial-panel .dial-hint {
+  margin-top: 2px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Poster-style device tiles — same recipe as step-3's property cards */
+#step-5 .device-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-3); counter-reset: dev-tile; }
+#step-5 .device-card {
+  position: relative;
+  flex-shrink: 0;
+  counter-increment: dev-tile;
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--color-gold) 6%, transparent) 0%, transparent 45%),
+    color-mix(in srgb, var(--color-surface) 22%, transparent);
+  backdrop-filter: blur(8px) saturate(1.05);
+  -webkit-backdrop-filter: blur(8px) saturate(1.05);
+  isolation: isolate; /* contain the blur compositing layer — mitigates a real iOS Safari bug where adjacent backdrop-filter blurs bleed into a white blob */
+  border: 1px solid var(--color-border-gold);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--color-gold-light) 9%, transparent), 0 8px 20px -10px rgba(0,0,0,0.5);
+  transition: border-color var(--duration-fast), transform var(--duration-fast), box-shadow var(--duration-fast);
+}
+#step-5 .device-card::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0; left: 0;
+  height: 2px;
+  z-index: 3;
+  background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+}
+#step-5 .device-card.added,
+#step-5 .device-card:hover {
+  border-color: var(--color-gold);
+  box-shadow: 0 0 20px -6px color-mix(in srgb, var(--color-gold) 55%, transparent);
+  transform: translateY(-2px);
+}
+#step-5 .device-card-media { aspect-ratio: 4 / 3; }
+#step-5 .device-image-wrap, #step-5 .device-emoji { width: 100%; height: 100%; }
+#step-5 .device-image-wrap img { width: 100%; height: 100%; object-fit: cover; }
+#step-5 .device-emoji {
+  display: flex; align-items: center; justify-content: center; font-size: 30px;
+  background: radial-gradient(circle at 50% 40%, color-mix(in srgb, var(--color-gold) 14%, transparent), var(--color-surface2) 75%);
+}
+#step-5 .device-card-body { padding: var(--space-2) var(--space-3) 0; }
+#step-5 .device-name { font-size: var(--text-xs); font-weight: var(--weight-semibold); }
+#step-5 .device-watts { font-family: var(--font-mono); font-size: 10px; color: var(--color-gold-light); }
+#step-5 .device-controls { padding: var(--space-2) var(--space-3) var(--space-3); }
+/* The 2-column mobile card is narrow (~107px for this row once padding is
+   subtracted) — cramming the label AND the qty stepper side-by-side with
+   justify-content:space-between (the base layout) made the qty-ctrl
+   overflow its own row and look bunched/off-center. Stack label above
+   the controls instead, each left-aligned, so nothing has to fight for
+   horizontal room. Verified by measuring the real row/content widths,
+   not guessed. */
+#step-5 .device-ctrl-row {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+#step-5 .qty-ctrl { align-self: flex-start; }
+#step-5 .qty-btn {
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border-gold);
+  background: transparent;
+  color: var(--color-gold);
+}
+#step-5 .qty-btn:hover { background: var(--color-gold); color: var(--color-bg); }
+#step-5 .hours-slider { accent-color: var(--color-gold); }
+#step-5 .device-ctrl-label, #step-5 .hours-val, #step-5 .qty-val { font-family: var(--font-mono); font-size: 10px; }
+
+#step-5 .step-footer {
+  border-top: 1px solid var(--color-surface3);
+  background: color-mix(in srgb, var(--color-bg) 80%, transparent);
+  backdrop-filter: blur(8px) saturate(1.05);
+  -webkit-backdrop-filter: blur(8px) saturate(1.05);
+  isolation: isolate; /* contain the blur compositing layer — mitigates a real iOS Safari bug where adjacent backdrop-filter blurs bleed into a white blob */
+  /* .step-body's own padding-bottom is flush (exactly
+     --brand-footer-height, by design elsewhere in the app) against the
+     fixed brand-footer credit bar — zero cushion. On step-5 specifically
+     the button's rounded bottom edge sat right at that boundary with no
+     breathing room, reading as cut off by the footer bar. A little extra
+     clearance here only, not a global change to every step's footer. */
+  padding-bottom: var(--space-3);
+}
+#step-5 .btn-primary { border-radius: var(--radius-full); box-shadow: var(--shadow-gold); }
+
+@media (max-width: 480px) { #step-5 .step-header { padding-top: 20px; } }
+
+/* ═══════════════════════════════════════════════
+   STEPS 6-12 — same Dashboard recipe carried through the rest of the
+   wizard: a full-bleed real photo backdrop per step (varied subject,
+   consistent treatment) + shared glass-card styling for every common
+   component class these steps reuse (.kpi-card, .card, .confidence-
+   card, .cta-result-card, .savings-card, .offer-card, .option-card-
+   list, .section-title, testimonial/breakdown items). No new hex —
+   color-mix()/rgba() off tokens only.
+═══════════════════════════════════════════════ */
+
+#step-6 .step-shell, #step-7 .step-shell, #step-8 .step-shell,
+#step-9 .step-shell, #step-10 .step-shell, #step-11 .step-shell, #step-12 .step-shell {
+  position: relative;
+  background-size: auto, cover;
+  background-position: center, center top;
+  background-repeat: no-repeat;
+  background-attachment: scroll, fixed;
+}
+#step-6  .step-shell { background-image: linear-gradient(180deg, rgba(7,26,18,0.25) 0%, rgba(7,26,18,0.55) 45%, rgba(7,26,18,0.72) 100%), url("../../images/concepts/concept-12-rest/hero-gauge.jpg"); }
+#step-7  .step-shell { background-image: linear-gradient(180deg, rgba(7,26,18,0.55) 0%, rgba(7,26,18,0.85) 40%, var(--color-bg) 78%), url("../../images/concepts/concept-5/hero-blueprint.jpg"); }
+#step-8  .step-shell { background-image: linear-gradient(180deg, rgba(7,26,18,0.3) 0%, rgba(7,26,18,0.6) 45%, rgba(7,26,18,0.75) 100%), url("../../images/concepts/concept-12-step3/hero-photoreal.jpg"); }
+#step-9  .step-shell { background-image: linear-gradient(180deg, rgba(7,26,18,0.3) 0%, rgba(7,26,18,0.6) 45%, rgba(7,26,18,0.75) 100%), url("../../images/concepts/concept-12-rest/hero-gift.jpg"); }
+#step-10 .step-shell { background-image: linear-gradient(180deg, rgba(7,26,18,0.25) 0%, rgba(7,26,18,0.55) 45%, rgba(7,26,18,0.72) 100%), url("../../images/concepts/concept-12-rest/hero-familyhome.jpg"); }
+#step-11 .step-shell { background-image: linear-gradient(180deg, rgba(7,26,18,0.55) 0%, rgba(7,26,18,0.85) 40%, var(--color-bg) 78%), url("../../images/concepts/concept-12/hero-desk.jpg"); }
+#step-12 .step-shell { background-image: linear-gradient(180deg, rgba(7,26,18,0.3) 0%, rgba(7,26,18,0.6) 45%, rgba(7,26,18,0.75) 100%), url("../../images/concepts/concept-12-rest/hero-phone.jpg"); }
+
+#step-6 .step-header, #step-7 .step-header, #step-8 .step-header,
+#step-9 .step-header, #step-10 .step-header, #step-11 .step-header, #step-12 .step-header {
+  position: relative;
+  padding: clamp(56px, 26vw, 150px) var(--space-5) var(--space-4);
+  isolation: isolate;
+}
+#step-6 .step-header::after, #step-7 .step-header::after, #step-8 .step-header::after,
+#step-9 .step-header::after, #step-10 .step-header::after, #step-11 .step-header::after, #step-12 .step-header::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: -1px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-gold) 50%, transparent);
+  opacity: 0.6;
+}
+#step-6 .eyebrow, #step-7 .eyebrow, #step-8 .eyebrow,
+#step-9 .eyebrow, #step-10 .eyebrow, #step-11 .eyebrow, #step-12 .eyebrow {
+  position: relative;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-gold-light);
+  text-shadow: 0 0 16px color-mix(in srgb, var(--color-gold) 40%, transparent);
+}
+#step-6 .step-title, #step-7 .step-title, #step-8 .step-title,
+#step-9 .step-title, #step-10 .step-title, #step-11 .step-title, #step-12 .step-title {
+  position: relative;
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-bold);
+  text-shadow: 0 3px 24px rgba(0,0,0,0.7);
+}
+#step-6 .step-subtitle, #step-7 .step-subtitle, #step-8 .step-subtitle,
+#step-9 .step-subtitle, #step-10 .step-subtitle, #step-11 .step-subtitle, #step-12 .step-subtitle {
+  position: relative; font-size: var(--text-sm); color: var(--color-text-muted);
+}
+
+/* Shared glass-card treatment for every reused component class across
+   these steps — kept transparent enough for the backdrop to show through. */
+#step-6 .kpi-card, #step-6 .card,
+#step-7 .option-card-list > *, #step-7 .your-choice-card, #step-7 .battery-sim, #step-7 .card,
+#step-8 #packages-list > *,
+#step-9 .savings-hero, #step-9 #free-install-items > *,
+#step-10 #testimonials-list > *, #step-10 #trust-items-list > *,
+#step-11 .confidence-card, #step-11 .cta-result-card,
+#step-12 .savings-card, #step-12 .offer-card, #step-12 .confidence-card {
+  position: relative;
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--color-gold) 6%, transparent) 0%, transparent 45%),
+    color-mix(in srgb, var(--color-surface) 22%, transparent);
+  backdrop-filter: blur(8px) saturate(1.05);
+  -webkit-backdrop-filter: blur(8px) saturate(1.05);
+  isolation: isolate; /* contain the blur compositing layer — mitigates a real iOS Safari bug where adjacent backdrop-filter blurs bleed into a white blob */
+  border: 1px solid var(--color-border-gold);
+  border-radius: var(--radius-lg);
+  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--color-gold-light) 8%, transparent), 0 8px 20px -10px rgba(0,0,0,0.5);
+}
+
+/* Gold-glow numerals for KPI/stat values */
+#step-6 .kpi-val, #step-6 #arc-val {
+  text-shadow: 0 0 18px color-mix(in srgb, var(--color-gold) 55%, transparent);
+}
+#step-6 .kpi-label, #step-6 .breakdown-title {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--color-text-dim);
+}
+
+/* Fading-border section titles (same technique as concept-5's) */
+#step-6 .section-title, #step-7 .section-title, #step-8 .section-title,
+#step-9 .section-title, #step-10 .section-title, #step-11 .section-title, #step-12 .section-title {
+  position: relative;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding-bottom: var(--space-2);
+}
+#step-6 .section-title::after, #step-7 .section-title::after, #step-8 .section-title::after,
+#step-9 .section-title::after, #step-10 .section-title::after, #step-11 .section-title::after, #step-12 .section-title::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 1px;
+  background: linear-gradient(90deg, var(--color-gold), transparent 70%);
+  opacity: 0.5;
+}
+
+#step-8 .btn-primary, #step-9 .btn-primary, #step-10 .btn-primary, #step-11 .btn-primary {
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-gold);
+}
+
+/* Step 12 — final CTA gets the strongest glow treatment (highest-stakes screen) */
+#step-12 .offer-badge { font-family: var(--font-mono); font-size: 10px; letter-spacing: 1px; }
+#step-12 .cta-btn-link {
+  border-radius: var(--radius-full);
+  backdrop-filter: blur(8px) saturate(1.05);
+  -webkit-backdrop-filter: blur(8px) saturate(1.05);
+  isolation: isolate; /* contain the blur compositing layer — mitigates a real iOS Safari bug where adjacent backdrop-filter blurs bleed into a white blob */
+}
+#step-12 #wa-invoice-link { box-shadow: 0 4px 26px color-mix(in srgb, var(--color-gold) 45%, transparent); }
+
+#step-6  .step-footer, #step-7  .step-footer, #step-8  .step-footer,
+#step-9  .step-footer, #step-10 .step-footer, #step-11 .step-footer, #step-12 .step-footer {
+  border-top: 1px solid var(--color-surface3);
+  background: color-mix(in srgb, var(--color-bg) 80%, transparent);
+  backdrop-filter: blur(8px) saturate(1.05);
+  -webkit-backdrop-filter: blur(8px) saturate(1.05);
+  isolation: isolate; /* contain the blur compositing layer — mitigates a real iOS Safari bug where adjacent backdrop-filter blurs bleed into a white blob */
+}
+
+@media (max-width: 480px) {
+  #step-6 .step-header, #step-7 .step-header, #step-8 .step-header,
+  #step-9 .step-header, #step-10 .step-header, #step-11 .step-header, #step-12 .step-header {
+    padding-top: 110px;
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   DISABLE the base app's scroll-collapsing header (app.css/app.js
+   initStepHeaderCollapse) for this design. Measured the real effect:
+   scrolling just 30px into a step shrank the header ~44px and shifted
+   the first card up ~74px — a layout jump happening while the user is
+   mid-scroll/swipe through option cards, causing missed taps and
+   accidental selections. These headers are full-bleed cinematic hero
+   photos now (not the base design's compact text header this feature
+   was built for), so collapsing them isn't the right behavior here —
+   keep the header a stable height throughout scroll instead. Same
+   selectors as app.css's `.step-shell.scrolled ...` rules, same
+   specificity; wins on source order since this file loads after it.
+═══════════════════════════════════════════════ */
+.step-shell.scrolled .step-header .eyebrow {
+  opacity: 1;
+  max-height: 40px;
+  margin-bottom: var(--space-2, 8px);
+}
+.step-shell.scrolled .step-header .step-subtitle {
+  opacity: 1;
+  max-height: 80px;
+  margin-top: 0;
+}
+.step-shell.scrolled .step-header .step-title {
+  margin-bottom: var(--space-2, 8px);
+}
+/* Note: .step-header's own padding-top/bottom is untouched here on
+   purpose — this file's per-step `#step-N .step-header { padding:
+   clamp(...) }` rules already win over app.css's `.scrolled` padding
+   override (ID beats a 4-class selector regardless of source order),
+   confirmed by measurement, so no extra override was needed there. */

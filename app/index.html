@@ -31,15 +31,19 @@ document,'script','https://connect.facebook.net/en_US/fbevents.js');
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <!-- CSS — load order matters -->
-<link rel="stylesheet" href="assets/css/variables.css">
-<link rel="stylesheet" href="assets/css/reset.css">
-<link rel="stylesheet" href="assets/css/typography.css">
-<link rel="stylesheet" href="assets/css/layout.css">
-<link rel="stylesheet" href="assets/css/components.css">
-<link rel="stylesheet" href="assets/css/animations.css">
-<link rel="stylesheet" href="assets/css/app.css">
-<link rel="stylesheet" href="assets/css/responsive.css">
-<link rel="stylesheet" href="assets/css/welcome-v2.css">
+<link rel="stylesheet" href="assets/css/variables.css?v=20260928a">
+<link rel="stylesheet" href="assets/css/reset.css?v=20260928a">
+<link rel="stylesheet" href="assets/css/typography.css?v=20260928a">
+<link rel="stylesheet" href="assets/css/layout.css?v=20260928a">
+<link rel="stylesheet" href="assets/css/components.css?v=20260928a">
+<link rel="stylesheet" href="assets/css/animations.css?v=20260928a">
+<link rel="stylesheet" href="assets/css/app.css?v=20260928a">
+<link rel="stylesheet" href="assets/css/responsive.css?v=20260928a">
+<link rel="stylesheet" href="assets/css/welcome-v2.css?v=20260928a">
+<!-- Chosen redesign direction (was "concept 12" during the design-picker
+     phase) — now the permanent style for steps 2-11. Step-1 is never
+     targeted by this file. -->
+<link rel="stylesheet" href="assets/css/concepts/concept-12.css?v=20260930u">
 <style id="welcome-v2-inline">
 /*
   ANDORIA WELCOME v2 — INLINE GUARANTEE
@@ -715,10 +719,10 @@ document,'script','https://connect.facebook.net/en_US/fbevents.js');
             <label class="form-label"><span data-i18n="steps.profile.emailLabel">البريد الإلكتروني</span> <span class="form-label-optional" data-i18n="steps.profile.optional">اختياري</span></label>
             <input type="email" class="form-input" id="cust-email" placeholder="example@email.com" oninput="onProfileFieldChange()">
           </div>
-        </div>
         <div class="step-footer">
           <div class="remaining-fields" id="remaining-fields"></div>
           <button class="btn btn-primary" id="btn-step-profile" style="opacity:0.4;pointer-events:none" onclick="goToStep(3)" data-i18n="steps.profile.next">التالي</button>
+        </div>
         </div>
       </div>
     </div>
@@ -757,9 +761,9 @@ document,'script','https://connect.facebook.net/en_US/fbevents.js');
               <div class="property-card" data-shop="mobile"     onclick="selectShopType(this)"><div class="property-icon">📱</div><div class="property-name" data-i18n="steps.property.shopTypes.mobile">محل موبايلات</div></div>
             </div>
           </div>
-        </div>
         <div class="step-footer">
           <button class="btn btn-primary" id="btn-step2" style="opacity:0.4;pointer-events:none" onclick="goToStep(4)" data-i18n="steps.property.next">التالي</button>
+        </div>
         </div>
       </div>
     </div>
@@ -792,9 +796,9 @@ document,'script','https://connect.facebook.net/en_US/fbevents.js');
               <div class="toggle-switch" id="expansion-toggle"><div class="toggle-knob"></div></div>
             </div>
           </div>
-        </div>
         <div class="step-footer">
           <button class="btn btn-primary" onclick="goToStep(5)" data-i18n="steps.basicInfo.next">التالي — اختيار الأجهزة</button>
+        </div>
         </div>
       </div>
     </div>
@@ -827,14 +831,31 @@ document,'script','https://connect.facebook.net/en_US/fbevents.js');
         </div>
 
         <div class="step-body" style="padding-top:16px">
-          <!-- Category Tabs — rendered by DecisionEngine for the selected property/shop type -->
-          <div class="device-tabs" id="device-tabs"></div>
-          <div class="device-grid" id="device-grid"></div>
-        </div>
+          <!-- Category picker — the landing view for this step. Each card is
+               an actual category you enter (DecisionEngine-derived for the
+               selected property/shop type), not just a filter pill. -->
+          <div id="device-category-view">
+            <div class="device-grid" id="device-category-grid"></div>
+            <div class="dial-panel">
+              <div class="dial-name" id="dial-cat-name"></div>
+            </div>
+          </div>
+
+          <!-- Device list for whichever category was entered — hidden until
+               a category card is tapped. -->
+          <div id="device-list-view" class="hidden">
+            <button type="button" class="device-back-btn" id="device-back-btn" onclick="exitDeviceCategory()">
+              <span class="device-back-icon">‹</span>
+              <span id="device-back-label"></span>
+            </button>
+            <div class="device-grid" id="device-grid"></div>
+          </div>
+
         <div class="step-footer">
           <button class="btn btn-primary" onclick="goToStep(6)">
             <span id="btn-devices-txt" data-i18n="steps.devices.calcButton">حساب الاستهلاك</span>
           </button>
+        </div>
         </div>
       </div>
     </div>
@@ -870,9 +891,9 @@ document,'script','https://connect.facebook.net/en_US/fbevents.js');
           <!-- Breakdown -->
           <div class="breakdown-title" data-i18n="steps.summary.breakdownTitle">توزيع الاستهلاك حسب الجهاز</div>
           <div id="breakdown-list"></div>
-        </div>
         <div class="step-footer">
           <button class="btn btn-primary" onclick="goToStep(7)" data-i18n="steps.summary.next">عرض التوصية الفنية ←</button>
+        </div>
         </div>
       </div>
     </div>
@@ -918,9 +939,9 @@ document,'script','https://connect.facebook.net/en_US/fbevents.js');
           <div class="section-title mt-2" data-i18n="education.sectionTitle">اعرف الفرق قبل ما تختار</div>
           <div class="step-subtitle mb-4" data-i18n="education.sectionSubtitle">نظرة سريعة — وليست كتالوج منتجات</div>
           <div class="flex-col gap-3 mb-6" id="edu-cards"></div>
-        </div>
         <div class="step-footer">
           <button class="btn btn-primary" onclick="goToStep(8)" data-i18n="steps.recommendation.next">عرض توصيتك ←</button>
+        </div>
         </div>
       </div>
     </div>
@@ -935,9 +956,9 @@ document,'script','https://connect.facebook.net/en_US/fbevents.js');
         </div>
         <div class="step-body">
           <div id="packages-list" class="flex-col gap-4"></div>
-        </div>
         <div class="step-footer">
           <button class="btn btn-primary" onclick="goToStep(9)" data-i18n="steps.packages.next">التالي — التركيب مجاني ←</button>
+        </div>
         </div>
       </div>
     </div>
@@ -957,9 +978,9 @@ document,'script','https://connect.facebook.net/en_US/fbevents.js');
             <div class="savings-hero-sub" data-i18n="steps.savings.heroSub">التركيب الكامل ضمن العرض — بدون تكلفة إضافية</div>
           </div>
           <div class="flex-col gap-3 mb-6" id="free-install-items"></div>
-        </div>
         <div class="step-footer">
           <button class="btn btn-primary" onclick="goToStep(10)" data-i18n="steps.savings.next">التالي — تجارب عملائنا ←</button>
+        </div>
         </div>
       </div>
     </div>
@@ -983,9 +1004,9 @@ document,'script','https://connect.facebook.net/en_US/fbevents.js');
 
           <div class="section-title mt-6" data-i18n="steps.trust.trustSignalsTitle">ما يمكنك الاعتماد عليه</div>
           <div class="flex-col gap-3 mb-6" id="trust-items-list"></div>
-        </div>
         <div class="step-footer">
           <button class="btn btn-primary" onclick="goToStep(11)" data-i18n="steps.trust.next">المتابعة لمراجعة الطلب ←</button>
+        </div>
         </div>
       </div>
     </div>
@@ -1018,9 +1039,9 @@ document,'script','https://connect.facebook.net/en_US/fbevents.js');
             <div class="confidence-title" data-i18n="steps.review.confirmedTitle">✅ نظامك مؤكد</div>
             <div id="confidence-list"></div>
           </div>
-        </div>
         <div class="step-footer">
           <button class="btn btn-primary" onclick="goToStep(12)" data-i18n="steps.review.next">التالي — تواصل مع فريقنا ←</button>
+        </div>
         </div>
       </div>
     </div>
@@ -1126,9 +1147,9 @@ document,'script','https://connect.facebook.net/en_US/fbevents.js');
             </div>
           </div>
 
-        </div>
         <div class="step-footer" style="text-align:center">
           <button class="restart-link" onclick="restartAdvisor()" data-i18n="steps.payment.restart">← إعادة الحساب من البداية</button>
+        </div>
         </div>
       </div>
     </div>
@@ -1266,9 +1287,9 @@ document,'script','https://connect.facebook.net/en_US/fbevents.js');
 </div>
 
 <!-- JS — order matters: i18n → constants → brand-config → brand → data → utils → state → calc → devices → decision-engine → locations → personalization → recommendations → charts → router → app -->
-<script src="assets/js/i18n.js"></script>
-<script src="assets/js/constants.js"></script>
-<script src="assets/js/brand-config.js"></script>
+<script src="assets/js/i18n.js?v=20260929a"></script>
+<script src="assets/js/constants.js?v=20260928a"></script>
+<script src="assets/js/brand-config.js?v=20260928a"></script>
 <script>
 /**
  * SOLAR SMART ADVISOR — IMAGE MAP
@@ -1685,28 +1706,30 @@ if (typeof window !== 'undefined') window.CloudinaryImages = {
   url:       function(src, opts) { return (src && src.startsWith && src.startsWith('https://')) ? src : null; },
 };
 </script>
-<script src="assets/js/brand.js"></script>
-<script src="assets/js/utils.js"></script>
-<script src="assets/js/state.js"></script>
+<script src="assets/js/brand.js?v=20260928a"></script>
+<script src="assets/js/utils.js?v=20260928a"></script>
+<script src="assets/js/state.js?v=20260928a"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
-<script src="assets/js/supabase-client.js"></script>
-<script src="assets/js/settings-store.js"></script>
-<script src="assets/js/crm-store.js"></script>
-<script src="assets/js/product-categories.js"></script>
-<script src="assets/js/pricing-engine.js"></script>
-<script src="assets/js/packages-store.js"></script>
-<script src="assets/js/package-catalog.js"></script>
-<script src="assets/js/calculations.js"></script>
-<script src="assets/js/devices.js"></script>
-<script src="assets/js/decision-engine.js"></script>
-<script src="assets/js/countries.js"></script>
-<script src="assets/js/locations.js"></script>
-<script src="assets/js/personalization.js"></script>
-<script src="assets/js/payment.js"></script>
-<script src="assets/js/recommendations.js"></script>
-<script src="assets/js/charts.js"></script>
-<script src="assets/js/router.js"></script>
-<script src="assets/js/app.js"></script>
+<script src="assets/js/supabase-client.js?v=20260928a"></script>
+<script src="assets/js/settings-store.js?v=20260928a"></script>
+<script src="assets/js/crm-store.js?v=20260928a"></script>
+<script src="assets/js/product-categories.js?v=20260928a"></script>
+<script src="assets/js/pricing-engine.js?v=20260928a"></script>
+<script src="assets/js/packages-store.js?v=20260928a"></script>
+<script src="assets/js/package-catalog.js?v=20260928a"></script>
+<script src="assets/js/calculations.js?v=20260928a"></script>
+<script src="assets/js/devices.js?v=20260928a"></script>
+<script src="assets/js/decision-engine.js?v=20260928a"></script>
+<script src="assets/js/countries.js?v=20260928a"></script>
+<script src="assets/js/locations.js?v=20260928a"></script>
+<script src="assets/js/personalization.js?v=20260928a"></script>
+<script src="assets/js/payment.js?v=20260928a"></script>
+<script src="assets/js/recommendations.js?v=20260928a"></script>
+<script src="assets/js/charts.js?v=20260928a"></script>
+<script src="assets/js/router.js?v=20260928a"></script>
+<script src="assets/js/app.js?v=20260929d"></script>
+<script src="assets/js/property-fan.js?v=20260930b"></script>
+<script src="assets/js/device-category-dial.js?v=20260930o"></script>
 
 </body>
 </html>

@@ -151,8 +151,12 @@ function rebuildForLanguageChange() {
   const step = StateManager.get('currentStep');
   switch (step) {
     case 5: {
-      const activeTab = renderDeviceTabs();
-      renderDeviceGrid(activeTab);
+      // Language change mid-step — re-render in place, don't yank the
+      // customer back to the category picker if they're inside one.
+      renderDeviceCategoryGrid();
+      const activeTab = StateManager.get('activeTab');
+      const inCategory = !Utils.id('device-list-view')?.classList.contains('hidden');
+      if (inCategory && activeTab) renderDeviceGrid(activeTab);
       updateLoadMeter();
       break;
     }
@@ -494,8 +498,12 @@ function onStepEnter(step) {
       upgradePropertyCardImages();
       break;
     case 5: {
-      const activeTab = renderDeviceTabs();
-      renderDeviceGrid(activeTab);
+      // Fresh entry into the step (forward from step 4, or back from step
+      // 6) always lands on the category picker, never mid-category —
+      // selections made earlier are untouched, only the visible view resets.
+      renderDeviceCategoryGrid();
+      Utils.id('device-category-view')?.classList.remove('hidden');
+      Utils.id('device-list-view')?.classList.add('hidden');
       updateLoadMeter();
       break;
     }
@@ -933,44 +941,92 @@ function toggleExpansion() {
 // ═══════════════════════════════════════════════════════════════════
 
 /**
- * Rebuild the category tab bar for the current propertyType/shopType.
- * Nothing here is hardcoded — DecisionEngine derives the category list
- * (and which one should be active) from the context chosen in step 2.
- * @returns {string|null} the resolved active category id
+ * Render the category picker — the landing view of step 5. Each card is
+ * an actual category the customer taps into (DecisionEngine-derived for
+ * the selected property/shop type), not a filter pill sitting above an
+ * always-visible device grid. A small badge shows how many devices are
+ * already selected in that category, so browsing between categories
+ * doesn't lose track of prior choices.
  */
-function renderDeviceTabs() {
+function renderDeviceCategoryGrid() {
   const propertyType = StateManager.get('propertyType');
   const shopType      = StateManager.get('shopType');
   const categories    = DecisionEngine.getCategories(propertyType, shopType);
-  const tabsEl        = Utils.id('device-tabs');
+  const grid          = Utils.id('device-category-grid');
+  if (!grid || !categories.length) return;
 
-  if (!tabsEl || !categories.length) return null;
+  const lang     = I18n.getLang();
+  const selected = StateManager.get('selectedDevices');
 
-  let activeTab = StateManager.get('activeTab');
-  const validIds = categories.map(c => c.id);
-  if (!activeTab || !validIds.includes(activeTab)) {
-    activeTab = DecisionEngine.getDefaultCategory(propertyType, shopType) || categories[0].id;
-    StateManager.setState({ activeTab });
-  }
+  Utils.html(grid, categories.map(c => {
+    const count = DecisionEngine.getDevices(propertyType, shopType, c.id)
+      .filter(d => selected[d.id]).length;
+    const name = lang === 'en' ? c.name_en : c.name_ar;
+    const safeAlt = String(name || '').replace(/"/g, '&quot;');
+    const safeEmoji = String(c.emoji || '').replace(/'/g, '&#39;');
+    const media = `<div class="device-image-wrap"><img src="assets/images/device-categories/${c.id}.jpg?v=20260929d" alt="${safeAlt}" loading="lazy" decoding="async" draggable="false" ondragstart="return false" onerror="Utils.handleImageFallback(this, '${safeEmoji}', 'device-emoji')"></div>`;
+    return `
+    <div class="device-card device-cat-card" data-cat="${c.id}" onclick="enterDeviceCategory('${c.id}')">
+      <div class="device-card-media">
+        ${media}
+        ${count > 0 ? `<div class="device-added-badge">${count}</div>` : ''}
+      </div>
+      <div class="device-card-body">
+        <div class="device-name">${name}</div>
+      </div>
+    </div>`;
+  }).join(''));
 
-  const lang = I18n.getLang();
-  Utils.html(tabsEl, categories.map(c => `
-    <button class="device-tab ${c.id === activeTab ? 'active' : ''}" data-cat="${c.id}" onclick="switchTab(this)">${c.emoji} ${lang === 'en' ? c.name_en : c.name_ar}</button>
-  `).join(''));
-
-  return activeTab;
+  // #device-category-grid's innerHTML was just rebuilt, so any previous
+  // dial loop is holding stale DOM references — re-init every time,
+  // not just once (device-category-dial.js's own init() re-reads the
+  // live DOM, so this is always safe to call again).
+  if (window.initDeviceCategoryDial) window.initDeviceCategoryDial();
 }
 
 /**
- * Switch device category tab.
- * @param {Element} el - clicked tab element
+ * Enter a category — swap the category picker for that category's real
+ * device grid. Selections already made in OTHER categories are untouched;
+ * this only changes which grid is visible.
+ * @param {string} catId
  */
-function switchTab(el) {
-  Utils.qsa('.device-tab').forEach(t => t.classList.remove('active'));
-  el.classList.add('active');
-  const cat = el.dataset.cat;
-  StateManager.setState({ activeTab: cat });
-  renderDeviceGrid(cat);
+function enterDeviceCategory(catId) {
+  const propertyType = StateManager.get('propertyType');
+  const shopType      = StateManager.get('shopType');
+  StateManager.setState({ activeTab: catId });
+
+  Utils.id('device-category-view')?.classList.add('hidden');
+  const listView = Utils.id('device-list-view');
+  listView?.classList.remove('hidden');
+
+  const cat = DecisionEngine.getCategories(propertyType, shopType).find(c => c.id === catId);
+  const lang = I18n.getLang();
+  const backLabel = Utils.id('device-back-label');
+  if (backLabel && cat) backLabel.textContent = lang === 'en' ? cat.name_en : cat.name_ar;
+
+  renderDeviceGrid(catId);
+
+  // Same "lands like its own page" treatment used for the shop-type
+  // sub-grid in step 3 — flush to the top of the step body, not a partial
+  // nudge, so entering a category reads as a real navigation.
+  if (listView) {
+    requestAnimationFrame(() => {
+      listView.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  }
+}
+
+/** Leave the current category's device grid and return to the category picker. */
+function exitDeviceCategory() {
+  Utils.id('device-list-view')?.classList.add('hidden');
+  const catView = Utils.id('device-category-view');
+  catView?.classList.remove('hidden');
+  renderDeviceCategoryGrid(); // refresh the per-category selected-count badges
+  if (catView) {
+    requestAnimationFrame(() => {
+      catView.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  }
 }
 
 /**
