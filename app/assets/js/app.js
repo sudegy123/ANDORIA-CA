@@ -964,7 +964,7 @@ function renderDeviceCategoryGrid() {
     const name = lang === 'en' ? c.name_en : c.name_ar;
     const safeAlt = String(name || '').replace(/"/g, '&quot;');
     const safeEmoji = String(c.emoji || '').replace(/'/g, '&#39;');
-    const media = `<div class="device-image-wrap"><img src="assets/images/device-categories/${c.id}.jpg?v=20260929d" alt="${safeAlt}" loading="lazy" decoding="async" draggable="false" ondragstart="return false" onerror="Utils.handleImageFallback(this, '${safeEmoji}', 'device-emoji')"></div>`;
+    const media = `<div class="device-image-wrap"><img src="assets/images/device-categories/${c.id}.jpg?v=20260929d" alt="${safeAlt}" loading="eager" decoding="async" fetchpriority="high" draggable="false" ondragstart="return false" onerror="Utils.handleImageFallback(this, '${safeEmoji}', 'device-emoji')"></div>`;
     return `
     <div class="device-card device-cat-card" data-cat="${c.id}" onclick="enterDeviceCategory('${c.id}')">
       <div class="device-card-media">

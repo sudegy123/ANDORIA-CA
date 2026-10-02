@@ -1097,3 +1097,8 @@
    clamp(...) }` rules already win over app.css's `.scrolled` padding
    override (ID beats a 4-class selector regardless of source order),
    confirmed by measurement, so no extra override was needed there. */
+
+/* Category cards: show a solid tile (never an empty hole) until the photo has loaded */
+#step-5 .device-cat-card .device-image-wrap {
+  background: linear-gradient(160deg, #123826 0%, #0a1f15 100%);
+}

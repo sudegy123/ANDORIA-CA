@@ -57,9 +57,11 @@ const DecisionEngine = (() => {
    * @returns {Object[]}
    */
   function getCategories(propertyType, shopType) {
+    // Skip categories with no devices for this context — an empty card would be a dead end.
     return getCategoryIds(propertyType, shopType)
       .map(id => DeviceManager.getCategoryById(id))
-      .filter(Boolean);
+      .filter(Boolean)
+      .filter(c => getDevices(propertyType, shopType, c.id).length > 0);
   }
 
   /**
@@ -90,8 +92,8 @@ const DecisionEngine = (() => {
    * @returns {string|null}
    */
   function getDefaultCategory(propertyType, shopType) {
-    const ids = getCategoryIds(propertyType, shopType);
-    return ids.length ? ids[0] : null;
+    const cats = getCategories(propertyType, shopType);
+    return cats.length ? cats[0].id : null;
   }
 
   /**

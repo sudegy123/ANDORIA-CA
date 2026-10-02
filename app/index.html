@@ -477,7 +477,7 @@ document,'script','https://connect.facebook.net/en_US/fbevents.js');
              (hf_20260831_100035 — sequential with 100041/100048 below).
              Fixed full-cover layer behind the whole welcome experience;
              overlay gradient keeps text/cards readable over it. -->
-        <img id="welcome-hero-img" src="https://d8j0ntlcm91z4.cloudfront.net/user_3G8hfXGld3ykullvffjm4Fw2l8K/hf_20260831_100035_823e38a0-2760-4733-92ba-272ac9c47363.png" alt="" loading="eager" decoding="async" aria-hidden="true">
+        <img id="welcome-hero-img" src="assets/images/photos/hf_20260831_100035_823e38a0-2760-4733-92ba-272ac9c47363.webp" alt="" loading="eager" decoding="async" aria-hidden="true">
         <div id="welcome-hero-overlay" aria-hidden="true"></div>
 
         <!-- ─ TOPBAR ─ -->
@@ -518,7 +518,7 @@ document,'script','https://connect.facebook.net/en_US/fbevents.js');
           <!-- Free Installation Offer Card -->
           <div class="w-offer-card" id="welcome-offer-card">
             <div class="w-offer-img-wrap">
-              <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3G8hfXGld3ykullvffjm4Fw2l8K/hf_20260831_100041_4d38be32-029c-49f2-9953-7640a9389a3e.png" alt="" loading="eager" decoding="async" aria-hidden="true">
+              <img src="assets/images/photos/hf_20260831_100041_4d38be32-029c-49f2-9953-7640a9389a3e.webp" alt="" loading="eager" decoding="async" aria-hidden="true">
             </div>
             <div class="w-offer-body">
               <div class="w-offer-badge" data-i18n="offer.badge">عرض لفترة محدودة</div>
@@ -566,7 +566,7 @@ document,'script','https://connect.facebook.net/en_US/fbevents.js');
           <!-- $30 Mini Package Card -->
           <div class="w-pkg-card">
             <div class="w-pkg-img-wrap">
-              <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3G8hfXGld3ykullvffjm4Fw2l8K/hf_20260831_100048_03d493ce-fe6d-45de-8627-a809284fc0a8.png" alt="" loading="lazy" decoding="async" aria-hidden="true">
+              <img src="assets/images/photos/hf_20260831_100048_03d493ce-fe6d-45de-8627-a809284fc0a8.webp" alt="" loading="lazy" decoding="async" aria-hidden="true">
             </div>
             <div class="w-pkg-body">
               <div class="w-pkg-ribbon" data-i18n="miniPackage.specialBadge">عرض خاص</div>
@@ -1319,8 +1319,6 @@ document,'script','https://connect.facebook.net/en_US/fbevents.js');
 
 const AppImages = (() => {
 
-  // CDN base — all Higgsfield assets live here
-  const CDN = 'https://d8j0ntlcm91z4.cloudfront.net/user_3G8hfXGld3ykullvffjm4Fw2l8K/';
 
   // Cloudinary delivery base for optimized assets (f_auto/q_auto = auto
   // WebP/AVIF + auto compression, c_fill,g_auto = smart-cropped to the
@@ -1353,17 +1351,17 @@ const AppImages = (() => {
   // 1:1 product photography on dark studio background
   // ─────────────────────────────────────────────────────────────────
   const SYSTEM = {
-    panel:      CDN + 'hf_20260830_211936_bd4c5d52-c27a-44b1-bf4e-3230cae46b21.png',
-    battery:    CDN + 'hf_20260830_211941_4ee6902f-8254-4165-adb1-f508e2629765.png',
-    inverter:   CDN + 'hf_20260830_211947_42a63c60-1924-481d-add2-be37d77706d2.png',
+    panel:      'assets/images/photos/hf_20260830_211936_bd4c5d52-c27a-44b1-bf4e-3230cae46b21.webp',
+    battery:    'assets/images/photos/hf_20260830_211941_4ee6902f-8254-4165-adb1-f508e2629765.webp',
+    inverter:   'assets/images/photos/hf_20260830_211947_42a63c60-1924-481d-add2-be37d77706d2.webp',
     controller: null, // none generated — keeps icon fallback
   };
 
   // Battery by chemistry — same photo covers all three chemistry types
   const BATTERY = {
-    LITHIUM:   CDN + 'hf_20260830_211941_4ee6902f-8254-4165-adb1-f508e2629765.png',
-    GEL:       CDN + 'hf_20260830_211941_4ee6902f-8254-4165-adb1-f508e2629765.png',
-    LEAD_ACID: CDN + 'hf_20260830_211941_4ee6902f-8254-4165-adb1-f508e2629765.png',
+    LITHIUM:   'assets/images/photos/hf_20260830_211941_4ee6902f-8254-4165-adb1-f508e2629765.webp',
+    GEL:       'assets/images/photos/hf_20260830_211941_4ee6902f-8254-4165-adb1-f508e2629765.webp',
+    LEAD_ACID: 'assets/images/photos/hf_20260830_211941_4ee6902f-8254-4165-adb1-f508e2629765.webp',
   };
 
   // ─────────────────────────────────────────────────────────────────
@@ -1453,72 +1451,72 @@ const AppImages = (() => {
   // ─────────────────────────────────────────────────────────────────
   const APPLIANCE_URLS = {
     // COOLING — semantically correct per product type
-    'ac-split':               CDN + 'hf_20260830_195524_8878097a-fb4f-41c0-83f1-4ff775fe25bc.png',   // ✓ split AC wall unit
-    'ac-commercial':          CDN + 'hf_20260830_195713_78e8a756-be68-4403-9b34-f9ecf9c82182.png',   // ✓ commercial cassette AC
-    'cooling-evaporative':    CDN + 'hf_20260830_195542_6fb6dc5f-a3c9-4a56-909f-04d11921ff10.png',   // ✓ evaporative/desert cooler
-    'fan-ceiling':            CDN + 'hf_20260830_215253_c6600c63-8056-406a-b386-eb6a02a14f74.png',   // ✓ ceiling fan (newly generated)
-    'fan-standing':           CDN + 'hf_20260830_215258_dbbaf887-1740-417d-a079-a07e06b6107c.png',   // ✓ pedestal standing fan (newly generated)
-    'fan-desk':               CDN + 'hf_20260830_195604_74fa2a1c-1403-4450-8fd8-747250ba69ad.png',   // ✓ desk fan
-    'fan-exhaust':            CDN + 'hf_20260830_195609_c203281d-550f-470e-a427-a56f57dd98a9.png',   // ✓ exhaust wall fan
+    'ac-split':               'assets/images/photos/hf_20260830_195524_8878097a-fb4f-41c0-83f1-4ff775fe25bc.webp',   // ✓ split AC wall unit
+    'ac-commercial':          'assets/images/photos/hf_20260830_195713_78e8a756-be68-4403-9b34-f9ecf9c82182.webp',   // ✓ commercial cassette AC
+    'cooling-evaporative':    'assets/images/photos/hf_20260830_195542_6fb6dc5f-a3c9-4a56-909f-04d11921ff10.webp',   // ✓ evaporative/desert cooler
+    'fan-ceiling':            'assets/images/photos/hf_20260830_215253_c6600c63-8056-406a-b386-eb6a02a14f74.webp',   // ✓ ceiling fan (newly generated)
+    'fan-standing':           'assets/images/photos/hf_20260830_215258_dbbaf887-1740-417d-a079-a07e06b6107c.webp',   // ✓ pedestal standing fan (newly generated)
+    'fan-desk':               'assets/images/photos/hf_20260830_195604_74fa2a1c-1403-4450-8fd8-747250ba69ad.webp',   // ✓ desk fan
+    'fan-exhaust':            'assets/images/photos/hf_20260830_195609_c203281d-550f-470e-a427-a56f57dd98a9.webp',   // ✓ exhaust wall fan
     // REFRIGERATION — each type gets its own correct image
-    'refrigerator-standard':  CDN + 'hf_20260830_215149_dcafd823-e490-493a-90fd-5cef5cf36e4a.png',  // ✓ standard home fridge (newly generated)
-    'refrigerator-display':   CDN + 'hf_20260830_195708_292d31cb-b354-4632-8309-0296e0aef82c.png',  // ✓ glass-door display fridge
-    'freezer-chest':          CDN + 'hf_20260830_215153_83df478f-d99c-4eb7-8867-a9f0dc072e55.png',  // ✓ chest freezer (newly generated)
+    'refrigerator-standard':  'assets/images/photos/hf_20260830_215149_dcafd823-e490-493a-90fd-5cef5cf36e4a.webp',  // ✓ standard home fridge (newly generated)
+    'refrigerator-display':   'assets/images/photos/hf_20260830_195708_292d31cb-b354-4632-8309-0296e0aef82c.webp',  // ✓ glass-door display fridge
+    'freezer-chest':          'assets/images/photos/hf_20260830_215153_83df478f-d99c-4eb7-8867-a9f0dc072e55.webp',  // ✓ chest freezer (newly generated)
     // ENTERTAINMENT — TV gets its own TV image, not receiver
-    'tv':                     CDN + 'hf_20260830_215144_ca7681bb-b1bc-4431-a150-91141917d09a.png',   // ✓ flat-screen TV (newly generated)
-    'entertainment-receiver': CDN + 'hf_20260830_195624_38a632a5-3458-42be-8c0e-c12237c822da.png',  // ✓ satellite receiver set-top box
-    'entertainment-speaker':  CDN + 'hf_20260830_195644_e8ef6462-a0ed-40e4-a2eb-8ba6d5f3ed44.png',  // ✓ PA speaker cabinet
+    'tv':                     'assets/images/photos/hf_20260830_215144_ca7681bb-b1bc-4431-a150-91141917d09a.webp',   // ✓ flat-screen TV (newly generated)
+    'entertainment-receiver': 'assets/images/photos/hf_20260830_195624_38a632a5-3458-42be-8c0e-c12237c822da.webp',  // ✓ satellite receiver set-top box
+    'entertainment-speaker':  'assets/images/photos/hf_20260830_195644_e8ef6462-a0ed-40e4-a2eb-8ba6d5f3ed44.webp',  // ✓ PA speaker cabinet
     // LIGHTING — each type gets its correct image
-    'lighting-bulb':          CDN + 'hf_20260830_215159_3c8669b2-6862-4248-8cbe-1e78520a0076.png',  // ✓ LED light bulb (newly generated)
-    'lighting-tube':          CDN + 'hf_20260830_215204_f034c94b-2e57-4618-8a14-6781118d182d.png',  // ✓ LED tube light (newly generated)
-    'lighting-floodlight':    CDN + 'hf_20260830_195614_b0805750-5204-448e-b4d8-3a4f4d2dcd16.png',  // ✓ LED flood light fixture
-    'lighting-lantern':       CDN + 'hf_20260830_195619_60e92b53-bf61-40db-94c8-80c5be9da518.png',  // ✓ emergency lantern
+    'lighting-bulb':          'assets/images/photos/hf_20260830_215159_3c8669b2-6862-4248-8cbe-1e78520a0076.webp',  // ✓ LED light bulb (newly generated)
+    'lighting-tube':          'assets/images/photos/hf_20260830_215204_f034c94b-2e57-4618-8a14-6781118d182d.webp',  // ✓ LED tube light (newly generated)
+    'lighting-floodlight':    'assets/images/photos/hf_20260830_195614_b0805750-5204-448e-b4d8-3a4f4d2dcd16.webp',  // ✓ LED flood light fixture
+    'lighting-lantern':       'assets/images/photos/hf_20260830_195619_60e92b53-bf61-40db-94c8-80c5be9da518.webp',  // ✓ emergency lantern
     // KITCHEN — each appliance gets its own correct image
-    'kitchen-washer':         CDN + 'hf_20260830_215209_0695d5e5-df0c-4c89-998c-e77ae3419e9f.png',  // ✓ washing machine (newly generated)
-    'kitchen-kettle':         CDN + 'hf_20260830_215230_568a6776-2f37-4b0b-b0d2-996bac4a0b48.png',  // ✓ electric kettle (newly generated)
-    'kitchen-microwave':      CDN + 'hf_20260830_215235_7fdaaa8c-d3eb-46e9-96c4-af989e0ef960.png',  // ✓ microwave oven (newly generated)
-    'kitchen-waterheater':    CDN + 'hf_20260830_215241_3810c2fd-7e3a-49a3-9594-18aa0538347a.png',  // ✓ electric water heater (newly generated)
-    'kitchen-dispenser':      CDN + 'hf_20260830_195559_f4d90407-93cf-4e9d-901b-a61aeaf00266.png',  // ✓ hot/cold water dispenser
-    'kitchen-espresso':       CDN + 'hf_20260830_200355_8d3099de-72a5-4e56-9df3-3c891f4bed12.png',  // ✓ espresso/coffee machine
-    'kitchen-mixer':          CDN + 'hf_20260830_200400_ae324aec-6d71-459a-9c6e-06517278101a.png',  // ✓ commercial dough mixer
-    'kitchen-cabinet':        CDN + 'hf_20260830_200405_b575b8f4-4018-4b14-a3a2-ea4049fd98cd.png',  // ✓ proofing cabinet
+    'kitchen-washer':         'assets/images/photos/hf_20260830_215209_0695d5e5-df0c-4c89-998c-e77ae3419e9f.webp',  // ✓ washing machine (newly generated)
+    'kitchen-kettle':         'assets/images/photos/hf_20260830_215230_568a6776-2f37-4b0b-b0d2-996bac4a0b48.webp',  // ✓ electric kettle (newly generated)
+    'kitchen-microwave':      'assets/images/photos/hf_20260830_215235_7fdaaa8c-d3eb-46e9-96c4-af989e0ef960.webp',  // ✓ microwave oven (newly generated)
+    'kitchen-waterheater':    'assets/images/photos/hf_20260830_215241_3810c2fd-7e3a-49a3-9594-18aa0538347a.webp',  // ✓ electric water heater (newly generated)
+    'kitchen-dispenser':      'assets/images/photos/hf_20260830_195559_f4d90407-93cf-4e9d-901b-a61aeaf00266.webp',  // ✓ hot/cold water dispenser
+    'kitchen-espresso':       'assets/images/photos/hf_20260830_200355_8d3099de-72a5-4e56-9df3-3c891f4bed12.webp',  // ✓ espresso/coffee machine
+    'kitchen-mixer':          'assets/images/photos/hf_20260830_200400_ae324aec-6d71-459a-9c6e-06517278101a.webp',  // ✓ commercial dough mixer
+    'kitchen-cabinet':        'assets/images/photos/hf_20260830_200405_b575b8f4-4018-4b14-a3a2-ea4049fd98cd.webp',  // ✓ proofing cabinet
     // COMPUTING / OFFICE
-    'computing-laptop':       CDN + 'hf_20260830_195529_7bdb8ffa-0e14-4c2b-8b69-76fb9094f26e.png',  // ✓ laptop computer
-    'computing-desktop':      CDN + 'hf_20260830_195529_7bdb8ffa-0e14-4c2b-8b69-76fb9094f26e.png',  // ✓ desktop (same laptop image — acceptable)
-    'computing-printer':      CDN + 'hf_20260830_195554_78ce9236-2bff-4b24-a884-10fe5905d817.png',  // ✓ laser printer
-    'computing-projector':    CDN + 'hf_20260830_195639_dd3b7758-d708-47d4-9121-f3c2db503e1d.png',  // ✓ business projector
-    'computing-cctv':         CDN + 'hf_20260830_195629_4fd7a8ba-51f2-4824-af7f-11579f08c8cb.png',  // ✓ dome CCTV camera
+    'computing-laptop':       'assets/images/photos/hf_20260830_195529_7bdb8ffa-0e14-4c2b-8b69-76fb9094f26e.webp',  // ✓ laptop computer
+    'computing-desktop':      'assets/images/photos/hf_20260830_195529_7bdb8ffa-0e14-4c2b-8b69-76fb9094f26e.webp',  // ✓ desktop (same laptop image — acceptable)
+    'computing-printer':      'assets/images/photos/hf_20260830_195554_78ce9236-2bff-4b24-a884-10fe5905d817.webp',  // ✓ laser printer
+    'computing-projector':    'assets/images/photos/hf_20260830_195639_dd3b7758-d708-47d4-9121-f3c2db503e1d.webp',  // ✓ business projector
+    'computing-cctv':         'assets/images/photos/hf_20260830_195629_4fd7a8ba-51f2-4824-af7f-11579f08c8cb.webp',  // ✓ dome CCTV camera
     // PUMPS
-    'pump-surface':           CDN + 'hf_20260830_195534_e7b9040d-795a-4888-a699-dcc43f1a214e.png',  // ✓ surface centrifugal pump
-    'pump-submersible':       CDN + 'hf_20260831_091003_09f3ca84-70e8-49c8-bc1c-e9e3e45195e7.png',  // ✓ submersible borehole pumpusings)
+    'pump-surface':           'assets/images/photos/hf_20260830_195534_e7b9040d-795a-4888-a699-dcc43f1a214e.webp',  // ✓ surface centrifugal pump
+    'pump-submersible':       'assets/images/photos/hf_20260831_091003_09f3ca84-70e8-49c8-bc1c-e9e3e45195e7.webp',  // ✓ submersible borehole pumpusings)
     // ELECTRONICS / MISC
-    'other-charging':         CDN + 'hf_20260830_195548_bddc8cb7-f49b-4152-8139-79158142b078.png',  // ✓ multi-port USB charging hub
-    'other-router':           CDN + 'hf_20260830_215247_d6ade3f4-a166-4368-9cd7-459c06c5e8b7.png',  // ✓ WiFi router with antennas (newly generated)
-    'other-electronic':       CDN + 'hf_20260830_200417_cedf0950-81df-423e-83d7-5a4e5dae5233.png',  // ✓ electronic controller device
+    'other-charging':         'assets/images/photos/hf_20260830_195548_bddc8cb7-f49b-4152-8139-79158142b078.webp',  // ✓ multi-port USB charging hub
+    'other-router':           'assets/images/photos/hf_20260830_215247_d6ade3f4-a166-4368-9cd7-459c06c5e8b7.webp',  // ✓ WiFi router with antennas (newly generated)
+    'other-electronic':       'assets/images/photos/hf_20260830_200417_cedf0950-81df-423e-83d7-5a4e5dae5233.webp',  // ✓ electronic controller device
     // SPECIALIST
     // Medical — individual semantic images (generated 2026-08-31)
-    'medical-oxygen':     CDN + 'hf_20260830_195720_a538ebe4-7173-4791-b8d2-2307611f9140.png',  // ✓ oxygen concentrator
-    'medical-autoclave':  CDN + 'hf_20260831_084858_72f8f260-b9a1-45ec-b593-dd009055c6a3.png',  // ✓ autoclave sterilizer
-    'medical-incubator':  CDN + 'hf_20260831_084904_c9c4021a-b97d-4c0c-979b-feb01732f7a5.png',  // ✓ infant incubator
-    'medical-dental':     CDN + 'hf_20260831_084851_fbc0b792-c351-4671-b0fe-6dca43c3611c.png',  // ✓ dental unit chair
-    'medical-ultrasound': CDN + 'hf_20260831_084847_3ca2bdb6-e5f1-446b-8b71-dbec92238981.png',  // ✓ ultrasound machine
-    'medical-ecg':        CDN + 'hf_20260831_084915_964c2551-9463-458e-8c4c-651ba0e7d1dd.png',  // ✓ ECG machine
-    'medical-centrifuge': CDN + 'hf_20260831_084909_a3c10219-1c15-4992-b1d3-44628b2e965c.png',  // ✓ lab centrifuge
-    'medical-exam-light': CDN + 'hf_20260831_091036_f77b7c88-b81b-4978-b53e-68ea9a29d7cf.png',  // ✓ medical exam light
-    'agriculture-equipment':  CDN + 'hf_20260830_200411_0a0ac923-d800-4777-96ce-4cd2cae5819a.png',  // ✓ milking machine
-    'agriculture-milk-tank':  CDN + 'hf_20260831_091050_fd177b85-4ad6-4686-9f7f-7b2ec9a3b025.png',  // ✓ milk bulk cooling tank
-    'agriculture-feed-mixer': CDN + 'hf_20260831_091043_7c8dad61-cf7c-4b62-87b0-a2145e39962b.png',  // ✓ animal feed mixer
-    'workshop-machine':       CDN + 'hf_20260830_195655_7f9d0d46-69b0-41cc-89e5-355a44d3be84.png',  // ✓ grain mill
-    'workshop-tool':          CDN + 'hf_20260830_195649_09b2e1bc-91e4-4e8f-a388-3248fd610f8f.png',  // ✓ angle grinder
+    'medical-oxygen':     'assets/images/photos/hf_20260830_195720_a538ebe4-7173-4791-b8d2-2307611f9140.webp',  // ✓ oxygen concentrator
+    'medical-autoclave':  'assets/images/photos/hf_20260831_084858_72f8f260-b9a1-45ec-b593-dd009055c6a3.webp',  // ✓ autoclave sterilizer
+    'medical-incubator':  'assets/images/photos/hf_20260831_084904_c9c4021a-b97d-4c0c-979b-feb01732f7a5.webp',  // ✓ infant incubator
+    'medical-dental':     'assets/images/photos/hf_20260831_084851_fbc0b792-c351-4671-b0fe-6dca43c3611c.webp',  // ✓ dental unit chair
+    'medical-ultrasound': 'assets/images/photos/hf_20260831_084847_3ca2bdb6-e5f1-446b-8b71-dbec92238981.webp',  // ✓ ultrasound machine
+    'medical-ecg':        'assets/images/photos/hf_20260831_084915_964c2551-9463-458e-8c4c-651ba0e7d1dd.webp',  // ✓ ECG machine
+    'medical-centrifuge': 'assets/images/photos/hf_20260831_084909_a3c10219-1c15-4992-b1d3-44628b2e965c.webp',  // ✓ lab centrifuge
+    'medical-exam-light': 'assets/images/photos/hf_20260831_091036_f77b7c88-b81b-4978-b53e-68ea9a29d7cf.webp',  // ✓ medical exam light
+    'agriculture-equipment':  'assets/images/photos/hf_20260830_200411_0a0ac923-d800-4777-96ce-4cd2cae5819a.webp',  // ✓ milking machine
+    'agriculture-milk-tank':  'assets/images/photos/hf_20260831_091050_fd177b85-4ad6-4686-9f7f-7b2ec9a3b025.webp',  // ✓ milk bulk cooling tank
+    'agriculture-feed-mixer': 'assets/images/photos/hf_20260831_091043_7c8dad61-cf7c-4b62-87b0-a2145e39962b.webp',  // ✓ animal feed mixer
+    'workshop-machine':       'assets/images/photos/hf_20260830_195655_7f9d0d46-69b0-41cc-89e5-355a44d3be84.webp',  // ✓ grain mill
+    'workshop-tool':          'assets/images/photos/hf_20260830_195649_09b2e1bc-91e4-4e8f-a388-3248fd610f8f.webp',  // ✓ angle grinder
     // Workshop — individual tool images (generated 2026-08-31)
-    'workshop-compressor':    CDN + 'hf_20260831_091014_e716fdbd-ec72-43b2-b0c4-7c13bb3af5b5.png',  // ✓ air compressor with tank
-    'workshop-welder-inv':    CDN + 'hf_20260831_091009_3a8621d9-46f6-46b1-9e6b-5813c4b63227.png',  // ✓ inverter welder
-    'workshop-welder-tx':     CDN + 'hf_20260831_091057_a15a4004-91a0-41bd-86ee-23663eb60eae.png',  // ✓ transformer welder
-    'workshop-lathe':         CDN + 'hf_20260831_091019_4daabaa6-3ab4-46eb-9701-c1a1aa8ad08d.png',  // ✓ bench lathe
-    'workshop-drill':         CDN + 'hf_20260831_091025_23e07a93-13e0-4981-b4ec-682489e7d87f.png',  // ✓ cordless drill
-    'workshop-saw':           CDN + 'hf_20260831_091031_2c87c2c8-01f6-4f48-b10f-8d702a9f4bc9.png',  // ✓ metal cutting saw
-    'commercial-pos':         CDN + 'hf_20260830_195634_91f04dec-6114-4dea-b1fc-59e993496015.png',  // ✓ POS payment terminal
-    'commercial-salon':       CDN + 'hf_20260830_195700_8223f823-b6f6-41b2-8cc2-23e2ae3d335e.png',  // ✓ professional hair dryer
+    'workshop-compressor':    'assets/images/photos/hf_20260831_091014_e716fdbd-ec72-43b2-b0c4-7c13bb3af5b5.webp',  // ✓ air compressor with tank
+    'workshop-welder-inv':    'assets/images/photos/hf_20260831_091009_3a8621d9-46f6-46b1-9e6b-5813c4b63227.webp',  // ✓ inverter welder
+    'workshop-welder-tx':     'assets/images/photos/hf_20260831_091057_a15a4004-91a0-41bd-86ee-23663eb60eae.webp',  // ✓ transformer welder
+    'workshop-lathe':         'assets/images/photos/hf_20260831_091019_4daabaa6-3ab4-46eb-9701-c1a1aa8ad08d.webp',  // ✓ bench lathe
+    'workshop-drill':         'assets/images/photos/hf_20260831_091025_23e07a93-13e0-4981-b4ec-682489e7d87f.webp',  // ✓ cordless drill
+    'workshop-saw':           'assets/images/photos/hf_20260831_091031_2c87c2c8-01f6-4f48-b10f-8d702a9f4bc9.webp',  // ✓ metal cutting saw
+    'commercial-pos':         'assets/images/photos/hf_20260830_195634_91f04dec-6114-4dea-b1fc-59e993496015.webp',  // ✓ POS payment terminal
+    'commercial-salon':       'assets/images/photos/hf_20260830_195700_8223f823-b6f6-41b2-8cc2-23e2ae3d335e.webp',  // ✓ professional hair dryer
   };
 
   /**
@@ -1528,7 +1526,7 @@ const AppImages = (() => {
    */
   function url(src) {
     if (!src) return null;
-    if (typeof src === 'string' && src.startsWith('https://')) return src;
+    if (typeof src === 'string' && (src.startsWith('https://') || src.startsWith('assets/'))) return src;
     return null;
   }
 
@@ -1703,7 +1701,7 @@ if (typeof window !== 'undefined') window.CloudinaryImages = {
   system:    function(k) { return AppImages.system(k); },
   battery:   function(c) { return AppImages.battery(c); },
   // url() in old code expects a public_id string; now receives a full URL — pass through.
-  url:       function(src, opts) { return (src && src.startsWith && src.startsWith('https://')) ? src : null; },
+  url:       function(src, opts) { return (src && src.startsWith && (src.startsWith('https://') || src.startsWith('assets/'))) ? src : null; },
 };
 </script>
 <script src="assets/js/brand.js?v=20260928a"></script>
