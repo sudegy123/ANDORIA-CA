@@ -88,6 +88,7 @@
       pxPerCard = R * stepDeg * Math.PI / 180;
       cards.forEach(c => { c.style.width = cw + 'px'; c.style.height = ch + 'px'; });
       lastKey = null;
+      if (typeof kick === 'function') kick();
     }
     const wrap = d => ((d + N / 2) % N + N) % N - N / 2;
 
@@ -123,7 +124,11 @@
 
     let dragging = false, last = performance.now(), userActive = false;
     const reduce = matchMedia('(prefers-reduced-motion: reduce)');
-    function go(t) { target = Math.round(t); userActive = true; }
+    // Idle-aware loop: only animate while the wheel is moving or being dragged.
+    // (An always-on rAF loop kept low-end phones busy forever, even on other steps.)
+    let running = false;
+    function kick() { if (!running) { running = true; last = performance.now(); requestAnimationFrame(frame); } }
+    function go(t) { target = Math.round(t); userActive = true; kick(); }
     function frame() {
       const now = performance.now(), dt = Math.min(0.5, (now - last) / 1000);
       last = now;
@@ -132,12 +137,12 @@
         if (Math.abs(target - pos) < 0.003) pos = target;
       }
       place(); updatePanel();
-      requestAnimationFrame(frame);
+      if (dragging || pos !== target) requestAnimationFrame(frame); else running = false;
     }
 
     let lx = 0, lt = 0, vel = 0, moved = 0, downCard = null;
     stage.addEventListener('pointerdown', e => {
-      dragging = true; userActive = true; lx = e.clientX; lt = performance.now(); vel = 0; moved = 0;
+      dragging = true; userActive = true; kick(); lx = e.clientX; lt = performance.now(); vel = 0; moved = 0;
       downCard = e.target.closest('.property-card');
       stage.setPointerCapture(e.pointerId);
       stage.classList.add('dragging');
@@ -196,7 +201,7 @@
     addEventListener('resize', layout);
     if ('ResizeObserver' in window) new ResizeObserver(layout).observe(stage);
     layout();
-    requestAnimationFrame(frame);
+    kick();
   }
 
   if (document.readyState === 'loading') {

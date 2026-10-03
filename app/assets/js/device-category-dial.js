@@ -49,7 +49,7 @@
     abortCtl = new AbortController();
     const { signal } = abortCtl;
 
-    if (rafId) cancelAnimationFrame(rafId); // renderDeviceCategoryGrid() rebuilt the DOM — kill the previous loop
+    if (rafId) { cancelAnimationFrame(rafId); rafId = null; } // renderDeviceCategoryGrid() rebuilt the DOM — kill the previous loop
     stage.classList.remove('anim-fade-in', 'anim-stagger');
     cards.forEach(c => c.classList.remove('anim-fade-in'));
 
@@ -134,7 +134,11 @@
       }
     }
 
+    // Idle-aware loop: only animate while the dial is moving or being dragged.
+    // (An always-on rAF loop kept low-end phones busy forever.)
+    function kick() { if (!rafId) rafId = requestAnimationFrame(frame); }
     function frame() {
+      rafId = null;
       if (!dragging) {
         angle += (targetAngle - angle) * 0.18;
         // Finish on the exact category angle. A residual fraction of a
@@ -143,7 +147,7 @@
         if (Math.abs(targetAngle - angle) < 0.05) angle = targetAngle;
       }
       place();
-      rafId = requestAnimationFrame(frame);
+      if (dragging || angle !== targetAngle) kick();
     }
 
     // NOTE: this deliberately never trusts the card's own native click
@@ -168,7 +172,7 @@
     // whatever drag DID happen, defaulting to "was a tap" when none did.
     let dragging = false, lx = 0, moved = 0, downCard = null;
     stage.addEventListener('pointerdown', e => {
-      dragging = true; lx = e.clientX; moved = 0;
+      dragging = true; kick(); lx = e.clientX; moved = 0;
       downCard = e.target.closest('.device-cat-card');
       stage.classList.add('dragging');
       stage.setPointerCapture(e.pointerId);
@@ -190,6 +194,7 @@
       // already established as correct.
       angle -= dx * 0.4;
       targetAngle = angle;
+      kick();
     }, { signal });
     function endDrag() {
       if (!dragging) return;
@@ -234,7 +239,7 @@
       const contPos = -angle / stepDeg;
       const delta = Math.round(wrapIdx(idx - contPos));
       if (delta === 0) enterDeviceCategory(card.dataset.cat);
-      else targetAngle = angle - stepDeg * delta;
+      else { targetAngle = angle - stepDeg * delta; kick(); }
     }, { capture: true, signal });
 
     // Was: one full stepDeg jump per wheel EVENT, using deltaY only. A
@@ -253,15 +258,17 @@
       const d = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
       angle -= d * 0.35;
       targetAngle = angle;
+      kick();
       clearTimeout(wheelIdleTimer);
       wheelIdleTimer = setTimeout(() => {
         targetAngle = Math.round(angle / stepDeg) * stepDeg;
+        kick();
       }, 140);
     }, { passive: false, signal });
 
-    addEventListener('resize', layout, { signal }); // also leaked across re-inits without this
+    addEventListener('resize', () => { layout(); kick(); }, { signal }); // also leaked across re-inits without this
     layout();
-    rafId = requestAnimationFrame(frame);
+    kick();
   }
 
   // Step 5's category view can (re)appear via real navigation,
