@@ -43,7 +43,7 @@ document,'script','https://connect.facebook.net/en_US/fbevents.js');
 <!-- Chosen redesign direction (was "concept 12" during the design-picker
      phase) — now the permanent style for steps 2-11. Step-1 is never
      targeted by this file. -->
-<link rel="stylesheet" href="assets/css/concepts/concept-12.css?v=20260930u">
+<link rel="stylesheet" href="assets/css/concepts/concept-12.css?v=20261031a">
 <style id="welcome-v2-inline">
 /*
   ANDORIA WELCOME v2 — INLINE GUARANTEE
@@ -593,10 +593,10 @@ document,'script','https://connect.facebook.net/en_US/fbevents.js');
     </div><!-- /step-1 -->
 
         <!-- ═══ STEP 2: CUSTOMER PROFILE ═══════════════════════════════ -->
-    <div class="step" id="step-2">
+    <div class="step" id="step-5">
       <div class="step-shell">
         <div class="step-header">
-          <div class="eyebrow" data-i18n="steps.profile.eyebrow">الخطوة 1 من 11</div>
+          <div class="eyebrow" data-i18n="steps.profile.eyebrow">الخطوة 4 من 11</div>
           <div class="step-title mt-2" data-i18n="steps.profile.title">بياناتك الشخصية</div>
           <div class="step-subtitle mt-2" data-i18n="steps.profile.subtitle">نستخدمها لتجهيز عرضك وتقريرك الفني ومتابعة طلبك</div>
         </div>
@@ -721,17 +721,17 @@ document,'script','https://connect.facebook.net/en_US/fbevents.js');
           </div>
         <div class="step-footer">
           <div class="remaining-fields" id="remaining-fields"></div>
-          <button class="btn btn-primary" id="btn-step-profile" style="opacity:0.4;pointer-events:none" onclick="goToStep(3)" data-i18n="steps.profile.next">التالي</button>
+          <button class="btn btn-primary" id="btn-step-profile" style="opacity:0.4;pointer-events:none" onclick="goToStep(6)" data-i18n="steps.profile.next">التالي</button>
         </div>
         </div>
       </div>
     </div>
 
     <!-- ═══ STEP 3: PROPERTY TYPE ══════════════════════════════════ -->
-    <div class="step" id="step-3">
+    <div class="step" id="step-2">
       <div class="step-shell">
         <div class="step-header">
-          <div class="eyebrow" data-i18n="steps.property.eyebrow">الخطوة 2 من 11</div>
+          <div class="eyebrow" data-i18n="steps.property.eyebrow">الخطوة 1 من 11</div>
           <div class="step-title mt-2" data-i18n="steps.property.title">ما نوع المكان؟</div>
           <div class="step-subtitle mt-2" data-i18n="steps.property.subtitle">اختر نوع المكان الذي تريد تزويده بالطاقة الشمسية</div>
         </div>
@@ -762,17 +762,17 @@ document,'script','https://connect.facebook.net/en_US/fbevents.js');
             </div>
           </div>
         <div class="step-footer">
-          <button class="btn btn-primary" id="btn-step2" style="opacity:0.4;pointer-events:none" onclick="goToStep(4)" data-i18n="steps.property.next">التالي</button>
+          <button class="btn btn-primary" id="btn-step2" style="opacity:0.4;pointer-events:none" onclick="goToStep(3)" data-i18n="steps.property.next">التالي</button>
         </div>
         </div>
       </div>
     </div>
 
     <!-- ═══ STEP 4: BASIC INFO ════════════════════════════════════ -->
-    <div class="step" id="step-4">
+    <div class="step" id="step-3">
       <div class="step-shell">
         <div class="step-header">
-          <div class="eyebrow" data-i18n="steps.basicInfo.eyebrow">الخطوة 3 من 11</div>
+          <div class="eyebrow" data-i18n="steps.basicInfo.eyebrow">الخطوة 2 من 11</div>
           <div class="step-title mt-2" data-i18n="steps.basicInfo.title">معلومات أساسية</div>
           <div class="step-subtitle mt-2" data-i18n="steps.basicInfo.subtitle">نستخدمها لتحديد النظام المثالي لموقعك</div>
         </div>
@@ -797,17 +797,17 @@ document,'script','https://connect.facebook.net/en_US/fbevents.js');
             </div>
           </div>
         <div class="step-footer">
-          <button class="btn btn-primary" onclick="goToStep(5)" data-i18n="steps.basicInfo.next">التالي — اختيار الأجهزة</button>
+          <button class="btn btn-primary" onclick="goToStep(4)" data-i18n="steps.basicInfo.next">التالي — اختيار الأجهزة</button>
         </div>
         </div>
       </div>
     </div>
 
     <!-- ═══ STEP 5: DEVICES ═══════════════════════════════════════ -->
-    <div class="step" id="step-5">
+    <div class="step" id="step-4">
       <div class="step-shell">
         <div class="step-header">
-          <div class="eyebrow" data-i18n="steps.devices.eyebrow">الخطوة 4 من 11</div>
+          <div class="eyebrow" data-i18n="steps.devices.eyebrow">الخطوة 3 من 11</div>
           <div class="step-title mt-2" data-i18n="steps.devices.title">أجهزتك الكهربائية</div>
           <div class="step-subtitle mt-2" data-i18n="steps.devices.subtitle">اختر الأجهزة التي تريد تشغيلها بالطاقة الشمسية</div>
         </div>
@@ -852,7 +852,7 @@ document,'script','https://connect.facebook.net/en_US/fbevents.js');
           </div>
 
         <div class="step-footer">
-          <button class="btn btn-primary" onclick="goToStep(6)">
+          <button class="btn btn-primary" onclick="goToStep(5)">
             <span id="btn-devices-txt" data-i18n="steps.devices.calcButton">حساب الاستهلاك</span>
           </button>
         </div>

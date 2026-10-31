@@ -190,7 +190,7 @@ const I18n = (() => {
     },
     "steps": {
       "profile": {
-        "eyebrow": "الخطوة 1 من 11",
+        "eyebrow": "الخطوة 4 من 11",
         "title": "بياناتك الشخصية",
         "subtitle": "نستخدمها لتجهيز عرضك وتقريرك الفني ومتابعة طلبك",
         "nameLabel": "الاسم الكامل",
@@ -234,7 +234,7 @@ const I18n = (() => {
         "next": "التالي"
       },
       "property": {
-        "eyebrow": "الخطوة 2 من 11",
+        "eyebrow": "الخطوة 1 من 11",
         "title": "ما نوع المكان؟",
         "subtitle": "اختر نوع المكان الذي تريد تزويده بالطاقة الشمسية",
         "shopTypeLabel": "ما نوع المحل التجاري؟",
@@ -262,7 +262,7 @@ const I18n = (() => {
         }
       },
       "basicInfo": {
-        "eyebrow": "الخطوة 3 من 11",
+        "eyebrow": "الخطوة 2 من 11",
         "title": "معلومات أساسية",
         "subtitle": "نستخدمها لتحديد النظام المثالي لموقعك",
         "outageLabel": "كم ساعة انقطاع كهرباء يومياً؟",
@@ -276,7 +276,7 @@ const I18n = (() => {
         "next": "التالي — اختيار الأجهزة"
       },
       "devices": {
-        "eyebrow": "الخطوة 4 من 11",
+        "eyebrow": "الخطوة 3 من 11",
         "title": "أجهزتك الكهربائية",
         "subtitle": "اختر الأجهزة التي تريد تشغيلها بالطاقة الشمسية",
         "loadLabel": "إجمالي استهلاك أجهزتك يومياً",
@@ -1443,7 +1443,7 @@ const I18n = (() => {
     },
     "steps": {
       "profile": {
-        "eyebrow": "Step 1 of 11",
+        "eyebrow": "Step 4 of 11",
         "title": "Your details",
         "subtitle": "We use these to prepare your quote, technical report, and follow up on your order",
         "nameLabel": "Full name",
@@ -1487,7 +1487,7 @@ const I18n = (() => {
         "next": "Next"
       },
       "property": {
-        "eyebrow": "Step 2 of 11",
+        "eyebrow": "Step 1 of 11",
         "title": "What type of place?",
         "subtitle": "Choose the type of place you want to power with solar energy",
         "shopTypeLabel": "What type of shop?",
@@ -1515,7 +1515,7 @@ const I18n = (() => {
         }
       },
       "basicInfo": {
-        "eyebrow": "Step 3 of 11",
+        "eyebrow": "Step 2 of 11",
         "title": "Basic information",
         "subtitle": "We use this to size the ideal system for your location",
         "outageLabel": "How many hours of power outage per day?",
@@ -1529,7 +1529,7 @@ const I18n = (() => {
         "next": "Next — choose devices"
       },
       "devices": {
-        "eyebrow": "Step 4 of 11",
+        "eyebrow": "Step 3 of 11",
         "title": "Your electrical devices",
         "subtitle": "Choose the devices you want to run on solar power",
         "loadLabel": "Your total daily appliance consumption",

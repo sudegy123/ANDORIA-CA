@@ -150,7 +150,7 @@ function rebuildForLanguageChange() {
 
   const step = StateManager.get('currentStep');
   switch (step) {
-    case 5: {
+    case 4: {
       // Language change mid-step — re-render in place, don't yank the
       // customer back to the category picker if they're inside one.
       renderDeviceCategoryGrid();
@@ -439,7 +439,7 @@ function goToStep(toStep) {
     // with the inline errors or the button's enabled state. On failure:
     // reveal every unmet field's reason (not just the first), and focus
     // the first invalid one — no alert() interruption.
-    if (from === 2) {
+    if (from === 5) {
       _profileSubmitAttempted = true;
       const { valid, firstInvalidId } = refreshProfileValidationUI();
       if (!valid) {
@@ -448,7 +448,7 @@ function goToStep(toStep) {
       }
     }
 
-    if (from === 3) {
+    if (from === 2) {
       const propertyType = StateManager.get('propertyType');
       if (!propertyType) {
         alert(I18n.t('validation.propertyRequired'));
@@ -493,11 +493,11 @@ function onStepEnter(step) {
   Utils.scrollTop();
 
   switch (step) {
-    case 3:
+    case 2:
       propertyStepVisited = true;
       upgradePropertyCardImages();
       break;
-    case 5: {
+    case 4: {
       // Fresh entry into the step (forward from step 4, or back from step
       // 6) always lands on the category picker, never mid-category —
       // selections made earlier are untouched, only the visible view resets.
@@ -616,7 +616,6 @@ function fillCitySelect(citySelect, stateId) {
  * @returns {Array<{id:string, valid:boolean, errorKey:string, errorVars?:Object}>}
  */
 function getProfileFieldSpecs() {
-  const beneficiary = StateManager.get('beneficiary');
   const specs = [
     {
       id: 'cust-name',
@@ -629,32 +628,10 @@ function getProfileFieldSpecs() {
       errorKey: 'validation.mobileInvalid',
       errorVars: { example: (CountryManager.getCountry(StateManager.get('mobileCountry')) || {}).example || '9XXXXXXXX' },
     },
-    {
-      id: 'cust-location-select',
-      valid: !!StateManager.get('customerLocation'),
-      errorKey: 'validation.locationRequired',
-    },
-    {
-      id: 'beneficiary-grid',
-      valid: !!beneficiary,
-      errorKey: 'validation.beneficiaryRequired',
-    },
   ];
 
-  if (beneficiary === 'myself') {
-    specs.push({
-      id: 'cust-state-select',
-      valid: !!StateManager.get('customerStateId'),
-      errorKey: 'validation.stateRequired',
-    });
-  } else if (beneficiary === 'family') {
-    specs.push(
-      { id: 'recipient-name', valid: !!(StateManager.get('recipientName') || '').trim(), errorKey: 'validation.recipientNameRequired' },
-      { id: 'recipient-mobile', valid: CountryManager.isValid('sudan', StateManager.get('recipientMobile') || ''), errorKey: 'validation.recipientMobileInvalid' },
-      { id: 'recipient-state-select', valid: !!StateManager.get('recipientStateId'), errorKey: 'validation.recipientStateRequired' },
-    );
-  }
-
+  // Only name + mobile are required — location, beneficiary, state and
+  // recipient fields are optional (downstream code falls back to defaults/'—').
   return specs;
 }
 
@@ -895,7 +872,7 @@ function selectProperty(el) {
     // (goToStep(4)), not just a selection that still needs a separate
     // tap on Next. A short delay lets the .selected highlight actually
     // paint before the step transitions away.
-    setTimeout(() => goToStep(4), 220);
+    setTimeout(() => goToStep(3), 220);
   }
 }
 
@@ -912,7 +889,7 @@ function selectShopType(el) {
   if (btn) { btn.style.opacity = '1'; btn.style.pointerEvents = 'auto'; }
   // Same as the property-type wheel: picking a shop type here is a
   // complete answer, so tapping it acts as "next" itself.
-  setTimeout(() => goToStep(4), 220);
+  setTimeout(() => goToStep(3), 220);
 }
 
 
